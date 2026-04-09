@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bright Smile Dental — Dentist in Clifton, Bristol</title>
+  <meta name="description" content="Modern private dental practice in Clifton, Bristol. NHS and private patients welcome. Online booking, AI-powered 24/7 enquiry handling. Call 0117 946 7200.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    :root{
+      --cyan:#06b6d4;--cyan-dark:#0891b2;--cyan-light:#ecfeff;
+      --dark:#0f172a;--gray-800:#1e293b;--gray-600:#475569;--gray-400:#94a3b8;--gray-200:#e2e8f0;--gray-50:#f8fafc;--white:#ffffff;
+      --font-sans:'DM Sans',system-ui,sans-serif;--font-display:'Fraunces',Georgia,serif;
+    }
+    html{scroll-behavior:smooth}
+    body{font-family:var(--font-sans);color:var(--dark);line-height:1.6;-webkit-font-smoothing:antialiased}
+
+    /* NAV */
+    .nav{position:sticky;top:0;z-index:100;background:var(--white);border-bottom:1px solid var(--gray-200)}
+    .nav-inner{max-width:1200px;margin:0 auto;padding:.75rem 1.5rem;display:flex;align-items:center;justify-content:space-between}
+    .nav-logo{font-family:var(--font-display);font-size:1.3rem;color:var(--dark);text-decoration:none}
+    .nav-logo span{color:var(--cyan)}
+    .nav-links{display:flex;align-items:center;gap:2rem;list-style:none}
+    .nav-links a{font-size:.85rem;font-weight:500;color:var(--gray-600);text-decoration:none;transition:color .2s}
+    .nav-links a:hover{color:var(--cyan)}
+    .nav-cta{background:var(--cyan);color:var(--white)!important;padding:.5rem 1.25rem;border-radius:.5rem;font-weight:600;transition:background .2s}
+    .nav-cta:hover{background:var(--cyan-dark)}
+
+    /* HERO */
+    .hero{background:linear-gradient(135deg,var(--dark) 0%,#0c1829 100%);color:var(--white);padding:5rem 1.5rem;position:relative;overflow:hidden}
+    .hero::after{content:'';position:absolute;top:-30%;right:-10%;width:50%;height:160%;background:radial-gradient(circle,rgba(6,182,212,0.1) 0%,transparent 70%)}
+    .hero-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.2fr 1fr;gap:4rem;align-items:center;position:relative;z-index:1}
+    .hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(6,182,212,0.15);color:var(--cyan);padding:.4rem 1rem;border-radius:100px;font-size:.8rem;font-weight:600;margin-bottom:1.5rem}
+    .hero h1{font-family:var(--font-display);font-size:clamp(2.5rem,5vw,3.5rem);line-height:1.1;margin-bottom:1.25rem}
+    .hero h1 span{color:var(--cyan)}
+    .hero p{font-size:1.05rem;color:rgba(255,255,255,.7);max-width:500px;margin-bottom:2rem}
+    .hero-ctas{display:flex;gap:1rem;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;gap:.5rem;padding:.875rem 2rem;border-radius:.5rem;font-weight:600;font-size:.9rem;text-decoration:none;border:none;cursor:pointer;transition:all .2s}
+    .btn-cyan{background:var(--cyan);color:var(--white)}
+    .btn-cyan:hover{background:var(--cyan-dark);transform:translateY(-1px)}
+    .btn-outline{background:transparent;color:var(--white);border:2px solid rgba(255,255,255,.2)}
+    .btn-outline:hover{border-color:var(--cyan);color:var(--cyan)}
+    .hero-image{background:var(--gray-800);border-radius:1rem;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;font-size:4rem}
+
+    /* SECTIONS */
+    .section{padding:5rem 1.5rem}
+    .section-alt{background:var(--gray-50)}
+    .section-inner{max-width:1200px;margin:0 auto}
+    .section-header{text-align:center;margin-bottom:3.5rem}
+    .section-label{font-size:.8rem;font-weight:600;color:var(--cyan);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.75rem}
+    .section-title{font-family:var(--font-display);font-size:clamp(2rem,4vw,2.75rem);line-height:1.15}
+    .section-desc{font-size:1rem;color:var(--gray-600);max-width:600px;margin:1rem auto 0}
+
+    /* TREATMENTS */
+    .treatments-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
+    .treatment-card{background:var(--white);border:1px solid var(--gray-200);border-radius:1rem;padding:2rem;transition:box-shadow .3s,transform .3s}
+    .treatment-card:hover{box-shadow:0 10px 40px rgba(0,0,0,.06);transform:translateY(-4px)}
+    .treatment-icon{width:3rem;height:3rem;border-radius:.75rem;background:var(--cyan-light);display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:1.25rem}
+    .treatment-card h3{font-size:1.1rem;font-weight:700;margin-bottom:.5rem}
+    .treatment-card p{font-size:.9rem;color:var(--gray-600)}
+    .treatment-price{font-size:.85rem;font-weight:600;color:var(--cyan);margin-top:.75rem}
+
+    /* BOOKING */
+    .booking-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
+    .booking-card{background:var(--white);border:1px solid var(--gray-200);border-radius:1rem;padding:2.5rem;box-shadow:0 4px 20px rgba(0,0,0,.04)}
+    .time-slots{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;margin:1.5rem 0}
+    .time-slot{padding:.6rem;text-align:center;border:1px solid var(--gray-200);border-radius:.5rem;font-size:.85rem;font-weight:500;cursor:pointer;transition:all .2s}
+    .time-slot:hover,.time-slot.selected{background:var(--cyan);color:var(--white);border-color:var(--cyan)}
+    .form-row{margin-bottom:1.25rem}
+    .form-row label{display:block;font-size:.85rem;font-weight:600;color:var(--gray-600);margin-bottom:.4rem}
+    .form-row input,.form-row select,.form-row textarea{width:100%;padding:.75rem 1rem;border:1px solid var(--gray-200);border-radius:.5rem;font-family:inherit;font-size:.9rem;outline:none;transition:border-color .2s}
+    .form-row input:focus,.form-row select:focus{border-color:var(--cyan);box-shadow:0 0 0 3px rgba(6,182,212,.1)}
+
+    /* REVIEWS */
+    .reviews-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem}
+    .review-card{background:var(--white);border:1px solid var(--gray-200);border-radius:1rem;padding:2rem}
+    .review-stars{color:var(--cyan);font-size:1rem;margin-bottom:.75rem}
+    .review-card blockquote{font-size:.9rem;color:var(--gray-600);font-style:italic;margin-bottom:1rem;line-height:1.7}
+    .review-card cite{font-size:.8rem;color:var(--gray-400);font-style:normal;font-weight:600}
+
+    /* AI CHATBOT */
+    .chatbot-widget{position:fixed;bottom:1.5rem;right:1.5rem;z-index:150}
+    .chatbot-toggle{width:3.5rem;height:3.5rem;border-radius:50%;background:var(--cyan);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(6,182,212,.4);transition:transform .2s}
+    .chatbot-toggle:hover{transform:scale(1.1)}
+    .chatbot-toggle svg{width:1.5rem;height:1.5rem;fill:var(--white)}
+    .chatbot-window{position:absolute;bottom:4.5rem;right:0;width:360px;max-height:500px;background:var(--white);border-radius:1rem;box-shadow:0 20px 60px rgba(0,0,0,.15);overflow:hidden;display:none;flex-direction:column}
+    .chatbot-window.open{display:flex}
+    .chatbot-header{background:var(--cyan);color:var(--white);padding:1rem 1.25rem;display:flex;justify-content:space-between;align-items:center}
+    .chatbot-header h4{font-size:.9rem;font-weight:600}
+    .chatbot-header button{background:none;border:none;color:var(--white);cursor:pointer;font-size:1.2rem}
+    .chatbot-messages{flex:1;overflow-y:auto;padding:1rem;display:flex;flex-direction:column;gap:.75rem;min-height:300px}
+    .chat-msg{max-width:85%;padding:.75rem 1rem;border-radius:1rem;font-size:.85rem;line-height:1.5}
+    .chat-bot{background:var(--gray-50);color:var(--dark);align-self:flex-start;border-bottom-left-radius:.25rem}
+    .chat-user{background:var(--cyan);color:var(--white);align-self:flex-end;border-bottom-right-radius:.25rem}
+    .chatbot-input{display:flex;border-top:1px solid var(--gray-200);padding:.75rem}
+    .chatbot-input input{flex:1;border:none;outline:none;font-size:.85rem;padding:0 .5rem}
+    .chatbot-input button{background:var(--cyan);color:var(--white);border:none;border-radius:.5rem;padding:.5rem 1rem;font-weight:600;font-size:.8rem;cursor:pointer}
+
+    /* CONTACT */
+    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
+    .contact-detail{display:flex;gap:1rem;padding:1rem 0;border-bottom:1px solid var(--gray-200)}
+    .contact-detail .icon{width:2.5rem;height:2.5rem;border-radius:.5rem;background:var(--cyan-light);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+    .contact-detail strong{display:block;font-size:.8rem;color:var(--gray-400);font-weight:500}
+    .contact-detail a,.contact-detail span{color:var(--dark);font-weight:600;text-decoration:none}
+    .contact-map{border-radius:1rem;overflow:hidden;aspect-ratio:4/3}
+    .contact-map iframe{width:100%;height:100%;border:0}
+
+    /* FOOTER */
+    .footer{background:var(--dark);color:rgba(255,255,255,.5);padding:3rem 1.5rem}
+    .footer-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:3rem}
+    .footer-brand{font-family:var(--font-display);font-size:1.25rem;color:var(--white);margin-bottom:1rem}
+    .footer-brand span{color:var(--cyan)}
+    .footer p{font-size:.85rem;line-height:1.7}
+    .footer h4{color:var(--white);font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;margin-bottom:1rem}
+    .footer ul{list-style:none}
+    .footer ul li{margin-bottom:.5rem}
+    .footer ul a{color:rgba(255,255,255,.5);text-decoration:none;font-size:.85rem;transition:color .2s}
+    .footer ul a:hover{color:var(--cyan)}
+    .footer-bottom{max-width:1200px;margin:2rem auto 0;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.1);display:flex;justify-content:space-between;font-size:.8rem;flex-wrap:wrap;gap:1rem}
+    .footer-bottom a{color:rgba(255,255,255,.4);text-decoration:none}
+
+    /* COOKIE */
+    .cookie-banner{position:fixed;bottom:0;left:0;right:0;background:var(--white);border-top:1px solid var(--gray-200);padding:1rem 1.5rem;z-index:200;display:flex;align-items:center;justify-content:center;gap:1rem;flex-wrap:wrap;box-shadow:0 -4px 20px rgba(0,0,0,.06)}
+    .cookie-banner p{font-size:.85rem;color:var(--gray-600)}
+    .cookie-banner a{color:var(--cyan)}
+    .ck{padding:.5rem 1.25rem;border-radius:.375rem;font-size:.85rem;font-weight:600;cursor:pointer;border:none}
+    .ck-a{background:var(--cyan);color:var(--white)}
+    .ck-r{background:var(--gray-200);color:var(--gray-600)}
+    .cookie-hidden{display:none}
+
+    @media(max-width:768px){
+      .nav-links{display:none}
+      .hero-inner{grid-template-columns:1fr;text-align:center}
+      .hero p{margin-left:auto;margin-right:auto}
+      .hero-ctas{justify-content:center}
+      .hero-image{display:none}
+      .booking-grid,.contact-grid{grid-template-columns:1fr}
+      .footer-inner{grid-template-columns:1fr}
+      .chatbot-window{width:calc(100vw - 2rem);right:-0.5rem}
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Dentist",
+    "name": "Bright Smile Dental",
+    "description": "Modern private dental practice in Clifton, Bristol. Online booking and AI-powered enquiry handling.",
+    "url": "https://fisherdigital.github.io/bright-smile-dental/",
+    "telephone": "+441179467200",
+    "address": { "@type": "PostalAddress", "streetAddress": "18 Queen's Road", "addressLocality": "Clifton, Bristol", "postalCode": "BS8 1QE", "addressCountry": "GB" },
+    "openingHoursSpecification": [
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "08:00", "closes": "18:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "09:00", "closes": "14:00" }
+    ],
+    "priceRange": "££-£££"
+  }
+  </script>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">Bright <span>Smile</span></a>
+    <ul class="nav-links">
+      <li><a href="#treatments">Treatments</a></li>
+      <li><a href="#booking">Book Online</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#booking" class="nav-cta">Book Appointment</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-badge">Now accepting new patients</div>
+      <h1>Dental care that <span>puts you first</span></h1>
+      <p>Modern, gentle dentistry in the heart of Clifton. From routine check-ups to cosmetic treatments — with 24/7 AI-powered booking and enquiries.</p>
+      <div class="hero-ctas">
+        <a href="#booking" class="btn btn-cyan">Book Online</a>
+        <a href="tel:01179467200" class="btn btn-outline">📞 0117 946 7200</a>
+      </div>
+    </div>
+    <div class="hero-image">🦷</div>
+  </div>
+</section>
+
+<!-- TREATMENTS -->
+<section class="section" id="treatments">
+  <div class="section-inner">
+    <div class="section-header">
+      <p class="section-label">Treatments</p>
+      <h2 class="section-title">What we offer</h2>
+      <p class="section-desc">Transparent pricing. No surprises. All fees discussed before treatment begins.</p>
+    </div>
+    <div class="treatments-grid">
+      <div class="treatment-card">
+        <div class="treatment-icon">🔍</div>
+        <h3>Check-up & Clean</h3>
+        <p>Comprehensive examination, digital X-rays when needed, scale and polish. Keeping your teeth healthy starts here.</p>
+        <p class="treatment-price">From £65</p>
+      </div>
+      <div class="treatment-card">
+        <div class="treatment-icon">✨</div>
+        <h3>Teeth Whitening</h3>
+        <p>Professional in-surgery whitening or custom take-home trays. Safe, effective, and noticeably brighter.</p>
+        <p class="treatment-price">From £295</p>
+      </div>
+      <div class="treatment-card">
+        <div class="treatment-icon">🔧</div>
+        <h3>Fillings & Restorations</h3>
+        <p>White composite fillings that blend seamlessly. We also offer inlays, onlays, and crown replacements.</p>
+        <p class="treatment-price">From £95</p>
+      </div>
+      <div class="treatment-card">
+        <div class="treatment-icon">😬</div>
+        <h3>Invisalign</h3>
+        <p>Clear aligners for straighter teeth without metal braces. Free consultation to see if you're a candidate.</p>
+        <p class="treatment-price">From £2,500</p>
+      </div>
+      <div class="treatment-card">
+        <div class="treatment-icon">🦷</div>
+        <h3>Dental Implants</h3>
+        <p>Permanent replacement for missing teeth. Placed by our experienced implant surgeon with 3D planning.</p>
+        <p class="treatment-price">From £2,200</p>
+      </div>
+      <div class="treatment-card">
+        <div class="treatment-icon">👶</div>
+        <h3>Children's Dentistry</h3>
+        <p>Gentle, fun dental care for little ones. We make first visits stress-free and teach good habits early.</p>
+        <p class="treatment-price">From £35</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section class="section section-alt" id="booking">
+  <div class="section-inner">
+    <div class="section-header">
+      <p class="section-label">Appointments</p>
+      <h2 class="section-title">Book online</h2>
+      <p class="section-desc">Choose a time that works for you. We'll confirm within 2 hours.</p>
+    </div>
+    <div class="booking-grid">
+      <div>
+        <h3 style="font-family:var(--font-display);font-size:1.5rem;margin-bottom:1rem">How it works</h3>
+        <div style="margin-bottom:2rem">
+          <div style="display:flex;gap:1rem;padding:1rem 0;border-bottom:1px solid var(--gray-200)">
+            <div style="width:2rem;height:2rem;border-radius:50%;background:var(--cyan);color:var(--white);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;flex-shrink:0">1</div>
+            <div><strong style="display:block;font-size:.9rem">Pick your treatment</strong><span style="font-size:.85rem;color:var(--gray-600)">Select what you need from the dropdown</span></div>
+          </div>
+          <div style="display:flex;gap:1rem;padding:1rem 0;border-bottom:1px solid var(--gray-200)">
+            <div style="width:2rem;height:2rem;border-radius:50%;background:var(--cyan);color:var(--white);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;flex-shrink:0">2</div>
+            <div><strong style="display:block;font-size:.9rem">Choose a time</strong><span style="font-size:.85rem;color:var(--gray-600)">Select from available slots this week</span></div>
+          </div>
+          <div style="display:flex;gap:1rem;padding:1rem 0">
+            <div style="width:2rem;height:2rem;border-radius:50%;background:var(--cyan);color:var(--white);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;flex-shrink:0">3</div>
+            <div><strong style="display:block;font-size:.9rem">We confirm</strong><span style="font-size:.85rem;color:var(--gray-600)">You'll get a confirmation email and SMS reminder</span></div>
+          </div>
+        </div>
+        <p style="font-size:.85rem;color:var(--gray-400)">Can't find a suitable time? Our AI assistant can help — just click the chat icon in the bottom right.</p>
+      </div>
+      <div class="booking-card">
+        <h3 style="font-size:1.1rem;font-weight:700;margin-bottom:.5rem">Book your appointment</h3>
+        <p style="font-size:.85rem;color:var(--gray-600);margin-bottom:1.5rem">We'll confirm within 2 hours during practice hours.</p>
+        <form action="https://formspree.io/f/mojpnokn" method="POST">
+          <div class="form-row">
+            <label>Treatment</label>
+            <select name="treatment" required>
+              <option value="" disabled selected>Select treatment</option>
+              <option>Check-up & Clean</option>
+              <option>Teeth Whitening</option>
+              <option>Fillings</option>
+              <option>Invisalign Consultation</option>
+              <option>Implant Consultation</option>
+              <option>Children's Check-up</option>
+              <option>Emergency</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <label>Preferred date</label>
+            <input type="date" name="date" required>
+          </div>
+          <div class="form-row">
+            <label>Preferred time</label>
+            <div class="time-slots">
+              <div class="time-slot" data-time="09:00">9:00</div>
+              <div class="time-slot" data-time="10:00">10:00</div>
+              <div class="time-slot" data-time="11:00">11:00</div>
+              <div class="time-slot" data-time="13:00">13:00</div>
+              <div class="time-slot" data-time="14:00">14:00</div>
+              <div class="time-slot" data-time="16:00">16:00</div>
+            </div>
+            <input type="hidden" name="time" id="selected-time">
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+            <div class="form-row"><label>Name</label><input type="text" name="name" required placeholder="Jane Smith"></div>
+            <div class="form-row"><label>Phone</label><input type="tel" name="phone" required placeholder="07XXX XXXXXX"></div>
+          </div>
+          <div class="form-row"><label>Email</label><input type="email" name="email" required placeholder="jane@example.co.uk"></div>
+          <input type="hidden" name="_subject" value="Booking Request — Bright Smile Dental">
+          <button type="submit" class="btn btn-cyan" style="width:100%">Request Appointment</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="section" id="reviews">
+  <div class="section-inner">
+    <div class="section-header">
+      <p class="section-label">Patient Reviews</p>
+      <h2 class="section-title">What our patients say</h2>
+      <p class="section-desc">4.8 stars from 240+ Google reviews.</p>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <blockquote>"I used to dread the dentist but Bright Smile changed that completely. The team are genuinely kind, everything is explained clearly, and the results speak for themselves. Best dental experience I've had."</blockquote>
+        <cite>— Emma W., Clifton</cite>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <blockquote>"The online booking is brilliant — I booked at 11 PM on a Sunday and had a confirmation by 8 AM Monday. The AI chat answered my questions about Invisalign pricing instantly. Very modern practice."</blockquote>
+        <cite>— David K., Redland</cite>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <blockquote>"Took my 5-year-old for her first check-up and the children's dentist was incredible. She actually asked to go back. Can't recommend them highly enough for nervous patients of any age."</blockquote>
+        <cite>— Sophie L., Cotham</cite>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section section-alt" id="contact">
+  <div class="section-inner">
+    <div class="section-header">
+      <p class="section-label">Find Us</p>
+      <h2 class="section-title">Get in touch</h2>
+    </div>
+    <div class="contact-grid">
+      <div>
+        <div class="contact-detail"><div class="icon">📞</div><div><strong>Phone</strong><a href="tel:01179467200">0117 946 7200</a></div></div>
+        <div class="contact-detail"><div class="icon">✉️</div><div><strong>Email</strong><a href="mailto:hello@brightsmile.co.uk">hello@brightsmile.co.uk</a></div></div>
+        <div class="contact-detail"><div class="icon">📍</div><div><strong>Address</strong><span>18 Queen's Road, Clifton, Bristol BS8 1QE</span></div></div>
+        <div class="contact-detail"><div class="icon">🕐</div><div><strong>Hours</strong><span style="font-size:.9rem">Mon–Fri: 8 AM – 6 PM<br>Saturday: 9 AM – 2 PM<br>Sunday: Closed</span></div></div>
+        <div class="contact-detail"><div class="icon">🅿️</div><div><strong>Parking</strong><span style="font-size:.9rem">Pay & display on Queen's Road. Clifton Down station 5 min walk.</span></div></div>
+      </div>
+      <div class="contact-map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2485.5!2d-2.613!3d51.456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zClifton+Bristol!5e0!3m2!1sen!2suk!4v1" allowfullscreen loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <p class="footer-brand">Bright <span>Smile</span> Dental</p>
+      <p>Modern dental care in Clifton, Bristol. GDC registered. Accepting NHS and private patients.</p>
+    </div>
+    <div>
+      <h4>Treatments</h4>
+      <ul>
+        <li><a href="#treatments">Check-ups</a></li>
+        <li><a href="#treatments">Whitening</a></li>
+        <li><a href="#treatments">Invisalign</a></li>
+        <li><a href="#treatments">Implants</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Practice</h4>
+      <ul>
+        <li><a href="#booking">Book Online</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="/privacy/">Privacy Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Bright Smile Dental. All rights reserved.</span>
+    <a href="/privacy/">Privacy Policy</a>
+  </div>
+</footer>
+
+<!-- AI CHATBOT WIDGET -->
+<div class="chatbot-widget">
+  <div class="chatbot-window" id="chatbot">
+    <div class="chatbot-header">
+      <h4>Bright Smile Assistant</h4>
+      <button onclick="toggleChat()" aria-label="Close chat">&times;</button>
+    </div>
+    <div class="chatbot-messages" id="chat-messages">
+      <div class="chat-msg chat-bot">Hi there! I'm the Bright Smile assistant. I can help with appointment availability, treatment information, and pricing. What can I help you with?</div>
+    </div>
+    <div class="chatbot-input">
+      <input type="text" id="chat-input" placeholder="Ask about treatments, booking..." onkeypress="if(event.key==='Enter')sendChat()">
+      <button onclick="sendChat()">Send</button>
+    </div>
+  </div>
+  <button class="chatbot-toggle" onclick="toggleChat()" aria-label="Open chat">
+    <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.17L4 17.17V4h16v12z"/><path d="M7 9h2v2H7zm4 0h2v2h-2zm4 0h2v2h-2z"/></svg>
+  </button>
+</div>
+
+<!-- COOKIE -->
+<div class="cookie-banner" id="cb">
+  <p>We use cookies. <a href="/privacy/">Learn more</a></p>
+  <button class="ck ck-a" onclick="localStorage.setItem('bsd_cc','1');document.getElementById('cb').classList.add('cookie-hidden')">Accept</button>
+  <button class="ck ck-r" onclick="localStorage.setItem('bsd_cc','0');document.getElementById('cb').classList.add('cookie-hidden')">Reject</button>
+</div>
+
+<script>
+  // Cookie
+  if(localStorage.getItem('bsd_cc'))document.getElementById('cb').classList.add('cookie-hidden');
+
+  // Time slots
+  document.querySelectorAll('.time-slot').forEach(s=>{
+    s.addEventListener('click',()=>{
+      document.querySelectorAll('.time-slot').forEach(x=>x.classList.remove('selected'));
+      s.classList.add('selected');
+      document.getElementById('selected-time').value=s.dataset.time;
+    });
+  });
+
+  // Chatbot
+  function toggleChat(){
+    document.getElementById('chatbot').classList.toggle('open');
+  }
+
+  const botResponses = {
+    'appointment': "I can help with that! We have availability this week on Wednesday and Friday afternoons. Would you like me to check a specific date? You can also book directly using the form above.",
+    'whitening': "Our teeth whitening starts from £295 for professional in-surgery treatment, or £195 for custom take-home trays. Results typically last 6-12 months. Would you like to book a consultation?",
+    'invisalign': "Invisalign treatment starts from £2,500 and typically takes 6-18 months. We offer free initial consultations to assess if you're a candidate. Shall I help you book one?",
+    'price': "Our check-up and clean starts from £65. Fillings from £95. Whitening from £295. For a full price list, visit our treatments section above or ask me about a specific treatment.",
+    'emergency': "For dental emergencies during practice hours, call us on 0117 946 7200. We keep emergency slots available each day. If it's outside hours, NHS 111 can direct you to an emergency dentist.",
+    'hours': "We're open Monday to Friday 8 AM to 6 PM, and Saturday 9 AM to 2 PM. We're closed on Sundays.",
+    'parking': "There's pay and display parking on Queen's Road. Clifton Down station is a 5-minute walk. Several bus routes stop nearby.",
+    'default': "Thanks for your message! For specific enquiries, I'd recommend calling us on 0117 946 7200 or booking online using the form above. Is there anything else I can help with?"
+  };
+
+  function sendChat(){
+    const input = document.getElementById('chat-input');
+    const msg = input.value.trim();
+    if(!msg) return;
+    const messages = document.getElementById('chat-messages');
+    messages.innerHTML += `<div class="chat-msg chat-user">${msg.replace(/</g,'&lt;')}</div>`;
+    input.value = '';
+    const lower = msg.toLowerCase();
+    let response = botResponses.default;
+    for(const [key, val] of Object.entries(botResponses)){
+      if(key !== 'default' && lower.includes(key)){response = val; break;}
+    }
+    if(lower.includes('book') || lower.includes('available')) response = botResponses.appointment;
+    if(lower.includes('cost') || lower.includes('much')) response = botResponses.price;
+    setTimeout(()=>{
+      messages.innerHTML += `<div class="chat-msg chat-bot">${response}</div>`;
+      messages.scrollTop = messages.scrollHeight;
+    }, 800);
+  }
+</script>
+
+</body>
+</html>

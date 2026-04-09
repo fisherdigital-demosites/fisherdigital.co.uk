@@ -1,0 +1,34 @@
+---
+interface Props {
+  href?: string;
+  variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
+  size?: 'sm' | 'md' | 'lg';
+  class?: string;
+  [key: string]: any;
+}
+
+const { href, variant = 'primary', size = 'md', class: className = '', ...rest } = Astro.props;
+
+const Tag = href ? 'a' : 'button';
+
+const baseClasses = 'inline-flex items-center justify-center font-semibold transition-all duration-300 cursor-pointer';
+
+const variants: Record<string, string> = {
+  primary: 'rounded-full bg-accent text-white hover:bg-accent-hover shadow-lg shadow-accent/20 hover:shadow-accent/40',
+  secondary: 'rounded-full bg-surface text-text border border-border hover:border-accent hover:text-accent',
+  outline: 'rounded-full border border-text-muted/30 text-text hover:border-accent hover:text-accent bg-transparent',
+  ghost: 'rounded-lg text-text-secondary hover:text-text',
+};
+
+const sizes: Record<string, string> = {
+  sm: 'px-5 py-2 text-sm gap-2',
+  md: 'px-7 py-3 text-sm gap-2',
+  lg: 'px-9 py-4 text-base gap-3',
+};
+
+const classes = `${baseClasses} ${variants[variant]} ${sizes[size]} ${className}`;
+---
+
+<Tag href={href} class={classes} data-hover data-magnetic {...rest}>
+  <slot />
+</Tag>

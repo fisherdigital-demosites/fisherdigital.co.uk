@@ -1,0 +1,115 @@
+---
+---
+
+<section id="contact" class="section-light py-(--spacing-section) relative overflow-hidden border-t border-[var(--color-light-border)]/50">
+  <div class="mx-auto max-w-7xl px-6 relative z-10">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+      <!-- Left: CTA copy -->
+      <div>
+        <span class="label block mb-4">Get in touch</span>
+        <h2 class="text-4xl md:text-5xl font-heading font-600 tracking-tight mb-6 text-[var(--color-light-text)]">
+          Tell us about<br />
+          <span class="text-accent italic">your business.</span>
+        </h2>
+        <p class="text-lg text-[var(--color-light-text-secondary)] leading-relaxed mb-8">
+          We'll have a quick chat about what you need, then build you a
+          complete working demo of your new site. You only pay if you
+          want to go live.
+        </p>
+
+        <div class="space-y-4 text-sm text-[var(--color-light-muted)]">
+          <div class="flex items-center gap-3">
+            <svg class="w-5 h-5 text-accent shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+            </svg>
+            fisherwebco@gmail.com
+          </div>
+          <div class="flex items-center gap-3">
+            <svg class="w-5 h-5 text-accent shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+            </svg>
+            Bristol, United Kingdom
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Plain HTML form — no React, no hydration -->
+      <div class="rounded-2xl bg-white border border-[var(--color-light-border)] p-6 lg:p-8 shadow-sm">
+        <form
+          action="https://formspree.io/f/mojpnokn"
+          method="POST"
+          class="space-y-5"
+        >
+          <input type="hidden" name="lead_source" value="inbound_website" />
+          <input type="hidden" name="_subject" value="New Inbound Lead - FisherDigital" />
+
+          <div>
+            <label for="name" class="block text-sm font-medium mb-2 text-[var(--color-light-text)]">
+              Your name
+            </label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              required
+              placeholder="John Smith"
+              class="w-full rounded-lg px-4 py-3 text-sm outline-none bg-[#F5F5F2] border border-[#E5E5E0] text-[var(--color-light-text)] focus:ring-2 focus:ring-accent/30 focus:border-accent/30"
+            />
+          </div>
+
+          <div>
+            <label for="email" class="block text-sm font-medium mb-2 text-[var(--color-light-text)]">
+              Email
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              placeholder="john@business.co.uk"
+              class="w-full rounded-lg px-4 py-3 text-sm outline-none bg-[#F5F5F2] border border-[#E5E5E0] text-[var(--color-light-text)] focus:ring-2 focus:ring-accent/30 focus:border-accent/30"
+            />
+          </div>
+
+          <div>
+            <label for="phone" class="block text-sm font-medium mb-2 text-[var(--color-light-text)]">
+              Phone <span class="text-[var(--color-light-muted)]">(optional but helps us reach you faster)</span>
+            </label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              placeholder="07XXX XXXXXX"
+              class="w-full rounded-lg px-4 py-3 text-sm outline-none bg-[#F5F5F2] border border-[#E5E5E0] text-[var(--color-light-text)] focus:ring-2 focus:ring-accent/30 focus:border-accent/30"
+            />
+          </div>
+
+          <div>
+            <label for="message" class="block text-sm font-medium mb-2 text-[var(--color-light-text)]">
+              Tell us about your business <span class="text-[var(--color-light-muted)]">(optional)</span>
+            </label>
+            <textarea
+              id="message"
+              name="message"
+              placeholder="What do you do, and what are you looking for?"
+              rows="3"
+              class="w-full rounded-lg px-4 py-3 text-sm outline-none resize-none bg-[#F5F5F2] border border-[#E5E5E0] text-[var(--color-light-text)] focus:ring-2 focus:ring-accent/30 focus:border-accent/30"
+            ></textarea>
+          </div>
+
+          <button
+            type="submit"
+            class="w-full inline-flex items-center justify-center gap-2 rounded-full bg-accent px-8 py-4 text-sm font-semibold text-white hover:bg-accent-hover transition-all cursor-pointer shadow-lg shadow-accent/20 hover:shadow-accent/40"
+          >
+            Book my free call
+          </button>
+
+          <p class="text-xs text-center text-[var(--color-light-muted)]">
+            We'll call you within 24 hours. No spam, no hard sell.
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

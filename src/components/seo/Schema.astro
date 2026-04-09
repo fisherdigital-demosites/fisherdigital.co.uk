@@ -1,0 +1,163 @@
+---
+interface Props {
+  type: 'home' | 'service' | 'niche' | 'legal';
+  niche?: string;
+  nicheDescription?: string;
+}
+
+const { type, niche, nicheDescription } = Astro.props;
+const siteUrl = 'https://fisherdigital.co.uk';
+
+const localBusiness = {
+  '@type': 'LocalBusiness',
+  '@id': `${siteUrl}/#business`,
+  name: 'FisherDigital',
+  description: 'Professional websites, AI chatbots, and smart automations for UK local businesses.',
+  url: siteUrl,
+  telephone: '',
+  email: 'fisherwebco@gmail.com',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Bristol',
+    addressCountry: 'GB',
+  },
+  areaServed: {
+    '@type': 'Country',
+    name: 'United Kingdom',
+  },
+  founder: {
+    '@type': 'Person',
+    name: 'Joshua Fisher',
+  },
+  priceRange: '££',
+};
+
+const website = {
+  '@type': 'WebSite',
+  '@id': `${siteUrl}/#website`,
+  url: siteUrl,
+  name: 'FisherDigital',
+  publisher: { '@id': `${siteUrl}/#business` },
+};
+
+const services = [
+  {
+    '@type': 'Service',
+    name: 'Essential Website',
+    description: 'Professional website with SEO, contact forms, Google Business Profile setup, and analytics. Everything you need to get found online.',
+    provider: { '@id': `${siteUrl}/#business` },
+    areaServed: { '@type': 'Country', name: 'United Kingdom' },
+    offers: {
+      '@type': 'Offer',
+      price: '800',
+      priceCurrency: 'GBP',
+      priceSpecification: {
+        '@type': 'UnitPriceSpecification',
+        price: '800',
+        priceCurrency: 'GBP',
+        unitText: 'one-off + monthly',
+      },
+    },
+  },
+  {
+    '@type': 'Service',
+    name: 'Professional Website with AI Chatbot',
+    description: 'Everything in Essential plus an AI chatbot that handles enquiries 24/7, online booking system, and Google Reviews integration.',
+    provider: { '@id': `${siteUrl}/#business` },
+    areaServed: { '@type': 'Country', name: 'United Kingdom' },
+    offers: {
+      '@type': 'Offer',
+      price: '2500',
+      priceCurrency: 'GBP',
+    },
+  },
+  {
+    '@type': 'Service',
+    name: 'Premium Website with AI Receptionist',
+    description: 'Everything in Professional plus an AI receptionist that answers your phone, workflow automation, and priority support.',
+    provider: { '@id': `${siteUrl}/#business` },
+    areaServed: { '@type': 'Country', name: 'United Kingdom' },
+    offers: {
+      '@type': 'Offer',
+      price: '5000',
+      priceCurrency: 'GBP',
+    },
+  },
+];
+
+const faq = {
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'How much does a website cost?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Our Essential plan starts from £800 one-off plus £39/month. Professional sites with AI chatbot start from £2,500, and Premium sites with AI receptionist start from £5,000.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Do I have to pay before seeing my website?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'No. We build your site first and walk you through a live demo. You only pay if you want to go live.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What is an AI chatbot?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'An AI chatbot sits on your website and answers customer questions automatically, 24 hours a day. It can handle enquiries, qualify leads, and book appointments while you sleep.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What is an AI receptionist?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'An AI receptionist answers your business phone calls with a natural-sounding voice. It can take messages, book appointments, and forward urgent calls to you directly.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Are you based in Bristol?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. FisherDigital is based in Bristol, UK. We work with local businesses across Bristol and the wider UK.',
+      },
+    },
+  ],
+};
+
+let schema: any[];
+
+if (type === 'home') {
+  schema = [
+    { '@context': 'https://schema.org', ...localBusiness },
+    { '@context': 'https://schema.org', ...website },
+    ...services.map(s => ({ '@context': 'https://schema.org', ...s })),
+    { '@context': 'https://schema.org', ...faq },
+  ];
+} else if (type === 'niche' && niche) {
+  schema = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Service',
+      name: `Web Design for ${niche}`,
+      description: nicheDescription || `Professional websites and AI tools for ${niche.toLowerCase()} businesses in the UK.`,
+      provider: { '@id': `${siteUrl}/#business` },
+      areaServed: { '@type': 'Country', name: 'United Kingdom' },
+    },
+  ];
+} else {
+  schema = [
+    { '@context': 'https://schema.org', ...localBusiness },
+  ];
+}
+---
+
+{schema.map((item) => (
+  <script type="application/ld+json" set:html={JSON.stringify(item)} />
+))}

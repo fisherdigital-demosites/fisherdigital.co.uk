@@ -1,0 +1,240 @@
+---
+import '../styles/global.css';
+import Nav from '../components/ui/Nav.astro';
+import Footer from '../components/ui/Footer.astro';
+import Schema from '../components/seo/Schema.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  ogImage?: string;
+  schemaType?: 'home' | 'service' | 'niche' | 'legal';
+  niche?: string;
+  nicheDescription?: string;
+}
+
+const {
+  title,
+  description = 'Professional websites, AI chatbots, and smart automations for UK local businesses. Based in Bristol.',
+  ogImage = '/og-default.png',
+  schemaType = 'home',
+  niche,
+  nicheDescription,
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- SEO -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content="en_GB" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Fonts: Inter (body) + Sora (headings) + IBM Plex Mono (accents) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Sora:wght@400;500;600;700;800&display=swap"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Sora:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- GA4 — replace G-XXXXXXXXXX with your measurement ID -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+    </script> -->
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Structured Data -->
+    <Schema type={schemaType} niche={niche} nicheDescription={nicheDescription} />
+  </head>
+  <body class="bg-base text-text">
+    <!-- Subtle texture overlay -->
+    <div class="grain grain-animated" aria-hidden="true"></div>
+
+    <!-- Custom cursor (desktop only) -->
+    <div class="custom-cursor" id="cursor" aria-hidden="true"></div>
+    <div class="custom-cursor-dot" id="cursor-dot" aria-hidden="true"></div>
+
+    <!-- Page loader -->
+    <div id="page-loader" class="fixed inset-0 z-(--z-loader) bg-base flex items-center justify-center">
+      <div class="flex flex-col items-center gap-6">
+        <span id="loader-text" class="text-4xl md:text-5xl tracking-tight" style="font-family: 'Sora', sans-serif; font-weight: 700;">
+          <span class="text-text">Fisher</span><span class="text-accent">Digital</span>
+        </span>
+      </div>
+    </div>
+
+    <Nav />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+
+    <!-- Page loader — GSAP SplitText animation -->
+    <script>
+      import { gsap } from 'gsap';
+      import { SplitText } from 'gsap/SplitText';
+      gsap.registerPlugin(SplitText);
+
+      function initLoader() {
+        const loader = document.getElementById('page-loader');
+        const text = document.getElementById('loader-text');
+        if (!loader || !text) return;
+
+        const split = new SplitText(text, { type: 'chars' });
+
+        const tl = gsap.timeline({
+          onComplete: () => loader.remove(),
+        });
+
+        // Chars stagger in from below
+        tl.from(split.chars, {
+          y: 50,
+          rotateX: -40,
+          opacity: 0,
+          duration: 0.7,
+          ease: 'expo.out',
+          stagger: 0.03,
+        });
+
+        // Brief hold
+        tl.to({}, { duration: 0.3 });
+
+        // Zoom out + fade — reveals the hero behind
+        tl.to(loader, {
+          scale: 1.15,
+          opacity: 0,
+          filter: 'blur(12px)',
+          duration: 0.6,
+          ease: 'power2.in',
+        });
+      }
+
+      // Start after page load, with a max wait
+      window.addEventListener('load', () => setTimeout(initLoader, 100));
+      setTimeout(initLoader, 2500);
+    </script>
+
+    <!-- Custom cursor -->
+    <script>
+      function initCursor() {
+        if (window.matchMedia('(hover: none)').matches) return;
+        if (window.matchMedia('(pointer: coarse)').matches) return;
+
+        const cursor = document.getElementById('cursor');
+        const dot = document.getElementById('cursor-dot');
+        if (!cursor || !dot) return;
+
+        let mouseX = 0, mouseY = 0;
+        let cursorX = 0, cursorY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+          mouseX = e.clientX;
+          mouseY = e.clientY;
+          // Dot follows instantly
+          dot.style.left = mouseX + 'px';
+          dot.style.top = mouseY + 'px';
+        });
+
+        // Ring follows with lag
+        function animateCursor() {
+          cursorX += (mouseX - cursorX) * 0.12;
+          cursorY += (mouseY - cursorY) * 0.12;
+          cursor.style.left = cursorX + 'px';
+          cursor.style.top = cursorY + 'px';
+          requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+
+        // Expand on hoverable elements
+        const hoverTargets = 'a, button, [role="button"], input, select, textarea, [data-hover]';
+        document.addEventListener('mouseover', (e) => {
+          if ((e.target as Element).closest(hoverTargets)) {
+            cursor.classList.add('hovering');
+          }
+        });
+        document.addEventListener('mouseout', (e) => {
+          if ((e.target as Element).closest(hoverTargets)) {
+            cursor.classList.remove('hovering');
+          }
+        });
+
+        // Hide default cursor
+        document.documentElement.style.cursor = 'none';
+        document.querySelectorAll('a, button').forEach(el => {
+          (el as HTMLElement).style.cursor = 'none';
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initCursor);
+      } else {
+        initCursor();
+      }
+    </script>
+
+    <!-- Lenis smooth scroll -->
+    <script>
+      import Lenis from 'lenis';
+      import { gsap } from 'gsap';
+      import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+      gsap.registerPlugin(ScrollTrigger);
+
+      function initLenis() {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+        const lenis = new Lenis({
+          duration: 1.4,
+          easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+          smoothWheel: true,
+        });
+
+        lenis.on('scroll', ScrollTrigger.update);
+
+        gsap.ticker.add((time) => {
+          lenis.raf(time * 1000);
+        });
+        gsap.ticker.lagSmoothing(0);
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initLenis);
+      } else {
+        initLenis();
+      }
+    </script>
+  </body>
+</html>

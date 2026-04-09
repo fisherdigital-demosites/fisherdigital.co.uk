@@ -1,0 +1,20 @@
+---
+interface Props {
+  id?: string;
+  class?: string;
+  narrow?: boolean;
+  theme?: 'dark' | 'light';
+  dark?: boolean;
+}
+
+const { id, class: className = '', narrow = false, theme, dark = false } = Astro.props;
+
+const maxWidth = narrow ? 'max-w-4xl' : 'max-w-7xl';
+const themeClass = theme === 'light' ? 'section-light' : theme === 'dark' ? 'bg-base-darker' : dark ? 'bg-base-darker' : '';
+---
+
+<section id={id} class:list={['py-(--spacing-section)', themeClass, className]}>
+  <div class:list={['mx-auto px-6', maxWidth]}>
+    <slot />
+  </div>
+</section>

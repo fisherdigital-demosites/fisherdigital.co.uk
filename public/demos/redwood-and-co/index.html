@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Redwood & Co — Estate Agent in Bishopston, Bristol</title>
+  <meta name="description" content="Independent estate agent in Bishopston, Bristol. Property sales, lettings, and valuations with AI-powered enquiry handling. Local expertise since 2012.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Gambetta:ital,wght@0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    :root{
+      --violet:#8b5cf6;--violet-dark:#7c3aed;--violet-light:#f5f3ff;
+      --dark:#0f0f1a;--gray-900:#1a1a2e;--gray-700:#374151;--gray-500:#6b7280;--gray-300:#d1d5db;--gray-100:#f3f4f6;--gray-50:#f9fafb;--white:#ffffff;
+      --font-sans:'Space Grotesk',system-ui,sans-serif;--font-display:'Gambetta',Georgia,serif;
+    }
+    html{scroll-behavior:smooth}
+    body{font-family:var(--font-sans);color:var(--dark);line-height:1.6;-webkit-font-smoothing:antialiased}
+
+    /* NAV */
+    .nav{position:sticky;top:0;z-index:100;background:var(--white);border-bottom:1px solid var(--gray-100)}
+    .nav-inner{max-width:1200px;margin:0 auto;padding:.75rem 1.5rem;display:flex;align-items:center;justify-content:space-between}
+    .nav-logo{font-family:var(--font-display);font-size:1.3rem;color:var(--dark);text-decoration:none;font-weight:700}
+    .nav-logo span{color:var(--violet)}
+    .nav-links{display:flex;gap:2rem;list-style:none;align-items:center}
+    .nav-links a{font-size:.85rem;font-weight:500;color:var(--gray-500);text-decoration:none;transition:color .2s}
+    .nav-links a:hover{color:var(--violet)}
+    .nav-cta{background:var(--violet);color:var(--white)!important;padding:.5rem 1.25rem;border-radius:.5rem;font-weight:600;transition:background .2s}
+    .nav-cta:hover{background:var(--violet-dark)}
+
+    /* HERO */
+    .hero{background:linear-gradient(135deg,var(--dark) 0%,var(--gray-900) 100%);color:var(--white);padding:5rem 1.5rem;overflow:hidden;position:relative}
+    .hero::after{content:'';position:absolute;top:-30%;right:-10%;width:50%;height:160%;background:radial-gradient(circle,rgba(139,92,246,.1) 0%,transparent 70%)}
+    .hero-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.1fr 1fr;gap:4rem;align-items:center;position:relative;z-index:1}
+    .hero h1{font-family:var(--font-display);font-size:clamp(2.5rem,5vw,3.5rem);line-height:1.1;margin-bottom:1.25rem;font-weight:700}
+    .hero h1 span{color:var(--violet)}
+    .hero p{font-size:1rem;color:rgba(255,255,255,.65);max-width:480px;margin-bottom:2rem}
+    .btn{display:inline-flex;align-items:center;gap:.5rem;padding:.875rem 2rem;border-radius:.5rem;font-weight:600;font-size:.9rem;text-decoration:none;border:none;cursor:pointer;transition:all .2s}
+    .btn-violet{background:var(--violet);color:var(--white)}
+    .btn-violet:hover{background:var(--violet-dark);transform:translateY(-1px)}
+    .btn-outline{background:transparent;color:var(--white);border:2px solid rgba(255,255,255,.2)}
+    .btn-outline:hover{border-color:var(--violet);color:var(--violet)}
+    .hero-ctas{display:flex;gap:1rem;flex-wrap:wrap}
+
+    /* SEARCH BAR */
+    .search-bar{background:var(--white);border-radius:1rem;padding:1.5rem 2rem;max-width:1200px;margin:-2rem auto 0;position:relative;z-index:10;box-shadow:0 10px 40px rgba(0,0,0,.1)}
+    .search-inner{display:grid;grid-template-columns:2fr 1fr 1fr 1fr auto;gap:1rem;align-items:end}
+    .search-field label{display:block;font-size:.75rem;font-weight:600;color:var(--gray-500);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.4rem}
+    .search-field input,.search-field select{width:100%;padding:.7rem 1rem;border:1px solid var(--gray-300);border-radius:.5rem;font-family:inherit;font-size:.9rem;outline:none;transition:border-color .2s}
+    .search-field input:focus,.search-field select:focus{border-color:var(--violet)}
+    .search-btn{padding:.7rem 1.5rem;background:var(--violet);color:var(--white);border:none;border-radius:.5rem;font-weight:600;cursor:pointer;white-space:nowrap;transition:background .2s}
+    .search-btn:hover{background:var(--violet-dark)}
+
+    /* SECTIONS */
+    .section{padding:5rem 1.5rem}
+    .section-alt{background:var(--gray-50)}
+    .section-inner{max-width:1200px;margin:0 auto}
+    .section-header{text-align:center;margin-bottom:3.5rem}
+    .section-label{font-size:.8rem;font-weight:600;color:var(--violet);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.75rem}
+    .section-title{font-family:var(--font-display);font-size:clamp(2rem,4vw,2.75rem);line-height:1.15}
+    .section-desc{font-size:1rem;color:var(--gray-500);max-width:600px;margin:1rem auto 0}
+
+    /* PROPERTIES */
+    .properties-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.5rem}
+    .property-card{background:var(--white);border:1px solid var(--gray-100);border-radius:1rem;overflow:hidden;transition:box-shadow .3s,transform .3s}
+    .property-card:hover{box-shadow:0 10px 40px rgba(0,0,0,.06);transform:translateY(-4px)}
+    .property-image{aspect-ratio:16/10;background:var(--gray-100);display:flex;align-items:center;justify-content:center;position:relative}
+    .property-badge{position:absolute;top:1rem;left:1rem;background:var(--violet);color:var(--white);padding:.25rem .75rem;border-radius:100px;font-size:.75rem;font-weight:600}
+    .property-info{padding:1.5rem}
+    .property-price{font-size:1.5rem;font-weight:700;color:var(--dark);margin-bottom:.25rem}
+    .property-address{font-size:.9rem;color:var(--gray-500);margin-bottom:1rem}
+    .property-features{display:flex;gap:1.5rem;font-size:.8rem;color:var(--gray-500)}
+    .property-features span{display:flex;align-items:center;gap:.35rem}
+
+    /* SERVICES */
+    .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
+    .service-card{background:var(--white);border:1px solid var(--gray-100);border-radius:1rem;padding:2rem;transition:box-shadow .3s}
+    .service-card:hover{box-shadow:0 10px 40px rgba(0,0,0,.06)}
+    .service-icon{width:3rem;height:3rem;border-radius:.75rem;background:var(--violet-light);display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:1.25rem}
+    .service-card h3{font-size:1.1rem;font-weight:700;margin-bottom:.5rem}
+    .service-card p{font-size:.9rem;color:var(--gray-500)}
+
+    /* AREA GUIDES */
+    .areas-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1rem}
+    .area-card{border-radius:1rem;overflow:hidden;position:relative;aspect-ratio:3/2;background:var(--gray-100);display:flex;align-items:flex-end;cursor:pointer;transition:transform .3s}
+    .area-card:hover{transform:translateY(-4px)}
+    .area-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(0,0,0,.7) 100%)}
+    .area-content{position:relative;padding:1.5rem;color:var(--white);width:100%}
+    .area-content h3{font-family:var(--font-display);font-size:1.25rem;font-weight:700;margin-bottom:.25rem}
+    .area-content p{font-size:.8rem;opacity:.8}
+
+    /* AI SECTION */
+    .ai-section{background:linear-gradient(135deg,var(--dark) 0%,var(--gray-900) 100%);color:var(--white)}
+    .ai-section .section-label{color:var(--violet)}
+    .ai-section .section-title{color:var(--white)}
+    .ai-section .section-desc{color:rgba(255,255,255,.6)}
+    .ai-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+    .ai-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:1rem;padding:2rem}
+    .ai-card h3{font-size:1.1rem;font-weight:700;margin-bottom:.75rem}
+    .ai-card p{font-size:.9rem;color:rgba(255,255,255,.6);line-height:1.7}
+
+    /* VALUATION CTA */
+    .valuation{background:var(--violet-light);text-align:center}
+    .valuation h2{font-family:var(--font-display);font-size:clamp(2rem,4vw,2.5rem);margin-bottom:1rem}
+    .valuation p{color:var(--gray-500);max-width:500px;margin:0 auto 2rem}
+
+    /* CONTACT */
+    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
+    .contact-detail{display:flex;gap:1rem;padding:1rem 0;border-bottom:1px solid var(--gray-100)}
+    .contact-detail .icon{width:2.5rem;height:2.5rem;border-radius:.5rem;background:var(--violet-light);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+    .contact-detail strong{display:block;font-size:.8rem;color:var(--gray-500);font-weight:500}
+    .contact-detail a,.contact-detail span{color:var(--dark);font-weight:600;text-decoration:none}
+    .contact-map{border-radius:1rem;overflow:hidden;aspect-ratio:4/3}
+    .contact-map iframe{width:100%;height:100%;border:0}
+
+    /* FOOTER */
+    .footer{background:var(--dark);color:rgba(255,255,255,.5);padding:3rem 1.5rem}
+    .footer-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2rem}
+    .footer-brand{font-family:var(--font-display);font-size:1.25rem;color:var(--white);margin-bottom:1rem}
+    .footer-brand span{color:var(--violet)}
+    .footer p{font-size:.85rem}
+    .footer h4{color:var(--white);font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;margin-bottom:1rem}
+    .footer ul{list-style:none}
+    .footer li{margin-bottom:.4rem}
+    .footer a{color:rgba(255,255,255,.5);text-decoration:none;font-size:.85rem;transition:color .2s}
+    .footer a:hover{color:var(--violet)}
+    .footer-bottom{max-width:1200px;margin:2rem auto 0;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.1);font-size:.8rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+
+    .cookie-banner{position:fixed;bottom:0;left:0;right:0;background:var(--white);border-top:1px solid var(--gray-100);padding:1rem 1.5rem;z-index:200;display:flex;align-items:center;justify-content:center;gap:1rem;flex-wrap:wrap}
+    .cookie-banner p{font-size:.85rem;color:var(--gray-500)}
+    .cookie-banner a{color:var(--violet)}
+    .ck{padding:.5rem 1.25rem;border-radius:.375rem;font-size:.85rem;font-weight:600;cursor:pointer;border:none}
+    .ck-a{background:var(--violet);color:var(--white)}
+    .ck-r{background:var(--gray-100);color:var(--gray-500)}
+    .cookie-hidden{display:none}
+
+    @media(max-width:768px){
+      .nav-links{display:none}
+      .hero-inner{grid-template-columns:1fr}
+      .search-inner{grid-template-columns:1fr}
+      .ai-grid,.contact-grid{grid-template-columns:1fr}
+      .footer-inner{grid-template-columns:1fr}
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "RealEstateAgent",
+    "name": "Redwood & Co",
+    "description": "Independent estate agent in Bishopston, Bristol.",
+    "url": "https://fisherdigital.github.io/redwood-and-co/",
+    "telephone": "+441179244500",
+    "address": { "@type": "PostalAddress", "streetAddress": "87 Gloucester Road", "addressLocality": "Bishopston, Bristol", "postalCode": "BS7 8AS", "addressCountry": "GB" },
+    "priceRange": "£200,000 - £1,200,000"
+  }
+  </script>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">Redwood <span>&</span> Co</a>
+    <ul class="nav-links">
+      <li><a href="#properties">Properties</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#areas">Area Guides</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#valuation" class="nav-cta">Free Valuation</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <h1>Find your next <span>home</span> in Bristol</h1>
+      <p>Independent estate agent with 12 years of local knowledge. Sales, lettings, and property management across North Bristol. AI-powered enquiries answered 24/7.</p>
+      <div class="hero-ctas">
+        <a href="#properties" class="btn btn-violet">Browse Properties</a>
+        <a href="#valuation" class="btn btn-outline">Free Valuation</a>
+      </div>
+    </div>
+    <div style="background:var(--gray-900);border-radius:1rem;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;font-size:4rem">🏠</div>
+  </div>
+</section>
+
+<!-- SEARCH -->
+<div class="search-bar">
+  <div class="search-inner">
+    <div class="search-field"><label>Location</label><input type="text" placeholder="e.g. Bishopston, Redland, Clifton..."></div>
+    <div class="search-field"><label>Type</label><select><option>Any</option><option>House</option><option>Flat</option><option>Bungalow</option></select></div>
+    <div class="search-field"><label>Min Price</label><select><option>No min</option><option>£150,000</option><option>£200,000</option><option>£300,000</option><option>£400,000</option><option>£500,000</option></select></div>
+    <div class="search-field"><label>Max Price</label><select><option>No max</option><option>£300,000</option><option>£400,000</option><option>£500,000</option><option>£750,000</option><option>£1,000,000</option></select></div>
+    <button class="search-btn">Search</button>
+  </div>
+</div>
+
+<!-- FEATURED PROPERTIES -->
+<section class="section" id="properties" style="padding-top:4rem">
+  <div class="section-inner">
+    <div class="section-header">
+      <p class="section-label">Featured Properties</p>
+      <h2 class="section-title">Latest on the market</h2>
+    </div>
+    <div class="properties-grid">
+      <div class="property-card">
+        <div class="property-image"><div class="property-badge">Just Listed</div><span style="color:var(--gray-500);font-size:.8rem">Property photo</span></div>
+        <div class="property-info">
+          <div class="property-price">£425,000</div>
+          <div class="property-address">14 Sommerville Road, Bishopston BS7</div>
+          <div class="property-features"><span>🛏 3 bed</span><span>🚿 2 bath</span><span>📐 1,100 sq ft</span></div>
+        </div>
+      </div>
+      <div class="property-card">
+        <div class="property-image"><div class="property-badge">Price Reduced</div><span style="color:var(--gray-500);font-size:.8rem">Property photo</span></div>
+        <div class="property-info">
+          <div class="property-price">£675,000</div>
+          <div class="property-address">8 Clyde Park, Redland BS6</div>
+          <div class="property-features"><span>🛏 4 bed</span><span>🚿 3 bath</span><span>📐 1,800 sq ft</span></div>
+        </div>
+      </div>
+      <div class="property-card">
+        <div class="property-image"><span style="color:var(--gray-500);font-size:.8rem">Property photo</span></div>
+        <div class="property-info">
+          <div class="property-price">£275,000</div>
+          <div class="property-address">Flat 3, 22 Zetland Road, Cotham BS6</div>
+          <div class="property-features"><span>🛏 2 bed</span><span>🚿 1 bath</span><span>📐 750 sq ft</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section section-alt" id="services">
+  <div class="section-inner">
+    <div class="section-header">
+      <p class="section-label">What We Do</p>
+      <h2 class="section-title">Full-service estate agency</h2>
+    </div>
+    <div class="services-grid">
+      <div class="service-card"><div class="service-icon">🏡</div><h3>Sales</h3><p>Expert marketing, professional photography, floor plans, and Rightmove/Zoopla listings. Average time to offer: 6 weeks.</p></div>
+      <div class="service-card"><div class="service-icon">🔑</div><h3>Lettings</h3><p>Tenant finding, referencing, and management. We handle everything from marketing to maintenance calls.</p></div>
+      <div class="service-card"><div class="service-icon">📊</div><h3>Valuations</h3><p>Free, no-obligation market appraisals. We know North Bristol postcodes inside out — accurate pricing from day one.</p></div>
+      <div class="service-card"><div class="service-icon">🤖</div><h3>AI Receptionist</h3><p>Every call answered 24/7. Our AI handles viewing requests, valuation enquiries, and tenant queries — even at midnight.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- AREA GUIDES -->
+<section class="section" id="areas">
+  <div class="section-inner">
+    <div class="section-header">
+      <p class="section-label">Area Guides</p>
+      <h2 class="section-title">Know your neighbourhood</h2>
+      <p class="section-desc">Local knowledge is everything. We've been selling homes in these areas for over a decade.</p>
+    </div>
+    <div class="areas-grid">
+      <div class="area-card"><div class="area-overlay"></div><div class="area-content"><h3>Bishopston</h3><p>Avg. price: £450k</p></div></div>
+      <div class="area-card"><div class="area-overlay"></div><div class="area-content"><h3>Redland</h3><p>Avg. price: £520k</p></div></div>
+      <div class="area-card"><div class="area-overlay"></div><div class="area-content"><h3>Cotham</h3><p>Avg. price: £390k</p></div></div>
+      <div class="area-card"><div class="area-overlay"></div><div class="area-content"><h3>Clifton</h3><p>Avg. price: £620k</p></div></div>
+      <div class="area-card"><div class="area-overlay"></div><div class="area-content"><h3>Stoke Bishop</h3><p>Avg. price: £680k</p></div></div>
+      <div class="area-card"><div class="area-overlay"></div><div class="area-content"><h3>Henleaze</h3><p>Avg. price: £510k</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- AI SECTION -->
+<section class="section ai-section">
+  <div class="section-inner">
+    <div class="section-header">
+      <p class="section-label">AI-Powered</p>
+      <h2 class="section-title">Technology that works for you</h2>
+      <p class="section-desc">We use AI to ensure no enquiry goes unanswered, so you never miss a viewing request or valuation lead.</p>
+    </div>
+    <div class="ai-grid">
+      <div class="ai-card">
+        <h3>📞 AI Receptionist</h3>
+        <p>Handles incoming calls professionally — books viewings, takes messages, answers FAQs about properties, and routes urgent matters to the team. Every call logged to your dashboard.</p>
+      </div>
+      <div class="ai-card">
+        <h3>🤖 Automated Workflows</h3>
+        <p>Enquiry to viewing to follow-up — all automated. When someone requests a viewing, the system books it, sends confirmation, and follows up afterwards. You focus on closing deals.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUATION CTA -->
+<section class="section valuation" id="valuation">
+  <div class="section-inner">
+    <p class="section-label">Free Valuation</p>
+    <h2>What's your property worth?</h2>
+    <p>Book a free, no-obligation market appraisal. We'll visit your property and give you an honest assessment based on recent local sales data.</p>
+    <a href="tel:01179244500" class="btn btn-violet">📞 Book Your Valuation: 0117 924 4500</a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section section-alt" id="contact">
+  <div class="section-inner">
+    <div class="section-header">
+      <p class="section-label">Contact</p>
+      <h2 class="section-title">Get in touch</h2>
+    </div>
+    <div class="contact-grid">
+      <div>
+        <div class="contact-detail"><div class="icon">📞</div><div><strong>Phone</strong><a href="tel:01179244500">0117 924 4500</a></div></div>
+        <div class="contact-detail"><div class="icon">✉️</div><div><strong>Email</strong><a href="mailto:hello@redwoodandco.co.uk">hello@redwoodandco.co.uk</a></div></div>
+        <div class="contact-detail"><div class="icon">📍</div><div><strong>Office</strong><span>87 Gloucester Road, Bishopston, Bristol BS7 8AS</span></div></div>
+        <div class="contact-detail"><div class="icon">🕐</div><div><strong>Hours</strong><span style="font-size:.9rem">Mon–Fri: 9 AM – 6 PM | Sat: 10 AM – 4 PM | Sun: By appointment</span></div></div>
+      </div>
+      <div class="contact-map"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2485!2d-2.594!3d51.472!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zBishopston+Bristol!5e0!3m2!1sen!2suk!4v1" allowfullscreen loading="lazy"></iframe></div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div><p class="footer-brand">Redwood <span>&</span> Co</p><p>Independent estate agent serving North Bristol since 2012.</p></div>
+    <div><h4>Buy</h4><ul><li><a href="#">Properties for sale</a></li><li><a href="#">New to market</a></li><li><a href="#">Price reduced</a></li></ul></div>
+    <div><h4>Sell</h4><ul><li><a href="#">Free valuation</a></li><li><a href="#">Our fees</a></li><li><a href="#">Selling guide</a></li></ul></div>
+    <div><h4>Company</h4><ul><li><a href="#">Area guides</a></li><li><a href="#">About us</a></li><li><a href="#">Contact</a></li><li><a href="/privacy/">Privacy</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><span>&copy; 2026 Redwood & Co. All rights reserved.</span><a href="/privacy/">Privacy Policy</a></div>
+</footer>
+
+<div class="cookie-banner" id="cb">
+  <p>We use cookies. <a href="/privacy/">Learn more</a></p>
+  <button class="ck ck-a" onclick="localStorage.setItem('rw_cc','1');document.getElementById('cb').classList.add('cookie-hidden')">Accept</button>
+  <button class="ck ck-r" onclick="localStorage.setItem('rw_cc','0');document.getElementById('cb').classList.add('cookie-hidden')">Reject</button>
+</div>
+<script>if(localStorage.getItem('rw_cc'))document.getElementById('cb').classList.add('cookie-hidden')</script>
+
+</body>
+</html>

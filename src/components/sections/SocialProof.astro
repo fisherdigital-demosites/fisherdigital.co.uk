@@ -1,0 +1,45 @@
+---
+const trustSignals = [
+  { label: 'Avg. traffic increase', value: '340%' },
+  { label: 'Page load time', value: '<1s' },
+  { label: 'Response time', value: '<24hr' },
+  { label: 'Based in', value: 'UK' },
+];
+---
+
+<section id="social-proof" class="section-light py-(--spacing-section) relative overflow-hidden border-y border-[var(--color-light-border)]/50">
+  <div class="mx-auto max-w-7xl px-6 relative z-10">
+    <div class="text-center mb-16">
+      <span class="label block mb-4">Results</span>
+      <h2 class="text-4xl md:text-5xl font-heading font-600 tracking-tight">
+        Built on results,<br />
+        <span class="text-[var(--color-light-muted)]">not promises</span>
+      </h2>
+    </div>
+
+    <!-- Trust metric cards -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+      {trustSignals.map((signal) => (
+        <div class="trust-card text-center rounded-xl bg-white border border-[var(--color-light-border)] py-8 px-4">
+          <p class="text-3xl font-heading font-600 text-accent mb-2 tracking-tight">{signal.value}</p>
+          <p class="text-sm text-[var(--color-light-muted)]">{signal.label}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  gsap.from('.trust-card', {
+    scrollTrigger: { trigger: '#social-proof', start: 'top 75%' },
+    y: 40,
+    opacity: 0,
+    duration: 0.6,
+    stagger: 0.1,
+    ease: 'expo.out',
+  });
+</script>
