@@ -17,7 +17,7 @@ export const demoSites: DemoSite[] = [
     businessName: 'Westbury Plumbing & Heating',
     niche: 'Plumber',
     device: 'laptop',
-    accentColor: '#f97316',
+    accentColor: '#C07A4A',
     brief: 'Family-run plumber in North Bristol. Twenty years of reputation, zero online presence.',
     results: [
       'Page 1 on Google within 8 weeks',
@@ -47,10 +47,10 @@ export const demoSites: DemoSite[] = [
     businessName: 'Redwood & Co',
     niche: 'Estate Agent',
     device: 'laptop',
-    accentColor: '#8b5cf6',
+    accentColor: '#1a3c5e',
     brief: 'Independent estate agent competing against Rightmove-backed chains.',
     results: [
-      'AI receptionist answering calls 24/7',
+      '24/7 enquiry handling with instant response',
       'Automated enquiry-to-viewing workflow',
       'Area guide pages for 12 Bristol neighbourhoods',
     ],

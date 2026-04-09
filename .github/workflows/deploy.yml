@@ -22,15 +22,11 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: npm
-          cache-dependency-path: apps/website/package-lock.json
-      - run: npm ci
-        working-directory: apps/website
+      - run: npm install
       - run: npm run build
-        working-directory: apps/website
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: apps/website/dist
+          path: dist
 
   deploy:
     needs: build

@@ -4,372 +4,1202 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Bright Smile Dental — Dentist in Clifton, Bristol</title>
-  <meta name="description" content="Modern private dental practice in Clifton, Bristol. NHS and private patients welcome. Online booking, AI-powered 24/7 enquiry handling. Call 0117 946 7200.">
+  <meta name="description" content="Modern dental practice in Clifton, Bristol. NHS and private patients. Online booking, cosmetic dentistry, Invisalign, implants. AI-powered 24/7 enquiry handling. Call 0117 946 7320.">
+  <meta property="og:title" content="Bright Smile Dental — Modern Dentistry in Clifton, Bristol">
+  <meta property="og:description" content="NHS and private dental care in Clifton. Online booking, cosmetic treatments, Invisalign, implants. 4.8 stars from 240+ reviews.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://fisherdigital.github.io/demos/bright-smile-dental/">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
   <style>
-    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-    :root{
-      --cyan:#06b6d4;--cyan-dark:#0891b2;--cyan-light:#ecfeff;
-      --dark:#0f172a;--gray-800:#1e293b;--gray-600:#475569;--gray-400:#94a3b8;--gray-200:#e2e8f0;--gray-50:#f8fafc;--white:#ffffff;
-      --font-sans:'DM Sans',system-ui,sans-serif;--font-display:'Fraunces',Georgia,serif;
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html::-webkit-scrollbar { display: none; }
+    html { scrollbar-width: none; -ms-overflow-style: none; }
+
+    :root {
+      --cyan:        #06b6d4;
+      --cyan-dark:   #0891b2;
+      --cyan-deeper: #0e7490;
+      --cyan-light:  #ecfeff;
+      --cyan-muted:  rgba(6,182,212,0.1);
+      --mint:        #10b981;
+      --dark:        #0c1222;
+      --dark-2:      #111827;
+      --slate-800:   #1e293b;
+      --slate-700:   #334155;
+      --slate-500:   #64748b;
+      --slate-400:   #94a3b8;
+      --slate-300:   #cbd5e1;
+      --slate-200:   #e2e8f0;
+      --slate-100:   #f1f5f9;
+      --slate-50:    #f8fafc;
+      --white:       #ffffff;
+      --font-head:   'Sora', system-ui, sans-serif;
+      --font-body:   'Inter', system-ui, sans-serif;
+      --radius:      0.75rem;
+      --shadow-sm:   0 1px 3px rgba(0,0,0,0.06);
+      --shadow-md:   0 4px 16px rgba(0,0,0,0.08);
+      --shadow-lg:   0 12px 40px rgba(0,0,0,0.12);
     }
-    html{scroll-behavior:smooth}
-    body{font-family:var(--font-sans);color:var(--dark);line-height:1.6;-webkit-font-smoothing:antialiased}
 
-    /* NAV */
-    .nav{position:sticky;top:0;z-index:100;background:var(--white);border-bottom:1px solid var(--gray-200)}
-    .nav-inner{max-width:1200px;margin:0 auto;padding:.75rem 1.5rem;display:flex;align-items:center;justify-content:space-between}
-    .nav-logo{font-family:var(--font-display);font-size:1.3rem;color:var(--dark);text-decoration:none}
-    .nav-logo span{color:var(--cyan)}
-    .nav-links{display:flex;align-items:center;gap:2rem;list-style:none}
-    .nav-links a{font-size:.85rem;font-weight:500;color:var(--gray-600);text-decoration:none;transition:color .2s}
-    .nav-links a:hover{color:var(--cyan)}
-    .nav-cta{background:var(--cyan);color:var(--white)!important;padding:.5rem 1.25rem;border-radius:.5rem;font-weight:600;transition:background .2s}
-    .nav-cta:hover{background:var(--cyan-dark)}
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      color: var(--dark);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
 
-    /* HERO */
-    .hero{background:linear-gradient(135deg,var(--dark) 0%,#0c1829 100%);color:var(--white);padding:5rem 1.5rem;position:relative;overflow:hidden}
-    .hero::after{content:'';position:absolute;top:-30%;right:-10%;width:50%;height:160%;background:radial-gradient(circle,rgba(6,182,212,0.1) 0%,transparent 70%)}
-    .hero-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.2fr 1fr;gap:4rem;align-items:center;position:relative;z-index:1}
-    .hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(6,182,212,0.15);color:var(--cyan);padding:.4rem 1rem;border-radius:100px;font-size:.8rem;font-weight:600;margin-bottom:1.5rem}
-    .hero h1{font-family:var(--font-display);font-size:clamp(2.5rem,5vw,3.5rem);line-height:1.1;margin-bottom:1.25rem}
-    .hero h1 span{color:var(--cyan)}
-    .hero p{font-size:1.05rem;color:rgba(255,255,255,.7);max-width:500px;margin-bottom:2rem}
-    .hero-ctas{display:flex;gap:1rem;flex-wrap:wrap}
-    .btn{display:inline-flex;align-items:center;gap:.5rem;padding:.875rem 2rem;border-radius:.5rem;font-weight:600;font-size:.9rem;text-decoration:none;border:none;cursor:pointer;transition:all .2s}
-    .btn-cyan{background:var(--cyan);color:var(--white)}
-    .btn-cyan:hover{background:var(--cyan-dark);transform:translateY(-1px)}
-    .btn-outline{background:transparent;color:var(--white);border:2px solid rgba(255,255,255,.2)}
-    .btn-outline:hover{border-color:var(--cyan);color:var(--cyan)}
-    .hero-image{background:var(--gray-800);border-radius:1rem;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;font-size:4rem}
+    /* ===== NAV ===== */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    .nav.scrolled {
+      border-bottom-color: var(--slate-200);
+      box-shadow: 0 1px 8px rgba(0,0,0,0.04);
+    }
+    .nav-inner {
+      max-width: 1200px; margin: 0 auto;
+      padding: 0.75rem 1.5rem;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: var(--font-head); font-weight: 700;
+      font-size: 1.35rem; color: var(--dark); text-decoration: none;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .nav-logo span { color: var(--cyan); }
+    .nav-links {
+      display: flex; align-items: center; gap: 2rem; list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.875rem; font-weight: 500; color: var(--slate-500);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--cyan); }
+    .nav-cta {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      background: var(--cyan); color: var(--white) !important;
+      padding: 0.5rem 1.25rem; border-radius: var(--radius);
+      font-weight: 600; font-size: 0.875rem;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .nav-cta:hover { background: var(--cyan-dark); transform: translateY(-1px); }
 
-    /* SECTIONS */
-    .section{padding:5rem 1.5rem}
-    .section-alt{background:var(--gray-50)}
-    .section-inner{max-width:1200px;margin:0 auto}
-    .section-header{text-align:center;margin-bottom:3.5rem}
-    .section-label{font-size:.8rem;font-weight:600;color:var(--cyan);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.75rem}
-    .section-title{font-family:var(--font-display);font-size:clamp(2rem,4vw,2.75rem);line-height:1.15}
-    .section-desc{font-size:1rem;color:var(--gray-600);max-width:600px;margin:1rem auto 0}
+    /* Hamburger */
+    .hamburger {
+      display: none; background: none; border: none; cursor: pointer;
+      padding: 0.5rem; flex-direction: column; gap: 5px;
+    }
+    .hamburger span {
+      display: block; width: 22px; height: 2px; background: var(--dark);
+      border-radius: 2px; transition: 0.3s;
+    }
+    .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
 
-    /* TREATMENTS */
-    .treatments-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
-    .treatment-card{background:var(--white);border:1px solid var(--gray-200);border-radius:1rem;padding:2rem;transition:box-shadow .3s,transform .3s}
-    .treatment-card:hover{box-shadow:0 10px 40px rgba(0,0,0,.06);transform:translateY(-4px)}
-    .treatment-icon{width:3rem;height:3rem;border-radius:.75rem;background:var(--cyan-light);display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:1.25rem}
-    .treatment-card h3{font-size:1.1rem;font-weight:700;margin-bottom:.5rem}
-    .treatment-card p{font-size:.9rem;color:var(--gray-600)}
-    .treatment-price{font-size:.85rem;font-weight:600;color:var(--cyan);margin-top:.75rem}
+    .mobile-menu {
+      display: none; position: absolute; top: 100%; left: 0; right: 0;
+      background: var(--white); border-bottom: 1px solid var(--slate-200);
+      padding: 1rem 1.5rem; box-shadow: var(--shadow-md);
+    }
+    .mobile-menu.open { display: flex; flex-direction: column; gap: 0.75rem; }
+    .mobile-menu a {
+      font-size: 1rem; font-weight: 500; color: var(--slate-700);
+      text-decoration: none; padding: 0.5rem 0;
+    }
 
-    /* BOOKING */
-    .booking-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
-    .booking-card{background:var(--white);border:1px solid var(--gray-200);border-radius:1rem;padding:2.5rem;box-shadow:0 4px 20px rgba(0,0,0,.04)}
-    .time-slots{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;margin:1.5rem 0}
-    .time-slot{padding:.6rem;text-align:center;border:1px solid var(--gray-200);border-radius:.5rem;font-size:.85rem;font-weight:500;cursor:pointer;transition:all .2s}
-    .time-slot:hover,.time-slot.selected{background:var(--cyan);color:var(--white);border-color:var(--cyan)}
-    .form-row{margin-bottom:1.25rem}
-    .form-row label{display:block;font-size:.85rem;font-weight:600;color:var(--gray-600);margin-bottom:.4rem}
-    .form-row input,.form-row select,.form-row textarea{width:100%;padding:.75rem 1rem;border:1px solid var(--gray-200);border-radius:.5rem;font-family:inherit;font-size:.9rem;outline:none;transition:border-color .2s}
-    .form-row input:focus,.form-row select:focus{border-color:var(--cyan);box-shadow:0 0 0 3px rgba(6,182,212,.1)}
+    /* ===== HERO ===== */
+    .hero {
+      background: linear-gradient(145deg, var(--dark) 0%, #0a1628 60%, #0c1e35 100%);
+      color: var(--white); padding: 5rem 1.5rem 6rem;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute;
+      top: -40%; right: -15%; width: 55%; height: 180%;
+      background: radial-gradient(ellipse, rgba(6,182,212,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 4rem;
+      align-items: center; position: relative; z-index: 1;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(6,182,212,0.12); color: var(--cyan);
+      padding: 0.4rem 1rem; border-radius: 100px;
+      font-family: var(--font-head); font-size: 0.8rem; font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+    .hero-badge svg { width: 14px; height: 14px; flex-shrink: 0; }
+    .hero h1 {
+      font-family: var(--font-head); font-weight: 700;
+      font-size: clamp(2.5rem, 5vw, 3.5rem);
+      line-height: 1.1; margin-bottom: 1.25rem;
+    }
+    .hero h1 span { color: var(--cyan); }
+    .hero-sub {
+      font-size: 1.1rem; color: rgba(255,255,255,0.65);
+      max-width: 500px; margin-bottom: 2rem;
+    }
+    .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--cyan); color: var(--white);
+      padding: 0.875rem 2rem; border-radius: var(--radius);
+      font-family: var(--font-body); font-weight: 600; font-size: 0.95rem;
+      text-decoration: none; border: none; cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .btn-primary:hover { background: var(--cyan-dark); transform: translateY(-1px); }
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: transparent; color: var(--white);
+      padding: 0.875rem 2rem; border-radius: var(--radius);
+      font-family: var(--font-body); font-weight: 600; font-size: 0.95rem;
+      text-decoration: none; border: 2px solid rgba(255,255,255,0.2);
+      cursor: pointer; transition: 0.2s;
+    }
+    .btn-outline:hover { border-color: var(--cyan); color: var(--cyan); }
 
-    /* REVIEWS */
-    .reviews-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem}
-    .review-card{background:var(--white);border:1px solid var(--gray-200);border-radius:1rem;padding:2rem}
-    .review-stars{color:var(--cyan);font-size:1rem;margin-bottom:.75rem}
-    .review-card blockquote{font-size:.9rem;color:var(--gray-600);font-style:italic;margin-bottom:1rem;line-height:1.7}
-    .review-card cite{font-size:.8rem;color:var(--gray-400);font-style:normal;font-weight:600}
+    .hero-trust {
+      display: flex; gap: 2rem; margin-top: 2.5rem;
+      padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.08);
+      flex-wrap: wrap;
+    }
+    .trust-item {
+      display: flex; align-items: center; gap: 0.5rem;
+      font-size: 0.8rem; color: rgba(255,255,255,0.5);
+    }
+    .trust-item svg { width: 16px; height: 16px; opacity: 0.6; }
 
-    /* AI CHATBOT */
-    .chatbot-widget{position:fixed;bottom:1.5rem;right:1.5rem;z-index:150}
-    .chatbot-toggle{width:3.5rem;height:3.5rem;border-radius:50%;background:var(--cyan);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(6,182,212,.4);transition:transform .2s}
-    .chatbot-toggle:hover{transform:scale(1.1)}
-    .chatbot-toggle svg{width:1.5rem;height:1.5rem;fill:var(--white)}
-    .chatbot-window{position:absolute;bottom:4.5rem;right:0;width:360px;max-height:500px;background:var(--white);border-radius:1rem;box-shadow:0 20px 60px rgba(0,0,0,.15);overflow:hidden;display:none;flex-direction:column}
-    .chatbot-window.open{display:flex}
-    .chatbot-header{background:var(--cyan);color:var(--white);padding:1rem 1.25rem;display:flex;justify-content:space-between;align-items:center}
-    .chatbot-header h4{font-size:.9rem;font-weight:600}
-    .chatbot-header button{background:none;border:none;color:var(--white);cursor:pointer;font-size:1.2rem}
-    .chatbot-messages{flex:1;overflow-y:auto;padding:1rem;display:flex;flex-direction:column;gap:.75rem;min-height:300px}
-    .chat-msg{max-width:85%;padding:.75rem 1rem;border-radius:1rem;font-size:.85rem;line-height:1.5}
-    .chat-bot{background:var(--gray-50);color:var(--dark);align-self:flex-start;border-bottom-left-radius:.25rem}
-    .chat-user{background:var(--cyan);color:var(--white);align-self:flex-end;border-bottom-right-radius:.25rem}
-    .chatbot-input{display:flex;border-top:1px solid var(--gray-200);padding:.75rem}
-    .chatbot-input input{flex:1;border:none;outline:none;font-size:.85rem;padding:0 .5rem}
-    .chatbot-input button{background:var(--cyan);color:var(--white);border:none;border-radius:.5rem;padding:.5rem 1rem;font-weight:600;font-size:.8rem;cursor:pointer}
+    /* Hero visual card */
+    .hero-visual {
+      background: linear-gradient(135deg, rgba(6,182,212,0.08) 0%, rgba(6,182,212,0.02) 100%);
+      border: 1px solid rgba(6,182,212,0.12);
+      border-radius: 1.25rem; padding: 2.5rem;
+      position: relative; overflow: hidden;
+    }
+    .hero-visual::after {
+      content: ''; position: absolute; top: -50%; right: -50%;
+      width: 100%; height: 100%;
+      background: radial-gradient(circle, rgba(6,182,212,0.06) 0%, transparent 70%);
+    }
+    .hero-visual-icon {
+      width: 80px; height: 80px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--cyan) 0%, var(--cyan-deeper) 100%);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.5rem; position: relative; z-index: 1;
+    }
+    .hero-visual-icon svg { width: 40px; height: 40px; fill: white; }
+    .hero-visual-list {
+      list-style: none; position: relative; z-index: 1;
+    }
+    .hero-visual-list li {
+      display: flex; align-items: center; gap: 0.75rem;
+      padding: 0.6rem 0; color: rgba(255,255,255,0.7);
+      font-size: 0.9rem;
+    }
+    .hero-visual-list li svg { width: 18px; height: 18px; fill: var(--cyan); flex-shrink: 0; }
 
-    /* CONTACT */
-    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
-    .contact-detail{display:flex;gap:1rem;padding:1rem 0;border-bottom:1px solid var(--gray-200)}
-    .contact-detail .icon{width:2.5rem;height:2.5rem;border-radius:.5rem;background:var(--cyan-light);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
-    .contact-detail strong{display:block;font-size:.8rem;color:var(--gray-400);font-weight:500}
-    .contact-detail a,.contact-detail span{color:var(--dark);font-weight:600;text-decoration:none}
-    .contact-map{border-radius:1rem;overflow:hidden;aspect-ratio:4/3}
-    .contact-map iframe{width:100%;height:100%;border:0}
+    /* ===== SECTIONS ===== */
+    .section { padding: 5rem 1.5rem; }
+    .section-alt { background: var(--slate-50); }
+    .section-dark { background: linear-gradient(145deg, var(--dark) 0%, var(--dark-2) 100%); color: var(--white); }
+    .section-inner { max-width: 1200px; margin: 0 auto; }
+    .section-header { text-align: center; margin-bottom: 3.5rem; }
+    .section-label {
+      font-family: var(--font-head); font-size: 0.8rem; font-weight: 600;
+      color: var(--cyan); text-transform: uppercase;
+      letter-spacing: 0.1em; margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-family: var(--font-head); font-weight: 700;
+      font-size: clamp(2rem, 4vw, 2.75rem); line-height: 1.15;
+    }
+    .section-desc {
+      font-size: 1.05rem; color: var(--slate-500);
+      max-width: 600px; margin: 1rem auto 0;
+    }
+    .section-dark .section-desc { color: rgba(255,255,255,0.55); }
 
-    /* FOOTER */
-    .footer{background:var(--dark);color:rgba(255,255,255,.5);padding:3rem 1.5rem}
-    .footer-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:3rem}
-    .footer-brand{font-family:var(--font-display);font-size:1.25rem;color:var(--white);margin-bottom:1rem}
-    .footer-brand span{color:var(--cyan)}
-    .footer p{font-size:.85rem;line-height:1.7}
-    .footer h4{color:var(--white);font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;margin-bottom:1rem}
-    .footer ul{list-style:none}
-    .footer ul li{margin-bottom:.5rem}
-    .footer ul a{color:rgba(255,255,255,.5);text-decoration:none;font-size:.85rem;transition:color .2s}
-    .footer ul a:hover{color:var(--cyan)}
-    .footer-bottom{max-width:1200px;margin:2rem auto 0;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.1);display:flex;justify-content:space-between;font-size:.8rem;flex-wrap:wrap;gap:1rem}
-    .footer-bottom a{color:rgba(255,255,255,.4);text-decoration:none}
+    /* ===== SERVICES ===== */
+    .services-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem;
+    }
+    .service-card {
+      background: var(--white); border: 1px solid var(--slate-100);
+      border-radius: var(--radius); padding: 1.75rem;
+      transition: box-shadow 0.3s, transform 0.3s;
+    }
+    .service-card:hover {
+      box-shadow: var(--shadow-md); transform: translateY(-4px);
+    }
+    .service-icon {
+      width: 2.75rem; height: 2.75rem; border-radius: 0.625rem;
+      background: var(--cyan-light);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1rem;
+    }
+    .service-icon svg { width: 22px; height: 22px; stroke: var(--cyan); fill: none; stroke-width: 1.8; }
+    .service-card h3 {
+      font-family: var(--font-head); font-size: 1rem; font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+    .service-card p { font-size: 0.85rem; color: var(--slate-500); line-height: 1.6; }
+    .service-price {
+      font-family: var(--font-head); font-size: 0.8rem;
+      font-weight: 600; color: var(--cyan); margin-top: 0.75rem;
+    }
 
-    /* COOKIE */
-    .cookie-banner{position:fixed;bottom:0;left:0;right:0;background:var(--white);border-top:1px solid var(--gray-200);padding:1rem 1.5rem;z-index:200;display:flex;align-items:center;justify-content:center;gap:1rem;flex-wrap:wrap;box-shadow:0 -4px 20px rgba(0,0,0,.06)}
-    .cookie-banner p{font-size:.85rem;color:var(--gray-600)}
-    .cookie-banner a{color:var(--cyan)}
-    .ck{padding:.5rem 1.25rem;border-radius:.375rem;font-size:.85rem;font-weight:600;cursor:pointer;border:none}
-    .ck-a{background:var(--cyan);color:var(--white)}
-    .ck-r{background:var(--gray-200);color:var(--gray-600)}
-    .cookie-hidden{display:none}
+    /* ===== TEAM ===== */
+    .team-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem;
+    }
+    .team-card { text-align: center; }
+    .team-avatar {
+      width: 100px; height: 100px; border-radius: 50%; margin: 0 auto 1.25rem;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-head); font-weight: 700; font-size: 1.5rem;
+      color: var(--white);
+    }
+    .team-card:nth-child(1) .team-avatar { background: linear-gradient(135deg, #06b6d4, #0891b2); }
+    .team-card:nth-child(2) .team-avatar { background: linear-gradient(135deg, #10b981, #059669); }
+    .team-card:nth-child(3) .team-avatar { background: linear-gradient(135deg, #8b5cf6, #7c3aed); }
+    .team-card:nth-child(4) .team-avatar { background: linear-gradient(135deg, #f59e0b, #d97706); }
+    .team-card h3 {
+      font-family: var(--font-head); font-size: 1rem; font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+    .team-role {
+      font-size: 0.8rem; font-weight: 600; color: var(--cyan);
+      margin-bottom: 0.5rem;
+    }
+    .team-card p { font-size: 0.85rem; color: var(--slate-500); }
 
-    @media(max-width:768px){
-      .nav-links{display:none}
-      .hero-inner{grid-template-columns:1fr;text-align:center}
-      .hero p{margin-left:auto;margin-right:auto}
-      .hero-ctas{justify-content:center}
-      .hero-image{display:none}
-      .booking-grid,.contact-grid{grid-template-columns:1fr}
-      .footer-inner{grid-template-columns:1fr}
-      .chatbot-window{width:calc(100vw - 2rem);right:-0.5rem}
+    /* ===== BOOKING ===== */
+    .booking-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start;
+    }
+    .booking-steps { display: flex; flex-direction: column; gap: 0; }
+    .booking-step {
+      display: flex; gap: 1.25rem; padding: 1.5rem 0;
+      border-bottom: 1px solid var(--slate-100);
+    }
+    .booking-step:last-child { border-bottom: none; }
+    .step-num {
+      width: 2.5rem; height: 2.5rem; border-radius: 50%;
+      background: var(--cyan); color: var(--white);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-head); font-weight: 700; font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+    .step-content h3 {
+      font-family: var(--font-head); font-size: 1rem; font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+    .step-content p { font-size: 0.9rem; color: var(--slate-500); }
+
+    .booking-card {
+      background: var(--white); border: 1px solid var(--slate-200);
+      border-radius: 1rem; padding: 2.5rem;
+      box-shadow: var(--shadow-md);
+    }
+    .booking-card h3 {
+      font-family: var(--font-head); font-size: 1.15rem; font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+    .booking-card > p {
+      font-size: 0.9rem; color: var(--slate-500); margin-bottom: 1.5rem;
+    }
+    .time-slots {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem;
+      margin: 0.75rem 0 1.25rem;
+    }
+    .time-slot {
+      padding: 0.6rem; text-align: center;
+      border: 1px solid var(--slate-200); border-radius: 0.5rem;
+      font-size: 0.85rem; font-weight: 500; cursor: pointer;
+      transition: 0.2s;
+    }
+    .time-slot:hover, .time-slot.selected {
+      background: var(--cyan); color: var(--white); border-color: var(--cyan);
+    }
+    .form-row { margin-bottom: 1.25rem; }
+    .form-row label {
+      display: block; font-size: 0.85rem; font-weight: 600;
+      color: var(--slate-700); margin-bottom: 0.4rem;
+    }
+    .form-row input, .form-row select, .form-row textarea {
+      width: 100%; padding: 0.75rem 1rem;
+      border: 1px solid var(--slate-200); border-radius: 0.5rem;
+      font-family: inherit; font-size: 0.9rem; color: var(--dark);
+      outline: none; transition: border-color 0.2s;
+    }
+    .form-row input:focus, .form-row select:focus, .form-row textarea:focus {
+      border-color: var(--cyan); box-shadow: 0 0 0 3px var(--cyan-muted);
+    }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    /* ===== GOOGLE REVIEWS ===== */
+    .google-header {
+      display: flex; align-items: center; justify-content: center;
+      gap: 1.25rem; margin-bottom: 0.5rem;
+    }
+    .google-logo svg { height: 30px; }
+    .google-rating { text-align: left; }
+    .google-rating-score {
+      font-family: var(--font-head); font-weight: 700;
+      font-size: 2.5rem; line-height: 1; color: var(--dark);
+    }
+    .google-rating-stars { color: #f59e0b; font-size: 1.1rem; letter-spacing: 2px; }
+    .google-rating-count { font-size: 0.85rem; color: var(--slate-500); }
+    .reviews-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+    .review-card {
+      background: var(--white); border: 1px solid var(--slate-100);
+      border-radius: var(--radius); padding: 1.75rem;
+    }
+    .review-top {
+      display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;
+    }
+    .review-avatar {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--cyan-light); color: var(--cyan);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-head); font-weight: 700; font-size: 0.85rem;
+    }
+    .review-meta { flex: 1; }
+    .review-name { font-weight: 600; font-size: 0.9rem; }
+    .review-date { font-size: 0.75rem; color: var(--slate-400); }
+    .review-stars { color: #f59e0b; font-size: 0.9rem; letter-spacing: 1px; margin-bottom: 0.75rem; }
+    .review-text { font-size: 0.9rem; color: var(--slate-500); line-height: 1.7; }
+    .review-google {
+      display: flex; align-items: center; gap: 0.4rem;
+      margin-top: 0.75rem; font-size: 0.75rem; color: var(--slate-400);
+    }
+    .review-google svg { height: 14px; }
+
+    /* ===== WHY CHOOSE US ===== */
+    .why-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem;
+    }
+    .why-card {
+      text-align: center; padding: 2rem 1.5rem;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: var(--radius);
+    }
+    .why-icon {
+      width: 3.5rem; height: 3.5rem; border-radius: 50%;
+      background: rgba(6,182,212,0.12); margin: 0 auto 1.25rem;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .why-icon svg { width: 22px; height: 22px; stroke: var(--cyan); fill: none; stroke-width: 1.8; }
+    .why-card h3 {
+      font-family: var(--font-head); font-size: 1rem; font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+    .why-card p { font-size: 0.85rem; color: rgba(255,255,255,0.5); line-height: 1.6; }
+
+    /* ===== CONTACT ===== */
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start;
+    }
+    .contact-item {
+      display: flex; gap: 1rem; padding: 1.25rem 0;
+      border-bottom: 1px solid var(--slate-100);
+    }
+    .contact-icon {
+      width: 2.75rem; height: 2.75rem; border-radius: 0.625rem;
+      background: var(--cyan-light);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .contact-icon svg { width: 18px; height: 18px; stroke: var(--cyan); fill: none; stroke-width: 1.8; }
+    .contact-item-label { font-size: 0.8rem; color: var(--slate-400); font-weight: 500; }
+    .contact-item-value { font-weight: 600; }
+    .contact-item-value a { color: var(--dark); text-decoration: none; }
+    .contact-item-value a:hover { color: var(--cyan); }
+    .contact-map {
+      border-radius: 1rem; overflow: hidden; aspect-ratio: 4/3;
+      border: 1px solid var(--slate-200);
+    }
+    .contact-map iframe { width: 100%; height: 100%; border: 0; }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      background: var(--dark); color: rgba(255,255,255,0.5);
+      padding: 3.5rem 1.5rem 1.5rem;
+    }
+    .footer-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2.5rem;
+    }
+    .footer-logo {
+      font-family: var(--font-head); font-weight: 700;
+      font-size: 1.25rem; color: var(--white); margin-bottom: 1rem;
+    }
+    .footer-logo span { color: var(--cyan); }
+    .footer p { font-size: 0.85rem; line-height: 1.7; }
+    .footer h4 {
+      color: var(--white); font-family: var(--font-head);
+      font-size: 0.8rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      margin-bottom: 1rem;
+    }
+    .footer ul { list-style: none; }
+    .footer ul li { margin-bottom: 0.5rem; }
+    .footer ul a {
+      color: rgba(255,255,255,0.5); text-decoration: none;
+      font-size: 0.85rem; transition: color 0.2s;
+    }
+    .footer ul a:hover { color: var(--cyan); }
+    .footer-bottom {
+      max-width: 1200px; margin: 2rem auto 0;
+      padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.08);
+      display: flex; justify-content: space-between;
+      font-size: 0.8rem; flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-bottom a { color: rgba(255,255,255,0.35); text-decoration: none; }
+    .footer-bottom a:hover { color: var(--cyan); }
+
+    /* ===== CHATBOT WIDGET ===== */
+    .chatbot-widget { position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 160; }
+    .chatbot-fab {
+      width: 56px; height: 56px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--cyan) 0%, var(--cyan-deeper) 100%);
+      border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 20px rgba(6,182,212,0.4);
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative;
+    }
+    .chatbot-fab:hover {
+      transform: scale(1.08);
+      box-shadow: 0 6px 28px rgba(6,182,212,0.5);
+    }
+    .chatbot-fab svg { width: 26px; height: 26px; fill: white; }
+    .chatbot-pulse {
+      position: absolute; top: -4px; right: -4px;
+      width: 16px; height: 16px; border-radius: 50%;
+      background: var(--mint); border: 2px solid var(--white);
+    }
+    .chatbot-pulse::after {
+      content: ''; position: absolute; inset: -3px;
+      border-radius: 50%; border: 2px solid var(--mint);
+      animation: chat-ping 2s infinite;
+    }
+    @keyframes chat-ping {
+      0% { transform: scale(1); opacity: 1; }
+      100% { transform: scale(2); opacity: 0; }
+    }
+
+    .chatbot-window {
+      position: absolute; bottom: 72px; right: 0;
+      width: 380px; background: var(--white);
+      border-radius: 1rem; overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.18);
+      display: none; flex-direction: column;
+    }
+    .chatbot-window.open { display: flex; }
+    .chatbot-head {
+      background: linear-gradient(135deg, var(--cyan) 0%, var(--cyan-deeper) 100%);
+      color: var(--white); padding: 1.25rem;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .chatbot-head-info { display: flex; align-items: center; gap: 0.75rem; }
+    .chatbot-head-avatar {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .chatbot-head-avatar svg { width: 20px; height: 20px; fill: white; }
+    .chatbot-head h4 {
+      font-family: var(--font-head); font-size: 0.9rem; font-weight: 600;
+    }
+    .chatbot-head-status {
+      font-size: 0.75rem; opacity: 0.8;
+      display: flex; align-items: center; gap: 0.35rem;
+    }
+    .chatbot-head-status::before {
+      content: ''; width: 6px; height: 6px; border-radius: 50%;
+      background: var(--mint);
+    }
+    .chatbot-close {
+      background: none; border: none; color: var(--white);
+      cursor: pointer; font-size: 1.4rem; padding: 0.25rem;
+      opacity: 0.8; transition: opacity 0.2s;
+    }
+    .chatbot-close:hover { opacity: 1; }
+    .chatbot-messages {
+      flex: 1; overflow-y: auto; padding: 1.25rem;
+      display: flex; flex-direction: column; gap: 0.75rem;
+      min-height: 280px; max-height: 360px;
+      background: var(--slate-50);
+    }
+    .chat-msg {
+      max-width: 85%; padding: 0.75rem 1rem;
+      border-radius: 1rem; font-size: 0.85rem; line-height: 1.55;
+    }
+    .chat-bot {
+      background: var(--white); color: var(--dark);
+      align-self: flex-start; border-bottom-left-radius: 0.25rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+    .chat-user {
+      background: var(--cyan); color: var(--white);
+      align-self: flex-end; border-bottom-right-radius: 0.25rem;
+    }
+    .chat-typing {
+      align-self: flex-start; background: var(--white);
+      padding: 0.75rem 1rem; border-radius: 1rem;
+      border-bottom-left-radius: 0.25rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+      display: none;
+    }
+    .chat-typing.show { display: flex; gap: 4px; align-items: center; }
+    .chat-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--slate-300); animation: typing 1.4s infinite;
+    }
+    .chat-dot:nth-child(2) { animation-delay: 0.2s; }
+    .chat-dot:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes typing {
+      0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+      30% { transform: translateY(-4px); opacity: 1; }
+    }
+    .chatbot-input-wrap {
+      display: flex; border-top: 1px solid var(--slate-200);
+      padding: 0.75rem; background: var(--white);
+    }
+    .chatbot-input-wrap input {
+      flex: 1; border: none; outline: none;
+      font-family: inherit; font-size: 0.85rem;
+      padding: 0 0.75rem; color: var(--dark);
+    }
+    .chatbot-input-wrap button {
+      background: var(--cyan); color: var(--white);
+      border: none; border-radius: 0.5rem;
+      padding: 0.5rem 1rem; font-weight: 600; font-size: 0.8rem;
+      cursor: pointer; transition: background 0.2s;
+    }
+    .chatbot-input-wrap button:hover { background: var(--cyan-dark); }
+
+    /* ===== WHATSAPP FLOAT ===== */
+    .whatsapp-float {
+      position: fixed; bottom: 5.5rem; right: 1.5rem; z-index: 155;
+      width: 44px; height: 44px; border-radius: 50%;
+      background: #25d366; display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 3px 12px rgba(37,211,102,0.35);
+      transition: transform 0.2s; text-decoration: none;
+    }
+    .whatsapp-float:hover { transform: scale(1.1); }
+    .whatsapp-float svg { width: 24px; height: 24px; fill: white; }
+
+    /* ===== COOKIE ===== */
+    .cookie-banner {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      background: var(--white); border-top: 1px solid var(--slate-200);
+      padding: 1rem 1.5rem; z-index: 200;
+      display: flex; align-items: center; justify-content: center;
+      gap: 1rem; flex-wrap: wrap;
+      box-shadow: 0 -4px 20px rgba(0,0,0,0.06);
+    }
+    .cookie-banner p { font-size: 0.85rem; color: var(--slate-500); }
+    .cookie-banner a { color: var(--cyan); font-weight: 600; }
+    .cookie-actions { display: flex; gap: 0.75rem; }
+    .cookie-btn {
+      padding: 0.5rem 1.25rem; border-radius: 0.375rem;
+      font-size: 0.85rem; font-weight: 600; cursor: pointer;
+      border: none; transition: 0.2s;
+    }
+    .cookie-accept { background: var(--cyan); color: var(--white); }
+    .cookie-accept:hover { background: var(--cyan-dark); }
+    .cookie-reject { background: var(--slate-100); color: var(--slate-700); }
+    .cookie-reject:hover { background: var(--slate-200); }
+    .cookie-hidden { display: none !important; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .services-grid, .why-grid { grid-template-columns: repeat(2, 1fr); }
+      .team-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .hero-inner { grid-template-columns: 1fr; text-align: center; }
+      .hero-sub { margin-left: auto; margin-right: auto; }
+      .hero-ctas { justify-content: center; }
+      .hero-trust { justify-content: center; }
+      .hero-visual { display: none; }
+      .services-grid { grid-template-columns: 1fr; }
+      .team-grid { grid-template-columns: 1fr 1fr; }
+      .booking-grid, .contact-grid { grid-template-columns: 1fr; }
+      .reviews-grid { grid-template-columns: 1fr; }
+      .why-grid { grid-template-columns: 1fr; }
+      .footer-inner { grid-template-columns: 1fr; }
+      .form-grid { grid-template-columns: 1fr; }
+      .chatbot-window { width: calc(100vw - 2rem); right: -0.75rem; }
+      .whatsapp-float { bottom: 5rem; right: 1.25rem; width: 40px; height: 40px; }
+      .cookie-banner { flex-direction: column; text-align: center; }
     }
   </style>
 
+  <!-- Schema.org -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Dentist",
     "name": "Bright Smile Dental",
-    "description": "Modern private dental practice in Clifton, Bristol. Online booking and AI-powered enquiry handling.",
-    "url": "https://fisherdigital.github.io/bright-smile-dental/",
-    "telephone": "+441179467200",
-    "address": { "@type": "PostalAddress", "streetAddress": "18 Queen's Road", "addressLocality": "Clifton, Bristol", "postalCode": "BS8 1QE", "addressCountry": "GB" },
+    "description": "Modern private and NHS dental practice in Clifton, Bristol. Online booking, cosmetic dentistry, Invisalign, implants, AI-powered 24/7 enquiry handling.",
+    "url": "https://fisherdigital.github.io/demos/bright-smile-dental/",
+    "telephone": "+441179467320",
+    "email": "hello@brightsmile.dental",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "15 The Mall",
+      "addressLocality": "Clifton",
+      "addressRegion": "Bristol",
+      "postalCode": "BS8 4JG",
+      "addressCountry": "GB"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 51.4557,
+      "longitude": -2.6136
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "reviewCount": "243"
+    },
     "openingHoursSpecification": [
-      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "08:00", "closes": "18:00" },
-      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "09:00", "closes": "14:00" }
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+        "opens": "08:00",
+        "closes": "18:00"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": "Saturday",
+        "opens": "09:00",
+        "closes": "14:00"
+      }
     ],
-    "priceRange": "££-£££"
+    "priceRange": "££-£££",
+    "medicalSpecialty": "Dentistry"
   }
   </script>
 </head>
 <body>
 
-<!-- NAV -->
-<nav class="nav">
+<!-- ===== NAV ===== -->
+<nav class="nav" id="nav">
   <div class="nav-inner">
-    <a href="#" class="nav-logo">Bright <span>Smile</span></a>
+    <a href="#" class="nav-logo">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 2C8 2 5 5.5 5 9c0 2 .5 3.5 1.5 5 .5.7 1 1.5 1.5 3 .4 1.2.8 2.5 1.2 3.5.3.7.8 1.5 1.8 1.5h2c1 0 1.5-.8 1.8-1.5.4-1 .8-2.3 1.2-3.5.5-1.5 1-2.3 1.5-3 1-1.5 1.5-3 1.5-5 0-3.5-3-7-7-7z" stroke="var(--cyan)"/>
+      </svg>
+      Bright <span>Smile</span>
+    </a>
     <ul class="nav-links">
       <li><a href="#treatments">Treatments</a></li>
+      <li><a href="#team">Our Team</a></li>
       <li><a href="#booking">Book Online</a></li>
       <li><a href="#reviews">Reviews</a></li>
       <li><a href="#contact">Contact</a></li>
       <li><a href="#booking" class="nav-cta">Book Appointment</a></li>
     </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#treatments">Treatments</a>
+    <a href="#team">Our Team</a>
+    <a href="#booking">Book Online</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#contact">Contact</a>
+    <a href="tel:01179467320" class="btn-primary" style="text-align:center;">Call 0117 946 7320</a>
   </div>
 </nav>
 
-<!-- HERO -->
+<!-- ===== HERO ===== -->
 <section class="hero">
   <div class="hero-inner">
-    <div>
-      <div class="hero-badge">Now accepting new patients</div>
-      <h1>Dental care that <span>puts you first</span></h1>
-      <p>Modern, gentle dentistry in the heart of Clifton. From routine check-ups to cosmetic treatments — with 24/7 AI-powered booking and enquiries.</p>
+    <div class="hero-content">
+      <div class="hero-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+        Now accepting new NHS and private patients
+      </div>
+      <h1>Modern dental care in <span>Clifton</span></h1>
+      <p class="hero-sub">Gentle, thorough dentistry for the whole family. From routine check-ups to complete smile makeovers. Book online or let our AI assistant help you 24/7.</p>
       <div class="hero-ctas">
-        <a href="#booking" class="btn btn-cyan">Book Online</a>
-        <a href="tel:01179467200" class="btn btn-outline">📞 0117 946 7200</a>
+        <a href="#booking" class="btn-primary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+          Book Online
+        </a>
+        <a href="tel:01179467320" class="btn-outline">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          0117 946 7320
+        </a>
+      </div>
+      <div class="hero-trust">
+        <div class="trust-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          CQC Registered
+        </div>
+        <div class="trust-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+          GDC Compliant
+        </div>
+        <div class="trust-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4-4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+          NHS &amp; Private
+        </div>
+        <div class="trust-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          Same-day emergency
+        </div>
       </div>
     </div>
-    <div class="hero-image">🦷</div>
+
+    <div class="hero-visual">
+      <div class="hero-visual-icon">
+        <svg viewBox="0 0 24 24" fill="white">
+          <path d="M12 2C8 2 5 5.5 5 9c0 2 .5 3.5 1.5 5 .5.7 1 1.5 1.5 3 .4 1.2.8 2.5 1.2 3.5.3.7.8 1.5 1.8 1.5h2c1 0 1.5-.8 1.8-1.5.4-1 .8-2.3 1.2-3.5.5-1.5 1-2.3 1.5-3 1-1.5 1.5-3 1.5-5 0-3.5-3-7-7-7z"/>
+        </svg>
+      </div>
+      <ul class="hero-visual-list">
+        <li>
+          <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+          Online booking, open 24/7
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+          AI chat answers questions instantly
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+          Same-day emergency slots
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+          0% finance on treatments over 500
+        </li>
+      </ul>
+    </div>
   </div>
 </section>
 
-<!-- TREATMENTS -->
+<!-- ===== TREATMENTS ===== -->
 <section class="section" id="treatments">
   <div class="section-inner">
     <div class="section-header">
-      <p class="section-label">Treatments</p>
-      <h2 class="section-title">What we offer</h2>
-      <p class="section-desc">Transparent pricing. No surprises. All fees discussed before treatment begins.</p>
+      <p class="section-label">Our Treatments</p>
+      <h2 class="section-title">Everything your smile needs</h2>
+      <p class="section-desc">Clear pricing with no surprises. All fees discussed and agreed before treatment starts.</p>
     </div>
-    <div class="treatments-grid">
-      <div class="treatment-card">
-        <div class="treatment-icon">🔍</div>
-        <h3>Check-up & Clean</h3>
-        <p>Comprehensive examination, digital X-rays when needed, scale and polish. Keeping your teeth healthy starts here.</p>
-        <p class="treatment-price">From £65</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        </div>
+        <h3>Check-ups &amp; Hygiene</h3>
+        <p>Full examination, digital X-rays when needed, thorough scale and polish. The foundation of good dental health.</p>
+        <p class="service-price">From £65</p>
       </div>
-      <div class="treatment-card">
-        <div class="treatment-icon">✨</div>
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
         <h3>Teeth Whitening</h3>
-        <p>Professional in-surgery whitening or custom take-home trays. Safe, effective, and noticeably brighter.</p>
-        <p class="treatment-price">From £295</p>
+        <p>Professional in-surgery whitening or custom take-home trays. Safe, effective, and noticeably brighter in one visit.</p>
+        <p class="service-price">From £295</p>
       </div>
-      <div class="treatment-card">
-        <div class="treatment-icon">🔧</div>
-        <h3>Fillings & Restorations</h3>
-        <p>White composite fillings that blend seamlessly. We also offer inlays, onlays, and crown replacements.</p>
-        <p class="treatment-price">From £95</p>
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+        </div>
+        <h3>Fillings &amp; Crowns</h3>
+        <p>White composite fillings that blend with your natural teeth. Inlays, onlays, and crown replacements.</p>
+        <p class="service-price">From £95</p>
       </div>
-      <div class="treatment-card">
-        <div class="treatment-icon">😬</div>
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+        </div>
         <h3>Invisalign</h3>
-        <p>Clear aligners for straighter teeth without metal braces. Free consultation to see if you're a candidate.</p>
-        <p class="treatment-price">From £2,500</p>
+        <p>Clear aligners for straighter teeth without metal braces. Free consultation to check if you're a good fit.</p>
+        <p class="service-price">From £2,500</p>
       </div>
-      <div class="treatment-card">
-        <div class="treatment-icon">🦷</div>
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2C8 2 5 5.5 5 9c0 2 .5 3.5 1.5 5 .5.7 1 1.5 1.5 3 .4 1.2.8 2.5 1.2 3.5.3.7.8 1.5 1.8 1.5h2c1 0 1.5-.8 1.8-1.5.4-1 .8-2.3 1.2-3.5.5-1.5 1-2.3 1.5-3 1-1.5 1.5-3 1.5-5 0-3.5-3-7-7-7z"/></svg>
+        </div>
         <h3>Dental Implants</h3>
-        <p>Permanent replacement for missing teeth. Placed by our experienced implant surgeon with 3D planning.</p>
-        <p class="treatment-price">From £2,200</p>
+        <p>Permanent replacement for missing teeth. 3D-planned by our implant surgeon for accurate, lasting results.</p>
+        <p class="service-price">From £2,200</p>
       </div>
-      <div class="treatment-card">
-        <div class="treatment-icon">👶</div>
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4-4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </div>
+        <h3>Cosmetic Dentistry</h3>
+        <p>Veneers, bonding, and full smile makeovers. We plan every detail so you know exactly what to expect.</p>
+        <p class="service-price">From £350</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+        </div>
         <h3>Children's Dentistry</h3>
-        <p>Gentle, fun dental care for little ones. We make first visits stress-free and teach good habits early.</p>
-        <p class="treatment-price">From £35</p>
+        <p>Gentle care for little ones. We make first visits fun and stress-free, building good habits that last a lifetime.</p>
+        <p class="service-price">From £35</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        </div>
+        <h3>Emergency Dental</h3>
+        <p>Same-day emergency slots kept available for toothache, broken teeth, and lost fillings. Call us and we'll fit you in.</p>
+        <p class="service-price">Emergency fee from £85</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- BOOKING -->
-<section class="section section-alt" id="booking">
+<!-- ===== TEAM ===== -->
+<section class="section section-alt" id="team">
   <div class="section-inner">
     <div class="section-header">
-      <p class="section-label">Appointments</p>
-      <h2 class="section-title">Book online</h2>
-      <p class="section-desc">Choose a time that works for you. We'll confirm within 2 hours.</p>
+      <p class="section-label">Our Team</p>
+      <h2 class="section-title">The people behind your smile</h2>
+      <p class="section-desc">Experienced, friendly, and genuinely passionate about what they do.</p>
+    </div>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-avatar">DR</div>
+        <h3>Dr. Rachel Nguyen</h3>
+        <p class="team-role">Principal Dentist, BDS MJDF</p>
+        <p>Founded Bright Smile in 2014. Special interest in cosmetic dentistry and Invisalign. Treats every patient like family.</p>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">JM</div>
+        <h3>Dr. James Malik</h3>
+        <p class="team-role">Associate Dentist, BDS</p>
+        <p>Joined in 2019. Focuses on restorative work and dental implants. Known for putting nervous patients at ease.</p>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">LS</div>
+        <h3>Laura Simmons</h3>
+        <p class="team-role">Dental Hygienist, DipDH</p>
+        <p>12 years of experience in preventive care. Thorough but gentle. Patients always leave feeling like a million quid.</p>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">AK</div>
+        <h3>Amy Kowalski</h3>
+        <p class="team-role">Practice Manager</p>
+        <p>Keeps everything running smoothly. If you need to sort out payments, insurance, or appointments, Amy is your go-to.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== BOOKING ===== -->
+<section class="section" id="booking">
+  <div class="section-inner">
+    <div class="section-header">
+      <p class="section-label">Online Booking</p>
+      <h2 class="section-title">Book your appointment</h2>
+      <p class="section-desc">Pick a time that suits you. We confirm within 2 hours during practice hours.</p>
     </div>
     <div class="booking-grid">
-      <div>
-        <h3 style="font-family:var(--font-display);font-size:1.5rem;margin-bottom:1rem">How it works</h3>
-        <div style="margin-bottom:2rem">
-          <div style="display:flex;gap:1rem;padding:1rem 0;border-bottom:1px solid var(--gray-200)">
-            <div style="width:2rem;height:2rem;border-radius:50%;background:var(--cyan);color:var(--white);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;flex-shrink:0">1</div>
-            <div><strong style="display:block;font-size:.9rem">Pick your treatment</strong><span style="font-size:.85rem;color:var(--gray-600)">Select what you need from the dropdown</span></div>
-          </div>
-          <div style="display:flex;gap:1rem;padding:1rem 0;border-bottom:1px solid var(--gray-200)">
-            <div style="width:2rem;height:2rem;border-radius:50%;background:var(--cyan);color:var(--white);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;flex-shrink:0">2</div>
-            <div><strong style="display:block;font-size:.9rem">Choose a time</strong><span style="font-size:.85rem;color:var(--gray-600)">Select from available slots this week</span></div>
-          </div>
-          <div style="display:flex;gap:1rem;padding:1rem 0">
-            <div style="width:2rem;height:2rem;border-radius:50%;background:var(--cyan);color:var(--white);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;flex-shrink:0">3</div>
-            <div><strong style="display:block;font-size:.9rem">We confirm</strong><span style="font-size:.85rem;color:var(--gray-600)">You'll get a confirmation email and SMS reminder</span></div>
+      <div class="booking-steps">
+        <div class="booking-step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h3>Choose your treatment</h3>
+            <p>Select what you need from the dropdown. Not sure? Pick "General enquiry" and we'll help.</p>
           </div>
         </div>
-        <p style="font-size:.85rem;color:var(--gray-400)">Can't find a suitable time? Our AI assistant can help — just click the chat icon in the bottom right.</p>
+        <div class="booking-step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h3>Pick a date and time</h3>
+            <p>See available slots and choose what works. Early mornings, lunchtimes, and Saturday mornings available.</p>
+          </div>
+        </div>
+        <div class="booking-step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h3>We confirm your appointment</h3>
+            <p>You get an email confirmation and an SMS reminder the day before. Simple as that.</p>
+          </div>
+        </div>
+        <p style="font-size: 0.85rem; color: var(--slate-400); margin-top: 1rem;">Can't find a suitable time? Our AI assistant is available 24/7 via the chat icon in the bottom right.</p>
       </div>
       <div class="booking-card">
-        <h3 style="font-size:1.1rem;font-weight:700;margin-bottom:.5rem">Book your appointment</h3>
-        <p style="font-size:.85rem;color:var(--gray-600);margin-bottom:1.5rem">We'll confirm within 2 hours during practice hours.</p>
+        <h3>Request an appointment</h3>
+        <p>We'll get back to you within 2 hours during practice hours.</p>
         <form action="https://formspree.io/f/mojpnokn" method="POST">
           <div class="form-row">
-            <label>Treatment</label>
-            <select name="treatment" required>
-              <option value="" disabled selected>Select treatment</option>
-              <option>Check-up & Clean</option>
-              <option>Teeth Whitening</option>
-              <option>Fillings</option>
-              <option>Invisalign Consultation</option>
-              <option>Implant Consultation</option>
-              <option>Children's Check-up</option>
-              <option>Emergency</option>
+            <label for="treatment">Treatment</label>
+            <select id="treatment" name="treatment" required>
+              <option value="" disabled selected>What do you need?</option>
+              <option value="checkup">Check-up &amp; Clean</option>
+              <option value="whitening">Teeth Whitening</option>
+              <option value="filling">Filling or Crown</option>
+              <option value="invisalign">Invisalign Consultation</option>
+              <option value="implant">Implant Consultation</option>
+              <option value="cosmetic">Cosmetic Consultation</option>
+              <option value="children">Children's Check-up</option>
+              <option value="emergency">Emergency</option>
+              <option value="other">General Enquiry</option>
             </select>
           </div>
           <div class="form-row">
-            <label>Preferred date</label>
-            <input type="date" name="date" required>
+            <label for="date">Preferred date</label>
+            <input type="date" id="date" name="date" required>
           </div>
           <div class="form-row">
             <label>Preferred time</label>
             <div class="time-slots">
-              <div class="time-slot" data-time="09:00">9:00</div>
-              <div class="time-slot" data-time="10:00">10:00</div>
-              <div class="time-slot" data-time="11:00">11:00</div>
-              <div class="time-slot" data-time="13:00">13:00</div>
+              <div class="time-slot" data-time="08:30">8:30</div>
+              <div class="time-slot" data-time="09:30">9:30</div>
+              <div class="time-slot" data-time="10:30">10:30</div>
+              <div class="time-slot" data-time="12:00">12:00</div>
               <div class="time-slot" data-time="14:00">14:00</div>
               <div class="time-slot" data-time="16:00">16:00</div>
             </div>
             <input type="hidden" name="time" id="selected-time">
           </div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
-            <div class="form-row"><label>Name</label><input type="text" name="name" required placeholder="Jane Smith"></div>
-            <div class="form-row"><label>Phone</label><input type="tel" name="phone" required placeholder="07XXX XXXXXX"></div>
+          <div class="form-grid">
+            <div class="form-row">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" required placeholder="Jane Smith">
+            </div>
+            <div class="form-row">
+              <label for="phone">Phone</label>
+              <input type="tel" id="phone" name="phone" required placeholder="07XXX XXXXXX">
+            </div>
           </div>
-          <div class="form-row"><label>Email</label><input type="email" name="email" required placeholder="jane@example.co.uk"></div>
-          <input type="hidden" name="_subject" value="Booking Request — Bright Smile Dental">
-          <button type="submit" class="btn btn-cyan" style="width:100%">Request Appointment</button>
+          <div class="form-row">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required placeholder="jane@example.co.uk">
+          </div>
+          <input type="hidden" name="_subject" value="Appointment Request — Bright Smile Dental">
+          <button type="submit" class="btn-primary" style="width: 100%;">Request Appointment</button>
         </form>
       </div>
     </div>
   </div>
 </section>
 
-<!-- REVIEWS -->
-<section class="section" id="reviews">
+<!-- ===== GOOGLE REVIEWS ===== -->
+<section class="section section-alt" id="reviews">
   <div class="section-inner">
     <div class="section-header">
       <p class="section-label">Patient Reviews</p>
       <h2 class="section-title">What our patients say</h2>
-      <p class="section-desc">4.8 stars from 240+ Google reviews.</p>
+    </div>
+    <div class="google-header">
+      <!-- Google "G" logo -->
+      <div class="google-logo">
+        <svg viewBox="0 0 48 48" width="40" height="40">
+          <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+          <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+          <path fill="#34A853" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+          <path fill="#FBBC05" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+        </svg>
+      </div>
+      <div class="google-rating">
+        <div class="google-rating-score">4.8</div>
+        <div class="google-rating-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <div class="google-rating-count">Based on 243 Google reviews</div>
+      </div>
     </div>
     <div class="reviews-grid">
       <div class="review-card">
-        <div class="review-stars">★★★★★</div>
-        <blockquote>"I used to dread the dentist but Bright Smile changed that completely. The team are genuinely kind, everything is explained clearly, and the results speak for themselves. Best dental experience I've had."</blockquote>
-        <cite>— Emma W., Clifton</cite>
+        <div class="review-top">
+          <div class="review-avatar">EW</div>
+          <div class="review-meta">
+            <div class="review-name">Emma W.</div>
+            <div class="review-date">3 weeks ago</div>
+          </div>
+        </div>
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="review-text">"I used to dread the dentist but Bright Smile changed that completely. The team are genuinely kind, everything is explained clearly, and the results speak for themselves. Best dental experience I've had."</p>
+        <div class="review-google">
+          <svg viewBox="0 0 48 48" width="14" height="14"><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#34A853" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#FBBC05" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/></svg>
+          Posted on Google
+        </div>
       </div>
       <div class="review-card">
-        <div class="review-stars">★★★★★</div>
-        <blockquote>"The online booking is brilliant — I booked at 11 PM on a Sunday and had a confirmation by 8 AM Monday. The AI chat answered my questions about Invisalign pricing instantly. Very modern practice."</blockquote>
-        <cite>— David K., Redland</cite>
+        <div class="review-top">
+          <div class="review-avatar">DK</div>
+          <div class="review-meta">
+            <div class="review-name">David K.</div>
+            <div class="review-date">1 month ago</div>
+          </div>
+        </div>
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="review-text">"The online booking is brilliant. I booked at 11 PM on a Sunday and had a confirmation by 8 AM Monday. The AI chat answered my questions about Invisalign pricing instantly. Very modern practice."</p>
+        <div class="review-google">
+          <svg viewBox="0 0 48 48" width="14" height="14"><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#34A853" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#FBBC05" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/></svg>
+          Posted on Google
+        </div>
       </div>
       <div class="review-card">
-        <div class="review-stars">★★★★★</div>
-        <blockquote>"Took my 5-year-old for her first check-up and the children's dentist was incredible. She actually asked to go back. Can't recommend them highly enough for nervous patients of any age."</blockquote>
-        <cite>— Sophie L., Cotham</cite>
+        <div class="review-top">
+          <div class="review-avatar">SL</div>
+          <div class="review-meta">
+            <div class="review-name">Sophie L.</div>
+            <div class="review-date">2 months ago</div>
+          </div>
+        </div>
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="review-text">"Took my 5-year-old for her first check-up and the children's dentist was incredible. She actually asked to go back. Can't recommend them highly enough for nervous patients of any age."</p>
+        <div class="review-google">
+          <svg viewBox="0 0 48 48" width="14" height="14"><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#34A853" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#FBBC05" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/></svg>
+          Posted on Google
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CONTACT -->
-<section class="section section-alt" id="contact">
+<!-- ===== WHY CHOOSE US ===== -->
+<section class="section section-dark">
+  <div class="section-inner">
+    <div class="section-header">
+      <p class="section-label">Why Bright Smile</p>
+      <h2 class="section-title">What makes us different</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3>CQC Outstanding</h3>
+        <p>Rated Outstanding by the Care Quality Commission. We hold ourselves to the highest clinical standards.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+        </div>
+        <h3>Invisalign Diamond</h3>
+        <p>Diamond Provider status means we've treated hundreds of patients with Invisalign. More experience, better results.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+        </div>
+        <h3>0% Finance</h3>
+        <p>Spread the cost of treatment over 6 or 12 months with 0% interest. No one should put off dental care because of cost.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+        </div>
+        <h3>Nervous Patients</h3>
+        <p>We specialise in anxious and nervous patients. Sedation options available. No judgement, just support.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section class="section" id="contact">
   <div class="section-inner">
     <div class="section-header">
       <p class="section-label">Find Us</p>
-      <h2 class="section-title">Get in touch</h2>
+      <h2 class="section-title">Visit the practice</h2>
+      <p class="section-desc">In the heart of Clifton, a 5-minute walk from Clifton Down station.</p>
     </div>
     <div class="contact-grid">
       <div>
-        <div class="contact-detail"><div class="icon">📞</div><div><strong>Phone</strong><a href="tel:01179467200">0117 946 7200</a></div></div>
-        <div class="contact-detail"><div class="icon">✉️</div><div><strong>Email</strong><a href="mailto:hello@brightsmile.co.uk">hello@brightsmile.co.uk</a></div></div>
-        <div class="contact-detail"><div class="icon">📍</div><div><strong>Address</strong><span>18 Queen's Road, Clifton, Bristol BS8 1QE</span></div></div>
-        <div class="contact-detail"><div class="icon">🕐</div><div><strong>Hours</strong><span style="font-size:.9rem">Mon–Fri: 8 AM – 6 PM<br>Saturday: 9 AM – 2 PM<br>Sunday: Closed</span></div></div>
-        <div class="contact-detail"><div class="icon">🅿️</div><div><strong>Parking</strong><span style="font-size:.9rem">Pay & display on Queen's Road. Clifton Down station 5 min walk.</span></div></div>
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          </div>
+          <div>
+            <div class="contact-item-label">Phone</div>
+            <div class="contact-item-value"><a href="tel:01179467320">0117 946 7320</a></div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div>
+            <div class="contact-item-label">Email</div>
+            <div class="contact-item-value"><a href="mailto:hello@brightsmile.dental">hello@brightsmile.dental</a></div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div>
+            <div class="contact-item-label">Address</div>
+            <div class="contact-item-value">15 The Mall, Clifton, Bristol BS8 4JG</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div>
+            <div class="contact-item-label">Opening Hours</div>
+            <div class="contact-item-value" style="font-size: 0.9rem; line-height: 1.8;">
+              Mon-Fri: 8:00 AM - 6:00 PM<br>
+              Saturday: 9:00 AM - 2:00 PM<br>
+              Sunday: Closed
+            </div>
+          </div>
+        </div>
+        <div class="contact-item" style="border-bottom: none;">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          </div>
+          <div>
+            <div class="contact-item-label">Getting Here</div>
+            <div class="contact-item-value" style="font-size: 0.9rem;">Pay &amp; display on The Mall. Clifton Down station 5 min walk.</div>
+          </div>
+        </div>
       </div>
       <div class="contact-map">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2485.5!2d-2.613!3d51.456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zClifton+Bristol!5e0!3m2!1sen!2suk!4v1" allowfullscreen loading="lazy"></iframe>
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2485.5!2d-2.6186!3d51.4557!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48718dd4ce0ce84d%3A0x0!2sClifton%2C+Bristol!5e0!3m2!1sen!2suk!4v1"
+          allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- ===== FOOTER ===== -->
 <footer class="footer">
   <div class="footer-inner">
     <div>
-      <p class="footer-brand">Bright <span>Smile</span> Dental</p>
-      <p>Modern dental care in Clifton, Bristol. GDC registered. Accepting NHS and private patients.</p>
+      <p class="footer-logo">Bright <span>Smile</span> Dental</p>
+      <p>Modern dental care in Clifton, Bristol. GDC registered practice. NHS and private patients welcome. CQC rated Outstanding.</p>
     </div>
     <div>
       <h4>Treatments</h4>
@@ -378,98 +1208,264 @@
         <li><a href="#treatments">Whitening</a></li>
         <li><a href="#treatments">Invisalign</a></li>
         <li><a href="#treatments">Implants</a></li>
+        <li><a href="#treatments">Cosmetic</a></li>
       </ul>
     </div>
     <div>
       <h4>Practice</h4>
       <ul>
+        <li><a href="#team">Our Team</a></li>
         <li><a href="#booking">Book Online</a></li>
         <li><a href="#reviews">Reviews</a></li>
         <li><a href="#contact">Contact</a></li>
-        <li><a href="/privacy/">Privacy Policy</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Information</h4>
+      <ul>
+        <li><a href="#treatments">Pricing</a></li>
+        <li><a href="#contact">Opening Hours</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Complaints</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
-    <span>&copy; 2026 Bright Smile Dental. All rights reserved.</span>
-    <a href="/privacy/">Privacy Policy</a>
+    <span>&copy; 2026 Bright Smile Dental. All rights reserved. GDC No. 287456.</span>
+    <a href="#">Privacy Policy</a>
   </div>
 </footer>
 
-<!-- AI CHATBOT WIDGET -->
+<!-- ===== COOKIE CONSENT ===== -->
+<div class="cookie-banner" id="cookie-banner">
+  <p>We use cookies to improve your experience. <a href="#">Learn more.</a></p>
+  <div class="cookie-actions">
+    <button class="cookie-btn cookie-reject" id="cookie-reject">Reject</button>
+    <button class="cookie-btn cookie-accept" id="cookie-accept">Accept cookies</button>
+  </div>
+</div>
+
+<!-- ===== WHATSAPP FLOAT ===== -->
+<a href="https://wa.me/441179467320" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- ===== AI CHATBOT WIDGET ===== -->
 <div class="chatbot-widget">
-  <div class="chatbot-window" id="chatbot">
-    <div class="chatbot-header">
-      <h4>Bright Smile Assistant</h4>
-      <button onclick="toggleChat()" aria-label="Close chat">&times;</button>
+  <div class="chatbot-window" id="chatbot-window">
+    <div class="chatbot-head">
+      <div class="chatbot-head-info">
+        <div class="chatbot-head-avatar">
+          <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
+        </div>
+        <div>
+          <h4>Bright Smile Assistant</h4>
+          <div class="chatbot-head-status">Online now</div>
+        </div>
+      </div>
+      <button class="chatbot-close" onclick="toggleChat()" aria-label="Close chat">&times;</button>
     </div>
     <div class="chatbot-messages" id="chat-messages">
-      <div class="chat-msg chat-bot">Hi there! I'm the Bright Smile assistant. I can help with appointment availability, treatment information, and pricing. What can I help you with?</div>
+      <div class="chat-msg chat-bot">Hi! I'm the Bright Smile virtual assistant. I can help with appointment availability, treatment info, and pricing. What can I help you with?</div>
+      <div class="chat-msg chat-user">Do you do emergency appointments?</div>
+      <div class="chat-msg chat-bot">Yes! We keep slots available each day for dental emergencies. Call 0117 946 7320 during practice hours, or book online and select "Emergency" as your appointment type. If it's outside hours, NHS 111 can direct you to the nearest emergency dentist.</div>
     </div>
-    <div class="chatbot-input">
+    <div class="chat-typing" id="chat-typing">
+      <span class="chat-dot"></span><span class="chat-dot"></span><span class="chat-dot"></span>
+    </div>
+    <div class="chatbot-input-wrap">
       <input type="text" id="chat-input" placeholder="Ask about treatments, booking..." onkeypress="if(event.key==='Enter')sendChat()">
       <button onclick="sendChat()">Send</button>
     </div>
   </div>
-  <button class="chatbot-toggle" onclick="toggleChat()" aria-label="Open chat">
-    <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.17L4 17.17V4h16v12z"/><path d="M7 9h2v2H7zm4 0h2v2h-2zm4 0h2v2h-2z"/></svg>
+  <button class="chatbot-fab" onclick="toggleChat()" aria-label="Open chat assistant">
+    <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.17L4 17.17V4h16v12z"/><circle cx="8" cy="10" r="1"/><circle cx="12" cy="10" r="1"/><circle cx="16" cy="10" r="1"/></svg>
+    <span class="chatbot-pulse"></span>
   </button>
 </div>
 
-<!-- COOKIE -->
-<div class="cookie-banner" id="cb">
-  <p>We use cookies. <a href="/privacy/">Learn more</a></p>
-  <button class="ck ck-a" onclick="localStorage.setItem('bsd_cc','1');document.getElementById('cb').classList.add('cookie-hidden')">Accept</button>
-  <button class="ck ck-r" onclick="localStorage.setItem('bsd_cc','0');document.getElementById('cb').classList.add('cookie-hidden')">Reject</button>
-</div>
-
+<!-- ===== SCRIPTS ===== -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 <script>
-  // Cookie
-  if(localStorage.getItem('bsd_cc'))document.getElementById('cb').classList.add('cookie-hidden');
+  window.addEventListener('DOMContentLoaded', function() {
 
-  // Time slots
-  document.querySelectorAll('.time-slot').forEach(s=>{
-    s.addEventListener('click',()=>{
-      document.querySelectorAll('.time-slot').forEach(x=>x.classList.remove('selected'));
-      s.classList.add('selected');
-      document.getElementById('selected-time').value=s.dataset.time;
+    /* ---- Nav scroll shadow ---- */
+    var nav = document.getElementById('nav');
+    window.addEventListener('scroll', function() {
+      nav.classList.toggle('scrolled', window.scrollY > 20);
     });
+
+    /* ---- Hamburger ---- */
+    var hamburger = document.getElementById('hamburger');
+    var mobileMenu = document.getElementById('mobile-menu');
+    hamburger.addEventListener('click', function() {
+      hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('open');
+    });
+    mobileMenu.querySelectorAll('a').forEach(function(a) {
+      a.addEventListener('click', function() {
+        hamburger.classList.remove('open');
+        mobileMenu.classList.remove('open');
+      });
+    });
+
+    /* ---- Time slots ---- */
+    document.querySelectorAll('.time-slot').forEach(function(slot) {
+      slot.addEventListener('click', function() {
+        document.querySelectorAll('.time-slot').forEach(function(s) { s.classList.remove('selected'); });
+        slot.classList.add('selected');
+        document.getElementById('selected-time').value = slot.dataset.time;
+      });
+    });
+
+    /* ---- Cookie ---- */
+    var cookieBanner = document.getElementById('cookie-banner');
+    if (localStorage.getItem('bsd-cookie-consent')) {
+      cookieBanner.classList.add('cookie-hidden');
+    }
+    document.getElementById('cookie-accept').addEventListener('click', function() {
+      localStorage.setItem('bsd-cookie-consent', 'accepted');
+      cookieBanner.classList.add('cookie-hidden');
+    });
+    document.getElementById('cookie-reject').addEventListener('click', function() {
+      localStorage.setItem('bsd-cookie-consent', 'rejected');
+      cookieBanner.classList.add('cookie-hidden');
+    });
+
+    /* ---- GSAP Animations ---- */
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+      gsap.registerPlugin(ScrollTrigger);
+
+      // Hero entrance
+      var heroTl = gsap.timeline({ defaults: { duration: 0.8, ease: 'power3.out' } });
+      heroTl
+        .fromTo('.hero-badge', { opacity: 0, y: 20 }, { opacity: 1, y: 0 })
+        .fromTo('.hero h1', { opacity: 0, y: 30 }, { opacity: 1, y: 0 }, '-=0.5')
+        .fromTo('.hero-sub', { opacity: 0, y: 20 }, { opacity: 1, y: 0 }, '-=0.4')
+        .fromTo('.hero-ctas', { opacity: 0, y: 20 }, { opacity: 1, y: 0 }, '-=0.3')
+        .fromTo('.hero-trust', { opacity: 0, y: 15 }, { opacity: 1, y: 0 }, '-=0.2')
+        .fromTo('.hero-visual', { opacity: 0, x: 40 }, { opacity: 1, x: 0 }, '-=0.6');
+
+      // Service cards
+      gsap.utils.toArray('.service-card').forEach(function(card, i) {
+        gsap.fromTo(card,
+          { opacity: 0, y: 30 },
+          { opacity: 1, y: 0, duration: 0.6, delay: i * 0.08,
+            scrollTrigger: { trigger: card, start: 'top 88%', toggleActions: 'play none none none' }
+          }
+        );
+      });
+
+      // Team cards
+      gsap.utils.toArray('.team-card').forEach(function(card, i) {
+        gsap.fromTo(card,
+          { opacity: 0, y: 25 },
+          { opacity: 1, y: 0, duration: 0.6, delay: i * 0.1,
+            scrollTrigger: { trigger: card, start: 'top 88%', toggleActions: 'play none none none' }
+          }
+        );
+      });
+
+      // Booking section
+      gsap.fromTo('.booking-steps',
+        { opacity: 0, x: -30 },
+        { opacity: 1, x: 0, duration: 0.7,
+          scrollTrigger: { trigger: '.booking-grid', start: 'top 80%' }
+        }
+      );
+      gsap.fromTo('.booking-card',
+        { opacity: 0, x: 30 },
+        { opacity: 1, x: 0, duration: 0.7,
+          scrollTrigger: { trigger: '.booking-grid', start: 'top 80%' }
+        }
+      );
+
+      // Review cards
+      gsap.utils.toArray('.review-card').forEach(function(card, i) {
+        gsap.fromTo(card,
+          { opacity: 0, y: 25 },
+          { opacity: 1, y: 0, duration: 0.6, delay: i * 0.12,
+            scrollTrigger: { trigger: card, start: 'top 88%', toggleActions: 'play none none none' }
+          }
+        );
+      });
+
+      // Why cards
+      gsap.utils.toArray('.why-card').forEach(function(card, i) {
+        gsap.fromTo(card,
+          { opacity: 0, y: 25 },
+          { opacity: 1, y: 0, duration: 0.6, delay: i * 0.1,
+            scrollTrigger: { trigger: card, start: 'top 88%', toggleActions: 'play none none none' }
+          }
+        );
+      });
+
+      // Contact section
+      gsap.fromTo('.contact-grid > div:first-child',
+        { opacity: 0, x: -25 },
+        { opacity: 1, x: 0, duration: 0.7,
+          scrollTrigger: { trigger: '.contact-grid', start: 'top 80%' }
+        }
+      );
+      gsap.fromTo('.contact-map',
+        { opacity: 0, x: 25 },
+        { opacity: 1, x: 0, duration: 0.7,
+          scrollTrigger: { trigger: '.contact-grid', start: 'top 80%' }
+        }
+      );
+    }
   });
 
-  // Chatbot
-  function toggleChat(){
-    document.getElementById('chatbot').classList.toggle('open');
+  /* ---- Chatbot ---- */
+  function toggleChat() {
+    document.getElementById('chatbot-window').classList.toggle('open');
   }
 
-  const botResponses = {
-    'appointment': "I can help with that! We have availability this week on Wednesday and Friday afternoons. Would you like me to check a specific date? You can also book directly using the form above.",
-    'whitening': "Our teeth whitening starts from £295 for professional in-surgery treatment, or £195 for custom take-home trays. Results typically last 6-12 months. Would you like to book a consultation?",
-    'invisalign': "Invisalign treatment starts from £2,500 and typically takes 6-18 months. We offer free initial consultations to assess if you're a candidate. Shall I help you book one?",
-    'price': "Our check-up and clean starts from £65. Fillings from £95. Whitening from £295. For a full price list, visit our treatments section above or ask me about a specific treatment.",
-    'emergency': "For dental emergencies during practice hours, call us on 0117 946 7200. We keep emergency slots available each day. If it's outside hours, NHS 111 can direct you to an emergency dentist.",
-    'hours': "We're open Monday to Friday 8 AM to 6 PM, and Saturday 9 AM to 2 PM. We're closed on Sundays.",
-    'parking': "There's pay and display parking on Queen's Road. Clifton Down station is a 5-minute walk. Several bus routes stop nearby.",
-    'default': "Thanks for your message! For specific enquiries, I'd recommend calling us on 0117 946 7200 or booking online using the form above. Is there anything else I can help with?"
+  var botResponses = {
+    'book': "I can help with that! We have availability this week on Wednesday and Friday afternoons. You can book directly using the form above, or tell me what treatment you need and I'll check times for you.",
+    'appointment': "We have slots available this week. Would you like a morning or afternoon appointment? You can also book directly using the form on this page.",
+    'whiten': "Our professional teeth whitening starts from £295 for in-surgery treatment, or £195 for custom take-home trays. Results typically last 6-12 months. Shall I book you a consultation?",
+    'invisalign': "Invisalign starts from £2,500 and treatment usually takes 6-18 months. We're a Diamond Provider, meaning we've treated hundreds of patients. Free consultations are available.",
+    'implant': "Dental implants start from £2,200 per tooth. Our implant surgeon uses 3D planning for precise placement. We offer free initial consultations to assess suitability.",
+    'price': "Check-ups from £65, fillings from £95, whitening from £295, Invisalign from £2,500. We also offer 0% finance on treatments over £500. What treatment are you interested in?",
+    'cost': "Check-ups from £65, fillings from £95, whitening from £295, Invisalign from £2,500. We also offer 0% finance on treatments over £500. What treatment are you interested in?",
+    'emergency': "Yes! We keep slots available each day for dental emergencies. Call 0117 946 7320 during practice hours, or book online and select 'Emergency'. Outside hours, NHS 111 can help.",
+    'hour': "We're open Monday to Friday 8 AM to 6 PM, and Saturday 9 AM to 2 PM. Closed on Sundays.",
+    'park': "There's pay and display parking on The Mall. Clifton Down station is a 5-minute walk away. Several bus routes stop nearby on Whiteladies Road.",
+    'nhs': "We accept both NHS and private patients. NHS check-ups are available at standard NHS rates. For cosmetic treatments, these are private only. Would you like to register as a new patient?",
+    'nervous': "We completely understand. We specialise in nervous and anxious patients. We can offer sedation options, go at your pace, and explain every step before we do anything. No judgement at all.",
+    'child': "Children's check-ups start from £35. We make first visits fun and relaxed. Our team is great with little ones, and we focus on building positive habits early.",
+    'default': "Thanks for your message! For detailed enquiries, you can call us on 0117 946 7320 or use the booking form on this page. Is there anything specific I can help with?"
   };
 
-  function sendChat(){
-    const input = document.getElementById('chat-input');
-    const msg = input.value.trim();
-    if(!msg) return;
-    const messages = document.getElementById('chat-messages');
-    messages.innerHTML += `<div class="chat-msg chat-user">${msg.replace(/</g,'&lt;')}</div>`;
+  function sendChat() {
+    var input = document.getElementById('chat-input');
+    var msg = input.value.trim();
+    if (!msg) return;
+
+    var messages = document.getElementById('chat-messages');
+    messages.innerHTML += '<div class="chat-msg chat-user">' + msg.replace(/</g, '&lt;') + '</div>';
     input.value = '';
-    const lower = msg.toLowerCase();
-    let response = botResponses.default;
-    for(const [key, val] of Object.entries(botResponses)){
-      if(key !== 'default' && lower.includes(key)){response = val; break;}
+    messages.scrollTop = messages.scrollHeight;
+
+    // Show typing indicator
+    document.getElementById('chat-typing').classList.add('show');
+
+    var lower = msg.toLowerCase();
+    var response = botResponses['default'];
+    for (var key in botResponses) {
+      if (key !== 'default' && lower.indexOf(key) !== -1) {
+        response = botResponses[key];
+        break;
+      }
     }
-    if(lower.includes('book') || lower.includes('available')) response = botResponses.appointment;
-    if(lower.includes('cost') || lower.includes('much')) response = botResponses.price;
-    setTimeout(()=>{
-      messages.innerHTML += `<div class="chat-msg chat-bot">${response}</div>`;
+
+    setTimeout(function() {
+      document.getElementById('chat-typing').classList.remove('show');
+      messages.innerHTML += '<div class="chat-msg chat-bot">' + response + '</div>';
       messages.scrollTop = messages.scrollHeight;
-    }, 800);
+    }, 900);
   }
 </script>
 
