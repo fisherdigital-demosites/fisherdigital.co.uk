@@ -203,7 +203,7 @@ const chatMessages = [
                 <span class="w-6 h-6 rounded-full bg-accent/10 flex items-center justify-center shrink-0 mt-0.5">
                   <span class="text-accent text-[9px] font-600">AI</span>
                 </span>
-                <p class="text-sm text-[var(--color-light-text-secondary)]">Lovely. I've got this Thursday at ten, or Friday at half two. Which works better?</p>
+                <p class="text-sm text-[var(--color-light-text-secondary)]">Lovely, thank you. So for a new patient check-up, I've got this Thursday at ten, or Friday afternoon at half two. Which works better for you?</p>
               </div>
               <div class="transcript-line flex gap-3 opacity-0">
                 <span class="w-6 h-6 rounded-full bg-[var(--color-light-surface)] flex items-center justify-center shrink-0 mt-0.5">
@@ -227,7 +227,19 @@ const chatMessages = [
                 <span class="w-6 h-6 rounded-full bg-accent/10 flex items-center justify-center shrink-0 mt-0.5">
                   <span class="text-accent text-[9px] font-600">AI</span>
                 </span>
-                <p class="text-sm text-[var(--color-light-text-secondary)]">Sarah Mitchell, Thursday the eleventh at ten. We'll send a confirmation text shortly.</p>
+                <p class="text-sm text-[var(--color-light-text-secondary)]">And a phone number in case we need to reach you?</p>
+              </div>
+              <div class="transcript-line flex gap-3 opacity-0">
+                <span class="w-6 h-6 rounded-full bg-[var(--color-light-surface)] flex items-center justify-center shrink-0 mt-0.5">
+                  <svg class="w-3 h-3 text-[var(--color-light-muted)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
+                </span>
+                <p class="text-sm text-[var(--color-light-text-secondary)]">Yeah, 077<span class="inline-block blur-[3px] select-none">00 900</span> 123.</p>
+              </div>
+              <div class="transcript-line flex gap-3 opacity-0">
+                <span class="w-6 h-6 rounded-full bg-accent/10 flex items-center justify-center shrink-0 mt-0.5">
+                  <span class="text-accent text-[9px] font-600">AI</span>
+                </span>
+                <p class="text-sm text-[var(--color-light-text-secondary)]">Brilliant. So that's Sarah Mitchell, Thursday the eleventh at ten. We'll send you a confirmation text shortly. Is there anything else I can help with?</p>
               </div>
               <div class="transcript-line flex gap-3 opacity-0">
                 <span class="w-6 h-6 rounded-full bg-[var(--color-light-surface)] flex items-center justify-center shrink-0 mt-0.5">
@@ -240,6 +252,12 @@ const chatMessages = [
                   <span class="text-accent text-[9px] font-600">AI</span>
                 </span>
                 <p class="text-sm text-[var(--color-light-text-secondary)]">Great, we'll see you Thursday. Have a lovely day.</p>
+              </div>
+              <div class="transcript-line flex gap-3 opacity-0">
+                <span class="w-6 h-6 rounded-full bg-[var(--color-light-surface)] flex items-center justify-center shrink-0 mt-0.5">
+                  <svg class="w-3 h-3 text-[var(--color-light-muted)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
+                </span>
+                <p class="text-sm text-[var(--color-light-text-secondary)]">Thanks, bye.</p>
               </div>
             </div>
           </div>
@@ -332,8 +350,8 @@ const chatMessages = [
     let isPlaying = false;
     let waveInterval: ReturnType<typeof setInterval>;
 
-    // Transcript timestamps synced to actual audio
-    const transcriptTimes = [1.7, 4.0, 7.2, 10.9, 14.5, 24.1, 26.4, 28.4, 38.2, 48.2, 50.2];
+    // Transcript timestamps synced to actual audio (14 lines)
+    const transcriptTimes = [1.7, 4.0, 7.2, 10.9, 14.5, 24.1, 26.4, 28.4, 31.0, 34.1, 38.2, 48.2, 50.2, 53.2];
 
     function formatTime(s: number) {
       const m = Math.floor(s / 60);

@@ -1,9 +1,9 @@
 ---
 const trustSignals = [
-  { label: 'Avg. traffic increase', value: '340%' },
-  { label: 'Page load time', value: '<1s' },
+  { label: 'You see it before you pay', value: 'Free' },
   { label: 'Response time', value: '<24hr' },
-  { label: 'Based in', value: 'UK' },
+  { label: 'First call to live site', value: '14 days' },
+  { label: 'Based in the', value: 'UK' },
 ];
 ---
 
@@ -17,29 +17,53 @@ const trustSignals = [
       </h2>
     </div>
 
-    <!-- Trust metric cards -->
     <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
       {trustSignals.map((signal) => (
         <div class="trust-card text-center rounded-xl bg-white border border-[var(--color-light-border)] py-8 px-4">
-          <p class="text-3xl font-heading font-600 text-accent mb-2 tracking-tight">{signal.value}</p>
-          <p class="text-sm text-[var(--color-light-muted)]">{signal.label}</p>
+          <p class="text-3xl md:text-4xl mb-2 tracking-tight text-accent" style="font-family: 'Sora', sans-serif; font-weight: 700;">{signal.value}</p>
+          <p class="text-xs text-[var(--color-light-muted)]">{signal.label}</p>
         </div>
       ))}
     </div>
   </div>
 </section>
 
-<script>
-  import { gsap } from 'gsap';
-  import { ScrollTrigger } from 'gsap/ScrollTrigger';
-  gsap.registerPlugin(ScrollTrigger);
+<style>
+  .trust-card {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  .trust-card.revealed {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+  .trust-card:nth-child(2).revealed { transition-delay: 0.08s; }
+  .trust-card:nth-child(3).revealed { transition-delay: 0.16s; }
+  .trust-card:nth-child(4).revealed { transition-delay: 0.24s; }
+</style>
 
-  gsap.from('.trust-card', {
-    scrollTrigger: { trigger: '#social-proof', start: 'top 75%' },
-    y: 40,
-    opacity: 0,
-    duration: 0.6,
-    stagger: 0.1,
-    ease: 'expo.out',
-  });
+<script>
+  function initSocialProof() {
+    const section = document.getElementById('social-proof');
+    if (!section) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          section.querySelectorAll('.trust-card').forEach((card) => {
+            card.classList.add('revealed');
+          });
+        }
+      },
+      { threshold: 0.15 }
+    );
+    observer.observe(section);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initSocialProof);
+  } else {
+    initSocialProof();
+  }
 </script>
