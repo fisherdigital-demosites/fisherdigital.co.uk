@@ -137,10 +137,15 @@ import { demoSites } from '../../data/portfolio';
   </div>
 
   <!-- ============================== -->
-  <!-- ITEM 3: Redwood — POV Desktop with Depth of Field -->
+  <!-- ITEM 3: Redwood — slide in from right, pin + scroll through site -->
+  <!-- Prev (removed 2026-04-11): full-bleed "zoom in to viewport" takeover.
+       It was buggy on mid-range devices (layout jank on the frame width
+       animation, iframe repainting under pin). Replaced with a simpler
+       slide-from-right entrance + short pin where the iframe content
+       scrolls — same narrative, no dimension animation. -->
   <!-- ============================== -->
-  <div class="portfolio-item relative section-light zoom-section" data-index="2" data-style="zoom-in">
-    <div class="py-20 md:py-32" id="zoom-pin-area">
+  <div class="portfolio-item relative section-light pin-section" data-index="2" data-style="slide-right">
+    <div class="py-20 md:py-32" id="pin-area">
       <div class="mx-auto max-w-7xl px-6 w-full">
         <!-- Info ABOVE the device for this one -->
         <div class="max-w-2xl mx-auto text-center mb-12 zoom-info">
@@ -355,8 +360,11 @@ import { demoSites } from '../../data/portfolio';
     50% { transform: scaleX(0.85); opacity: 0.7; }
   }
 
-  /* ===== ITEM 3: Full-Bleed Takeover ===== */
-  .zoom-section { min-height: 200vh; }
+  /* ===== ITEM 3: Slide-from-right + pin-scroll =====
+     min-height gives GSAP enough scroll distance for the pin to feel
+     deliberate (pause on lock → scroll through iframe → release) without
+     stealing 2 full viewports like the old zoom-in did. */
+  .pin-section { min-height: 140vh; }
   .fb-scene {
     position: relative;
     max-width: 900px;
@@ -469,7 +477,7 @@ import { demoSites } from '../../data/portfolio';
     .fp-reflection { border-radius: 2rem; }
 
     /* Item 3: Flatten */
-    .zoom-section { min-height: auto !important; }
+    .pin-section { min-height: auto !important; }
     .fb-frame { transform: none !important; border-radius: 10px; }
 
     :global(.portfolio-features) {
@@ -576,102 +584,87 @@ import { demoSites } from '../../data/portfolio';
       tl2.from(item2.querySelectorAll('.portfolio-features li'), { y: 15, opacity: 0, duration: 0.4, stagger: 0.06, ease: 'power2.out' }, '-=0.5');
     }
 
-    // ===== ITEM 3: Full-Bleed Takeover =====
+    // ===== ITEM 3: Slide in from right → pin → scroll iframe content → release
+    //
+    // Previous design (removed 2026-04-11) animated the frame dimensions to
+    // full viewport and back. That was buggy on mid-range devices because
+    // GSAP was mutating width/height on every scroll tick while the iframe
+    // was still repainting under a pin. The replacement is dimensionally
+    // static — only the iframe's internal y-offset animates during the pin.
+    //
+    // Structure:
+    //   Entrance  — info + device slide in from the right (trigger-based)
+    //   Pin       — frame is pinned for ~200% scroll; first 20% is a visible
+    //               "lock pause" where nothing moves (beat for the eye to
+    //               register the scroll lock), then iframe.y scrubs to -60%
+    //               so the viewer watches the full Redwood site scroll past,
+    //               then release.
+
+    const item3 = document.querySelector('[data-style="slide-right"]');
+    const fbScene = document.getElementById('fb-scene');
     const fbFrame = document.getElementById('fb-frame');
     const fbScreen = document.getElementById('fb-screen');
-    const fbOverlay = document.getElementById('fb-overlay');
-    const zoomPinArea = document.getElementById('zoom-pin-area');
+    const pinArea = document.getElementById('pin-area');
     const isMobile = window.innerWidth < 768;
 
-    if (fbFrame && fbScreen && zoomPinArea && !isMobile) {
-      const fbIframe = fbScreen.querySelector('.fb-iframe') as HTMLElement;
-
-      // Measure initial frame size
-      const initRect = fbFrame.getBoundingClientRect();
-      const initW = initRect.width;
-      const initH = initRect.height;
-      const shiftX = -(window.innerWidth - initW) / 2;
-
-      // Lock dimensions so GSAP can animate them
-      fbFrame.style.aspectRatio = 'auto';
-      fbFrame.style.width = initW + 'px';
-      fbFrame.style.height = initH + 'px';
-
-      const zoomTl = gsap.timeline({
-        scrollTrigger: {
-          trigger: zoomPinArea,
-          start: 'top 10%',
-          end: '+=350%',
-          pin: true,
-          scrub: 0.6,
-          anticipatePin: 1,
-        }
-      });
-
-      // Phase 1: Expand to full viewport with depth tilt
-      zoomTl.addLabel('start');
-      zoomTl.to(fbFrame, {
-        width: window.innerWidth,
-        height: window.innerHeight,
-        x: shiftX,
-        rotateX: 0,
-        borderRadius: 0,
-        boxShadow: '0 0 0 rgba(0,0,0,0)',
-        duration: 0.2,
-        ease: 'power2.inOut',
-      });
-      if (fbOverlay) {
-        zoomTl.to(fbOverlay, { opacity: 1, duration: 0.08, ease: 'power2.out' }, '-=0.05');
-      }
-
-      // Phase 2: Scroll down through the site content
-      zoomTl.addLabel('fullBleed');
-      if (fbIframe) {
-        zoomTl.to(fbIframe, { y: '-50%', duration: 0.3, ease: 'none' });
-      }
-
-      // Phase 3: Scroll back up to hero (so it ends on the hero view)
-      if (fbIframe) {
-        zoomTl.to(fbIframe, { y: '0%', duration: 0.2, ease: 'power2.inOut' });
-      }
-
-      // Phase 4: Fade out overlay
-      zoomTl.addLabel('scrollDone');
-      if (fbOverlay) {
-        zoomTl.to(fbOverlay, { opacity: 0, duration: 0.05, ease: 'power2.in' });
-      }
-
-      // Phase 5: Shrink back with depth tilt returning
-      zoomTl.addLabel('zoomOut');
-      zoomTl.to(fbFrame, {
-        width: initW,
-        height: initH,
-        x: 0,
-        rotateX: 2,
-        borderRadius: 16,
-        boxShadow: '0 40px 100px rgba(0,0,0,0.2), 0 16px 48px rgba(0,0,0,0.12), 0 4px 12px rgba(0,0,0,0.06)',
-        duration: 0.25,
-        ease: 'power3.out',
-      });
-      zoomTl.addLabel('end');
-    }
-
-    // Entrance for item 3
-    const item3 = document.querySelector('[data-style="zoom-in"]');
-    const fbScene = document.getElementById('fb-scene');
-    if (item3) {
+    // Entrance: slide from the right
+    if (item3 && fbScene) {
       const tl3 = gsap.timeline({
-        scrollTrigger: { trigger: item3, start: 'top 65%', toggleActions: 'play none none reverse' }
+        scrollTrigger: { trigger: item3, start: 'top 70%', toggleActions: 'play none none reverse' }
       });
-      tl3.from(item3.querySelector('.zoom-info'), { y: 30, opacity: 0, duration: 0.8, ease: 'expo.out' });
-      tl3.from(item3.querySelectorAll('.portfolio-features span'), { y: 12, opacity: 0, stagger: 0.08, duration: 0.4, ease: 'power2.out' }, '-=0.4');
-      if (fbScene) {
-        tl3.from(fbScene, { y: 40, opacity: 0, duration: 0.8, ease: 'expo.out' }, '-=0.3');
+      tl3.from(item3.querySelector('.zoom-info'), {
+        x: 80, opacity: 0, duration: 0.9, ease: 'expo.out',
+      });
+      tl3.from(item3.querySelectorAll('.portfolio-features span'), {
+        y: 12, opacity: 0, stagger: 0.08, duration: 0.4, ease: 'power2.out',
+      }, '-=0.5');
+      tl3.from(fbScene, {
+        x: 140, opacity: 0, duration: 1, ease: 'expo.out',
+      }, '-=0.75');
+    }
+
+    // Pin + iframe scroll. Skipped on mobile — on small screens we just let
+    // the device sit inline without pinning (the regular section scroll is
+    // enough story).
+    if (fbFrame && fbScreen && pinArea && !isMobile) {
+      const fbIframe = fbScreen.querySelector('.fb-iframe') as HTMLElement | null;
+
+      if (fbIframe) {
+        const pinTl = gsap.timeline({
+          scrollTrigger: {
+            trigger: pinArea,
+            // Start the pin when the section is nicely framed in the
+            // viewport, not as soon as its top touches — stops the frame
+            // from feeling "grabbed" on the way in.
+            start: 'center 55%',
+            end: '+=200%',
+            pin: true,
+            scrub: 0.6,
+            anticipatePin: 1,
+          },
+        });
+
+        // Beat 1: scroll-lock pause — hold everything still for ~20% of the
+        // pin range so the viewer notices the scroll lock engaged.
+        pinTl.to({}, { duration: 0.2 });
+
+        // Beat 2: scrub the iframe content downward so we watch the full
+        // site scroll past inside the static frame.
+        pinTl.to(fbIframe, {
+          y: '-60%',
+          duration: 0.7,
+          ease: 'none',
+        });
+
+        // Beat 3: tiny settle before releasing the pin — gives the eye a
+        // second to land on the final view before normal scroll resumes.
+        pinTl.to({}, { duration: 0.1 });
       }
     }
 
-    // ===== ITEMS 1 & 2: Scroll iframe content (NOT item 3 — handled by pinned timeline) =====
-    document.querySelectorAll('.portfolio-item:not([data-style="zoom-in"]) .screen-viewport').forEach((viewport) => {
+    // ===== ITEMS 1 & 2: Scroll iframe content (NOT item 3 — item 3 has its
+    // own pinned timeline above that drives its iframe directly) =====
+    document.querySelectorAll('.portfolio-item:not([data-style="slide-right"]) .screen-viewport').forEach((viewport) => {
       const content = viewport.querySelector('.screen-content');
       if (!content) return;
       const section = viewport.closest('.portfolio-item');

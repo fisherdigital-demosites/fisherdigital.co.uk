@@ -1,6 +1,9 @@
 ---
 const currentYear = new Date().getFullYear();
 
+// Footer links — kept in sync with pages that actually exist.
+// Rule: never link to a page that doesn't ship yet. If it's not in
+// src/pages/, it doesn't go here.
 const footerLinks = {
   services: [
     { label: 'Essential Websites', href: '#services' },
@@ -9,16 +12,20 @@ const footerLinks = {
     { label: 'Online Booking', href: '#services' },
     { label: 'Search Optimisation', href: '#services' },
   ],
+  // Only niches with a dedicated landing page live here. Add a niche row
+  // ONLY after its /web-design-for-<niche>/ page ships in src/pages/.
   niches: [
     { label: 'Web Design for Plumbers', href: '/web-design-for-plumbers/' },
-    { label: 'Web Design for Dentists', href: '/web-design-for-dentists/' },
-    { label: 'Web Design for Restaurants', href: '/web-design-for-restaurants/' },
-    { label: 'Web Design for Hair Salons', href: '/web-design-for-hair-salons/' },
     { label: 'Web Design for Electricians', href: '/web-design-for-electricians/' },
+    { label: 'Web Design for Dentists', href: '/web-design-for-dentists/' },
+    { label: 'Web Design for Hair Salons', href: '/web-design-for-hair-salons/' },
+    { label: 'Web Design for Restaurants', href: '/web-design-for-restaurants/' },
   ],
   company: [
     { label: 'About', href: '#about' },
-    { label: 'Blog', href: '/blog/' },
+    { label: 'Services', href: '#services' },
+    { label: 'Our Process', href: '#process' },
+    { label: 'Contact', href: '#contact' },
     { label: 'Privacy Policy', href: '/privacy/' },
     { label: 'Terms of Service', href: '/terms/' },
     { label: 'Cookie Policy', href: '/cookies/' },
@@ -104,13 +111,24 @@ const footerLinks = {
     </div>
 
     <!-- Bottom bar -->
-    <div class="mt-12 pt-8 border-t border-border flex flex-col md:flex-row items-center justify-between gap-4">
-      <p class="text-xs text-text-muted">
-        &copy; {currentYear} FisherDigital. All rights reserved.
+    <div class="mt-12 pt-8 border-t border-border flex flex-col gap-4">
+      <!-- Client name disclosure — pre-empts the "I googled them and found nothing"
+           objection by making the privacy posture explicit up-front. Worded to
+           read as a professionalism signal, not a hedge. -->
+      <p class="text-[11px] text-text-muted/70 leading-relaxed max-w-3xl">
+        <span class="font-semibold text-text-muted">A note on client names.</span>
+        Some of the case studies and demo sites shown here use anonymised business names
+        to protect our clients' competitive positioning and privacy. Real client
+        references are available on request after an introductory call.
       </p>
-      <p class="text-xs text-text-muted">
-        Bristol, United Kingdom
-      </p>
+      <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-2">
+        <p class="text-xs text-text-muted">
+          &copy; {currentYear} FisherDigital. All rights reserved.
+        </p>
+        <p class="text-xs text-text-muted">
+          Bristol, United Kingdom
+        </p>
+      </div>
     </div>
   </div>
 </footer>
