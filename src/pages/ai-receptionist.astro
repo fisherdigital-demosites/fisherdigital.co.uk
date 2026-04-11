@@ -1,7 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
-const apiBase = import.meta.env.PUBLIC_API_BASE ?? 'http://localhost:8787';
+// Production default points at the Cloudflare Tunnel that fronts the
+// local pipeline server (Wave 9.5.7, 2026-04-12). Local dev can still
+// override via apps/website/.env: PUBLIC_API_BASE=http://localhost:3001
+const apiBase = import.meta.env.PUBLIC_API_BASE ?? 'https://api.fisherdigital.co.uk';
 ---
 
 <Layout
