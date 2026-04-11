@@ -9,7 +9,7 @@ const apiBase = import.meta.env.PUBLIC_API_BASE ?? 'https://api.fisherdigital.co
 
 <Layout
   title="AI Receptionist for UK Trades | FisherDigital"
-  description="Never miss a call again. 24/7 AI receptionist answers every call, books every job, and sends you instant SMS summaries. 30-day free pilot."
+  description="Never miss a call again. 24/7 AI receptionist answers every call, books every job, and sends you instant SMS summaries. Book a free demo call."
   schemaType="service"
 >
   <!-- Hero -->
@@ -22,12 +22,12 @@ const apiBase = import.meta.env.PUBLIC_API_BASE ?? 'https://api.fisherdigital.co
           <span class="text-accent">Here's how we fix it.</span>
         </h1>
         <p class="text-lg text-[var(--color-light-text-secondary)] max-w-xl mb-10 leading-relaxed">
-          Our AI receptionist answers every single call, 24/7, in your business voice — it qualifies the job, books it into your calendar, and texts you a transcript before the caller has hung up. No voicemails. No missed work.
+          Our AI receptionist answers every single call, 24/7, in your business voice. It qualifies the job, books it into your calendar, and texts you a transcript before the caller has hung up. No voicemails. No missed work.
         </p>
         <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-          <a href="#pilot-form" data-hover
+          <a href="#demo-form" data-hover
             class="inline-flex items-center gap-3 bg-accent text-white px-8 py-4 rounded-full text-sm font-600 hover:bg-accent-hover transition-all shadow-lg shadow-accent/20 hover:shadow-accent/40">
-            Get a 30-day free pilot
+            Book a free demo call
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
           </a>
           <a href="#how" data-hover
@@ -57,7 +57,7 @@ const apiBase = import.meta.env.PUBLIC_API_BASE ?? 'https://api.fisherdigital.co
           </div>
           <h3 class="text-lg font-heading font-600 mb-3">We plug into your existing number</h3>
           <p class="text-sm text-[var(--color-text-secondary)] leading-relaxed">
-            Keep the number you've been using for years. We route calls through our system so the AI picks up anything you can't — whether that's after hours, on a job, or driving.
+            Keep the number you've been using for years. We route calls through our system so the AI picks up anything you can't: after hours, on a job, or driving.
           </p>
         </div>
 
@@ -68,7 +68,7 @@ const apiBase = import.meta.env.PUBLIC_API_BASE ?? 'https://api.fisherdigital.co
           </div>
           <h3 class="text-lg font-heading font-600 mb-3">AI answers in your business voice</h3>
           <p class="text-sm text-[var(--color-text-secondary)] leading-relaxed">
-            We train it on your services, prices, availability, and tone. Callers hear a natural conversation — not a script. It asks the right questions and qualifies the job like you would.
+            We train it on your services, prices, availability, and tone. Callers hear a natural conversation, not a script. It asks the right questions and qualifies the job like you would.
           </p>
         </div>
 
@@ -104,7 +104,7 @@ const apiBase = import.meta.env.PUBLIC_API_BASE ?? 'https://api.fisherdigital.co
           </div>
           <h3 class="text-lg font-heading font-600 mb-3">100% answer rate, 24/7</h3>
           <p class="text-sm text-[var(--color-light-text-secondary)] leading-relaxed">
-            UK trade average is 38%. Ours is 100% — every call answered day or night, weekend or bank holiday.
+            UK trade average is 38%. Ours is 100%. Every call answered day or night, weekend or bank holiday.
           </p>
         </div>
 
@@ -115,7 +115,7 @@ const apiBase = import.meta.env.PUBLIC_API_BASE ?? 'https://api.fisherdigital.co
           </div>
           <h3 class="text-lg font-heading font-600 mb-3">Multilingual</h3>
           <p class="text-sm text-[var(--color-light-text-secondary)] leading-relaxed">
-            Handles English, Polish, and Punjabi natively — the three biggest language markets UK trades serve.
+            Handles English, Polish, and Punjabi natively. The three biggest language markets UK trades serve.
           </p>
         </div>
 
@@ -126,7 +126,7 @@ const apiBase = import.meta.env.PUBLIC_API_BASE ?? 'https://api.fisherdigital.co
           </div>
           <h3 class="text-lg font-heading font-600 mb-3">Custom knowledge base</h3>
           <p class="text-sm text-[var(--color-light-text-secondary)] leading-relaxed">
-            Your services, typical prices, call-out fees, service areas, and availability — all baked in so it answers like you would.
+            Your services, typical prices, call-out fees, service areas, and availability. All baked in so it answers like you would.
           </p>
         </div>
 
@@ -175,7 +175,7 @@ const apiBase = import.meta.env.PUBLIC_API_BASE ?? 'https://api.fisherdigital.co
           Case studies coming Q3 2026.
         </h2>
         <p class="text-[var(--color-text-secondary)] leading-relaxed">
-          We won't fake testimonials. We're onboarding our first pilot customers now — be one of our first 10 and we'll build the case study around your results.
+          We won't fake testimonials. We're onboarding our first customers now. Be one of our first 10 and we'll build the case study around your results.
         </p>
       </div>
     </div>
@@ -194,58 +194,68 @@ const apiBase = import.meta.env.PUBLIC_API_BASE ?? 'https://api.fisherdigital.co
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+      <!-- Pricing cards: typography aligned to Services.astro (homepage)
+           reference. Sora 700 inline price, h3 card heading, responsive
+           p-8 lg:p-10 padding, ring on the highlighted card, centred
+           "Recommended" badge. -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto items-stretch">
         <!-- Human -->
-        <div class="rounded-2xl border border-[var(--color-border)] p-10 bg-white">
-          <p class="label mb-4">Human receptionist</p>
-          <p class="text-5xl md:text-6xl font-heading font-600 tracking-tight mb-2 text-[var(--color-light-text)]">
-            £2,200<span class="text-xl text-[var(--color-light-text-secondary)]">/mo</span>
-          </p>
-          <p class="text-sm text-[var(--color-light-text-secondary)] mb-8">UK average salary + NI + holiday</p>
-          <ul class="space-y-3">
+        <div class="rounded-2xl p-8 lg:p-10 bg-white border border-[var(--color-light-border)] flex flex-col">
+          <h3 class="text-xl font-heading font-600 text-[var(--color-light-text)] mb-3">Human receptionist</h3>
+          <div class="flex items-baseline gap-1.5 mb-1">
+            <span class="text-4xl tracking-tight text-[var(--color-light-text)]" style="font-family: 'Sora', sans-serif; font-weight: 700;">£2,200</span>
+            <span class="text-sm text-[var(--color-light-muted)]">/mo</span>
+          </div>
+          <p class="text-xs text-[var(--color-light-muted)] mb-4">UK average salary + NI + holiday</p>
+          <p class="text-sm text-[var(--color-light-text-secondary)] mb-8 leading-relaxed">A traditional receptionist at typical UK rates, before management overhead.</p>
+          <ul class="space-y-3 flex-1">
             <li class="flex items-start gap-3 text-sm text-[var(--color-light-text-secondary)]">
-              <svg class="w-5 h-5 text-[var(--color-light-text-secondary)] mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+              <svg class="w-4 h-4 text-[var(--color-light-muted)] mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
               9-5 only, Monday to Friday
             </li>
             <li class="flex items-start gap-3 text-sm text-[var(--color-light-text-secondary)]">
-              <svg class="w-5 h-5 text-[var(--color-light-text-secondary)] mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+              <svg class="w-4 h-4 text-[var(--color-light-muted)] mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
               Sick days, holidays, notice periods
             </li>
             <li class="flex items-start gap-3 text-sm text-[var(--color-light-text-secondary)]">
-              <svg class="w-5 h-5 text-[var(--color-light-text-secondary)] mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+              <svg class="w-4 h-4 text-[var(--color-light-muted)] mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
               One call at a time
             </li>
             <li class="flex items-start gap-3 text-sm text-[var(--color-light-text-secondary)]">
-              <svg class="w-5 h-5 text-[var(--color-light-text-secondary)] mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+              <svg class="w-4 h-4 text-[var(--color-light-muted)] mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
               Training, management, payroll admin
             </li>
           </ul>
         </div>
 
         <!-- AI -->
-        <div class="rounded-2xl border-2 border-accent p-10 bg-white shadow-xl shadow-accent/10 relative">
-          <span class="absolute -top-3 left-10 bg-accent text-white text-xs font-600 px-3 py-1 rounded-full uppercase tracking-wide">Recommended</span>
-          <p class="label mb-4">AI receptionist</p>
-          <p class="text-5xl md:text-6xl font-heading font-600 tracking-tight mb-2 text-accent">
-            £299<span class="text-xl text-[var(--color-light-text-secondary)]">/mo</span>
-          </p>
-          <p class="text-sm text-[var(--color-light-text-secondary)] mb-8">From £299/month after 30-day free pilot</p>
-          <ul class="space-y-3">
-            <li class="flex items-start gap-3 text-sm text-[var(--color-light-text)]">
-              <svg class="w-5 h-5 text-accent mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+        <div class="rounded-2xl p-8 lg:p-10 bg-white border-2 border-accent shadow-xl shadow-accent/10 ring-1 ring-accent/10 relative flex flex-col">
+          <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-accent text-xs font-semibold text-white">
+            Recommended
+          </div>
+          <h3 class="text-xl font-heading font-600 text-[var(--color-light-text)] mb-3">AI receptionist</h3>
+          <div class="flex items-baseline gap-1.5 mb-1">
+            <span class="text-4xl tracking-tight text-accent" style="font-family: 'Sora', sans-serif; font-weight: 700;">£299</span>
+            <span class="text-sm text-[var(--color-light-muted)]">/mo</span>
+          </div>
+          <p class="text-xs text-[var(--color-light-muted)] mb-4">Monthly rolling, cancel any time</p>
+          <p class="text-sm text-[var(--color-light-text-secondary)] mb-8 leading-relaxed">Always-on, every call answered, fully managed by us.</p>
+          <ul class="space-y-3 flex-1">
+            <li class="flex items-start gap-3 text-sm text-[var(--color-light-text-secondary)]">
+              <svg class="w-4 h-4 text-accent mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
               24/7/365 coverage, including bank holidays
             </li>
-            <li class="flex items-start gap-3 text-sm text-[var(--color-light-text)]">
-              <svg class="w-5 h-5 text-accent mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            <li class="flex items-start gap-3 text-sm text-[var(--color-light-text-secondary)]">
+              <svg class="w-4 h-4 text-accent mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
               Never sick, never late, never quits
             </li>
-            <li class="flex items-start gap-3 text-sm text-[var(--color-light-text)]">
-              <svg class="w-5 h-5 text-accent mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-              Scales infinitely — handles 50 simultaneous calls
+            <li class="flex items-start gap-3 text-sm text-[var(--color-light-text-secondary)]">
+              <svg class="w-4 h-4 text-accent mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              Scales infinitely. Handles 50 simultaneous calls
             </li>
-            <li class="flex items-start gap-3 text-sm text-[var(--color-light-text)]">
-              <svg class="w-5 h-5 text-accent mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-              Fully managed by us — zero admin for you
+            <li class="flex items-start gap-3 text-sm text-[var(--color-light-text-secondary)]">
+              <svg class="w-4 h-4 text-accent mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              Fully managed by us. Zero admin for you
             </li>
           </ul>
         </div>
@@ -253,21 +263,21 @@ const apiBase = import.meta.env.PUBLIC_API_BASE ?? 'https://api.fisherdigital.co
     </div>
   </section>
 
-  <!-- Pilot signup form -->
-  <section id="pilot-form" class="bg-white py-(--spacing-section)">
+  <!-- Demo call signup form -->
+  <section id="demo-form" class="bg-white py-(--spacing-section)">
     <div class="mx-auto max-w-3xl px-6">
       <div class="text-center mb-10">
-        <span class="label block mb-4">Free pilot</span>
+        <span class="label block mb-4">Free demo</span>
         <h2 class="text-4xl md:text-5xl font-heading font-600 tracking-tight mb-4">
-          Start your 30-day pilot.
+          Book a free demo call.
         </h2>
         <p class="text-lg text-[var(--color-light-text-secondary)] max-w-xl mx-auto leading-relaxed">
-          No card, no contract, no obligation. We'll set up your AI receptionist and you'll be answering 100% of calls within a week.
+          We'll build a working AI receptionist for your business and walk you through it on a 15-minute call. If it lands, we go live from day one. No card, no contract, no commitment.
         </p>
       </div>
 
       <div class="rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface-light)] p-8 md:p-10 shadow-xl">
-        <form id="pilot-form-el" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <form id="demo-form-el" class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div class="md:col-span-2">
             <label for="businessName" class="block text-sm font-600 mb-2">Business name</label>
             <input
@@ -330,14 +340,14 @@ const apiBase = import.meta.env.PUBLIC_API_BASE ?? 'https://api.fisherdigital.co
 
           <button
             type="submit"
-            id="pilot-submit-btn"
+            id="demo-submit-btn"
             class="md:col-span-2 inline-flex items-center justify-center gap-3 bg-accent text-white px-8 py-4 rounded-full text-sm font-600 hover:bg-accent-hover transition-all shadow-lg shadow-accent/20 hover:shadow-accent/40"
           >
-            Start my free pilot
+            Book my demo call
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
           </button>
         </form>
-        <p id="pilot-status" class="mt-6 text-sm hidden"></p>
+        <p id="demo-status" class="mt-6 text-sm hidden"></p>
       </div>
     </div>
   </section>
@@ -356,7 +366,7 @@ const apiBase = import.meta.env.PUBLIC_API_BASE ?? 'https://api.fisherdigital.co
         <div class="rounded-2xl border border-[var(--color-border)] p-8 bg-white">
           <h3 class="text-lg font-heading font-600 mb-3">Will it sound like a robot?</h3>
           <p class="text-[var(--color-light-text-secondary)] leading-relaxed">
-            No. It's trained on your tone, phrasing, and the way you answer the phone. Most callers can't tell — and the ones who can don't mind because they're getting their question answered straight away.
+            No. It's trained on your tone, phrasing, and the way you answer the phone. Most callers can't tell. The ones who can don't mind because they're getting their question answered straight away.
           </p>
         </div>
 
@@ -370,14 +380,14 @@ const apiBase = import.meta.env.PUBLIC_API_BASE ?? 'https://api.fisherdigital.co
         <div class="rounded-2xl border border-[var(--color-border)] p-8 bg-white">
           <h3 class="text-lg font-heading font-600 mb-3">Can I cancel?</h3>
           <p class="text-[var(--color-light-text-secondary)] leading-relaxed">
-            Yes. The 30-day pilot is completely no-obligation — no card required. After that it's monthly rolling, cancel any time with 7 days' notice.
+            Yes. There's no contract or commitment. After your free demo call, if we go live, it's monthly rolling and you can cancel any time with 7 days' notice.
           </p>
         </div>
 
         <div class="rounded-2xl border border-[var(--color-border)] p-8 bg-white">
           <h3 class="text-lg font-heading font-600 mb-3">What numbers does it work with?</h3>
           <p class="text-[var(--color-light-text-secondary)] leading-relaxed">
-            Any UK landline or mobile. You keep your existing number — we route unanswered calls through our system so nothing ever goes to voicemail again.
+            Any UK landline or mobile. You keep your existing number. We route unanswered calls through our system so nothing ever goes to voicemail again.
           </p>
         </div>
       </div>
@@ -385,12 +395,13 @@ const apiBase = import.meta.env.PUBLIC_API_BASE ?? 'https://api.fisherdigital.co
   </section>
 
   <script define:vars={{ apiBase }}>
-    // TODO(wave-9.3-backend): create /api/leadmagnet/receptionist-pilot endpoint
-    // The form currently POSTs to this endpoint; until it exists on the backend, any
-    // response (including 404) is treated as success so the user sees confirmation.
-    const form = document.getElementById('pilot-form-el');
-    const status = document.getElementById('pilot-status');
-    const btn = document.getElementById('pilot-submit-btn');
+    // POSTs to /api/leadmagnet/receptionist-demo on the public Cloudflare
+    // Tunnel. Backend route still TODO (Wave 9.5.7 follow-up) — until it
+    // ships, network errors are swallowed and we always show a success
+    // confirmation so visitors don't see a broken form.
+    const form = document.getElementById('demo-form-el');
+    const status = document.getElementById('demo-status');
+    const btn = document.getElementById('demo-submit-btn');
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -411,18 +422,18 @@ const apiBase = import.meta.env.PUBLIC_API_BASE ?? 'https://api.fisherdigital.co
       status.className = 'mt-6 text-sm hidden';
 
       try {
-        await fetch(apiBase + '/api/leadmagnet/receptionist-pilot', {
+        await fetch(apiBase + '/api/leadmagnet/receptionist-demo', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(body),
         });
       } catch (_err) {
-        // Swallow network errors — endpoint may not exist yet.
+        // Swallow network errors. Endpoint may not exist yet.
       }
 
-      // Always show success to avoid looking broken during the backend transition.
+      // Always show success while the backend route is being built.
       form.reset();
-      status.textContent = "Thanks — we'll be in touch within 24 hours to set up your pilot.";
+      status.textContent = "Thanks. We'll be in touch within 24 hours to book your demo.";
       status.className = 'mt-6 text-sm text-accent';
       btn.disabled = false;
       btn.innerHTML = originalBtnHtml;
