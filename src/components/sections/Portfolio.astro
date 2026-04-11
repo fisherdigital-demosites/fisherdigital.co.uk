@@ -137,15 +137,18 @@ import { demoSites } from '../../data/portfolio';
   </div>
 
   <!-- ============================== -->
-  <!-- ITEM 3: Redwood — slide in from right, pin + scroll through site -->
-  <!-- Prev (removed 2026-04-11): full-bleed "zoom in to viewport" takeover.
-       It was buggy on mid-range devices (layout jank on the frame width
-       animation, iframe repainting under pin). Replaced with a simpler
-       slide-from-right entrance + short pin where the iframe content
-       scrolls — same narrative, no dimension animation. -->
+  <!-- ITEM 3: Redwood — slide in from right, scroll iframe with page -->
+  <!-- Prev iterations (removed 2026-04-11):
+       1) Full-bleed "zoom to viewport" takeover — buggy on mid-range devices.
+       2) Slide-in + pinned short-scroll — the pin pause felt wrong, broke
+          the rhythm set by items 1 and 2.
+       Current: slide-in entrance + standard scroll-linked iframe scrub so
+       it reads as a third beat in the same cadence. Depth comes from a
+       3D tilt on the frame (like item 1) with a deeper floating shadow
+       and an accent glow, not from pinning or viewport takeover. -->
   <!-- ============================== -->
-  <div class="portfolio-item relative section-light pin-section" data-index="2" data-style="slide-right">
-    <div class="py-20 md:py-32" id="pin-area">
+  <div class="portfolio-item relative section-light" data-index="2" data-style="slide-right">
+    <div class="py-20 md:py-32">
       <div class="mx-auto max-w-7xl px-6 w-full">
         <!-- Info ABOVE the device for this one -->
         <div class="max-w-2xl mx-auto text-center mb-12 zoom-info">
@@ -166,20 +169,26 @@ import { demoSites } from '../../data/portfolio';
           </div>
         </div>
 
-        <!-- Full-Bleed Takeover -->
+        <!-- Depth-tilted frame with accent glow.
+             .screen-viewport / .screen-content class names are shared
+             with items 1 and 2 so the single iframe-scroll loop at the
+             bottom of the script picks all three up — no bespoke
+             timeline for Redwood. -->
         <div class="fb-scene" id="fb-scene">
           <div class="fb-frame" id="fb-frame">
-            <div class="fb-screen" id="fb-screen">
-              <iframe src="/demos/redwood-and-co/index.html" title="Redwood & Co preview" class="fb-iframe" loading="lazy" sandbox="allow-same-origin"></iframe>
-            </div>
-            <!-- Pinned info overlay — visible during full-bleed scroll -->
-            <div class="fb-overlay" id="fb-overlay">
-              <div class="fb-overlay-inner">
-                <span class="fb-overlay-niche">Estate Agent</span>
-                <span class="fb-overlay-name">{demoSites[2].businessName}</span>
-              </div>
+            <!-- Bezel highlight like the item 1 monitor — sells the depth -->
+            <div class="fb-bezel-highlight"></div>
+            <div class="fb-screen screen-viewport" id="fb-screen">
+              <iframe src="/demos/redwood-and-co/index.html" title="Redwood & Co preview" class="fb-iframe screen-content" loading="lazy" sandbox="allow-same-origin"></iframe>
+              <!-- Glass reflection layers (match item 1) -->
+              <div class="fb-glass"></div>
+              <div class="fb-glare"></div>
             </div>
           </div>
+          <!-- Floating shadow under the frame -->
+          <div class="fb-shadow"></div>
+          <!-- Accent glow — matches the purple colour used in the bullet ticks -->
+          <div class="fb-glow"></div>
         </div>
       </div>
     </div>
@@ -360,80 +369,93 @@ import { demoSites } from '../../data/portfolio';
     50% { transform: scaleX(0.85); opacity: 0.7; }
   }
 
-  /* ===== ITEM 3: Slide-from-right + pin-scroll =====
-     min-height gives GSAP enough scroll distance for the pin to feel
-     deliberate (pause on lock → scroll through iframe → release) without
-     stealing 2 full viewports like the old zoom-in did. */
-  .pin-section { min-height: 140vh; }
+  /* ===== ITEM 3: Depth-tilted floating frame =====
+     Static 3D tilt + deep floating shadow + purple accent glow.
+     Iframe content is scroll-scrubbed by the shared iframe loop at the
+     bottom of the <script> block, so this mirrors item 1's cadence. */
   .fb-scene {
     position: relative;
-    max-width: 900px;
+    max-width: 960px;
     margin: 0 auto;
-    overflow: visible;
-    perspective: 1200px;
+    padding: 2.5rem 0 3.5rem;
+    perspective: 1600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
   .fb-frame {
     position: relative;
     width: 100%;
     aspect-ratio: 16/10;
-    border-radius: 16px;
-    overflow: hidden;
-    background: var(--color-base, #FAFAF8);
+    padding: 14px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 55%, #000 100%);
     box-shadow:
-      0 40px 100px rgba(0,0,0,0.2),
-      0 16px 48px rgba(0,0,0,0.12),
-      0 4px 12px rgba(0,0,0,0.06);
+      0 60px 120px rgba(14,10,35,0.28),
+      0 30px 70px rgba(14,10,35,0.18),
+      0 12px 32px rgba(0,0,0,0.15),
+      inset 0 1px 0 rgba(255,255,255,0.06);
     transform-style: preserve-3d;
-    transform: rotateX(2deg);
-    transition: transform 0.4s ease;
+    transform: rotateX(6deg) rotateY(-2deg);
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
   }
-  .fb-screen {
+  .fb-bezel-highlight {
     position: absolute;
     inset: 0;
-    overflow: hidden;
-    border-radius: inherit;
+    border-radius: 20px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, transparent 28%, transparent 70%, rgba(255,255,255,0.06) 100%);
+    pointer-events: none;
+    z-index: 2;
   }
+  .fb-screen {
+    position: relative;
+    aspect-ratio: 16/10;
+    overflow: hidden;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow:
+      inset 0 0 0 1px rgba(255,255,255,0.05),
+      inset 0 6px 28px rgba(0,0,0,0.55);
+  }
+  /* Iframe is taller than the frame so the scroll-scrub has travel.
+     Matches item 1's 300% trick. */
   .fb-iframe {
     width: calc(100% + 20px);
-    height: 400%;
+    height: 300%;
     position: absolute;
     top: 0; left: 0;
     border: 0;
     pointer-events: none;
   }
-  /* Pinned info overlay — fades in during full-bleed */
-  .fb-overlay {
+  .fb-glass {
+    position: absolute; inset: 0; border-radius: 10px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 40%, transparent 60%, rgba(255,255,255,0.04) 100%);
+    pointer-events: none; z-index: 10;
+  }
+  .fb-glare {
     position: absolute;
-    top: 0; left: 0; right: 0;
-    z-index: 20;
-    padding: 1rem 1.5rem;
-    background: linear-gradient(180deg, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.15) 60%, transparent 100%);
-    opacity: 0;
+    top: 0; left: 8%; right: 8%;
+    height: 32%;
+    border-radius: 10px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.09) 0%, transparent 100%);
+    pointer-events: none; z-index: 11;
+  }
+  .fb-shadow {
+    width: 72%;
+    height: 28px;
+    margin-top: 2rem;
+    background: radial-gradient(ellipse, rgba(20,10,40,0.22) 0%, transparent 70%);
+    filter: blur(14px);
+  }
+  /* Purple accent glow matches the bullet tick colour on this item */
+  .fb-glow {
+    position: absolute;
+    inset: -8% -6% -12% -6%;
+    border-radius: 40px;
+    background: radial-gradient(ellipse at center, rgba(139,92,246,0.22) 0%, rgba(139,92,246,0.08) 35%, transparent 70%);
+    filter: blur(60px);
+    z-index: -1;
     pointer-events: none;
-  }
-  .fb-overlay-inner {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-  .fb-overlay-niche {
-    font-family: var(--font-mono);
-    font-size: 0.65rem;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: rgba(255,255,255,0.45);
-  }
-  .fb-overlay-niche::after {
-    content: '·';
-    margin-left: 0.5rem;
-    color: rgba(255,255,255,0.25);
-  }
-  .fb-overlay-name {
-    font-family: var(--font-heading);
-    font-weight: 600;
-    font-size: 0.8rem;
-    letter-spacing: -0.01em;
-    color: rgba(255,255,255,0.85);
   }
 
   /* ===== TABLET ===== */
@@ -476,9 +498,11 @@ import { demoSites } from '../../data/portfolio';
     .fp-btn-power, .fp-btn-vol1, .fp-btn-vol2 { display: none; }
     .fp-reflection { border-radius: 2rem; }
 
-    /* Item 3: Flatten */
-    .pin-section { min-height: auto !important; }
-    .fb-frame { transform: none !important; border-radius: 10px; }
+    /* Item 3: Flatten on mobile */
+    .fb-scene { perspective: none; padding: 0.5rem 0 1rem; }
+    .fb-frame { transform: none !important; padding: 8px; border-radius: 12px; }
+    .fb-glow { display: none; }
+    .fb-shadow { display: none; }
 
     :global(.portfolio-features) {
       flex-direction: column !important;
@@ -584,30 +608,16 @@ import { demoSites } from '../../data/portfolio';
       tl2.from(item2.querySelectorAll('.portfolio-features li'), { y: 15, opacity: 0, duration: 0.4, stagger: 0.06, ease: 'power2.out' }, '-=0.5');
     }
 
-    // ===== ITEM 3: Slide in from right → pin → scroll iframe content → release
+    // ===== ITEM 3: Slide-in entrance only (scroll-scrub handled by shared loop)
     //
-    // Previous design (removed 2026-04-11) animated the frame dimensions to
-    // full viewport and back. That was buggy on mid-range devices because
-    // GSAP was mutating width/height on every scroll tick while the iframe
-    // was still repainting under a pin. The replacement is dimensionally
-    // static — only the iframe's internal y-offset animates during the pin.
-    //
-    // Structure:
-    //   Entrance  — info + device slide in from the right (trigger-based)
-    //   Pin       — frame is pinned for ~200% scroll; first 20% is a visible
-    //               "lock pause" where nothing moves (beat for the eye to
-    //               register the scroll lock), then iframe.y scrubs to -60%
-    //               so the viewer watches the full Redwood site scroll past,
-    //               then release.
+    // No bespoke timeline any more — Redwood now uses the same iframe
+    // scroll-scrub as items 1 and 2, so it reads as a third beat in the
+    // same cadence instead of hijacking scroll with a pin. Depth comes
+    // from the 3D-tilted frame CSS, not from scroll choreography.
 
     const item3 = document.querySelector('[data-style="slide-right"]');
     const fbScene = document.getElementById('fb-scene');
-    const fbFrame = document.getElementById('fb-frame');
-    const fbScreen = document.getElementById('fb-screen');
-    const pinArea = document.getElementById('pin-area');
-    const isMobile = window.innerWidth < 768;
 
-    // Entrance: slide from the right
     if (item3 && fbScene) {
       const tl3 = gsap.timeline({
         scrollTrigger: { trigger: item3, start: 'top 70%', toggleActions: 'play none none reverse' }
@@ -619,52 +629,12 @@ import { demoSites } from '../../data/portfolio';
         y: 12, opacity: 0, stagger: 0.08, duration: 0.4, ease: 'power2.out',
       }, '-=0.5');
       tl3.from(fbScene, {
-        x: 140, opacity: 0, duration: 1, ease: 'expo.out',
-      }, '-=0.75');
+        x: 160, opacity: 0, scale: 0.94, duration: 1.1, ease: 'expo.out',
+      }, '-=0.8');
     }
 
-    // Pin + iframe scroll. Skipped on mobile — on small screens we just let
-    // the device sit inline without pinning (the regular section scroll is
-    // enough story).
-    if (fbFrame && fbScreen && pinArea && !isMobile) {
-      const fbIframe = fbScreen.querySelector('.fb-iframe') as HTMLElement | null;
-
-      if (fbIframe) {
-        const pinTl = gsap.timeline({
-          scrollTrigger: {
-            trigger: pinArea,
-            // Start the pin when the section is nicely framed in the
-            // viewport, not as soon as its top touches — stops the frame
-            // from feeling "grabbed" on the way in.
-            start: 'center 55%',
-            end: '+=200%',
-            pin: true,
-            scrub: 0.6,
-            anticipatePin: 1,
-          },
-        });
-
-        // Beat 1: scroll-lock pause — hold everything still for ~20% of the
-        // pin range so the viewer notices the scroll lock engaged.
-        pinTl.to({}, { duration: 0.2 });
-
-        // Beat 2: scrub the iframe content downward so we watch the full
-        // site scroll past inside the static frame.
-        pinTl.to(fbIframe, {
-          y: '-60%',
-          duration: 0.7,
-          ease: 'none',
-        });
-
-        // Beat 3: tiny settle before releasing the pin — gives the eye a
-        // second to land on the final view before normal scroll resumes.
-        pinTl.to({}, { duration: 0.1 });
-      }
-    }
-
-    // ===== ITEMS 1 & 2: Scroll iframe content (NOT item 3 — item 3 has its
-    // own pinned timeline above that drives its iframe directly) =====
-    document.querySelectorAll('.portfolio-item:not([data-style="slide-right"]) .screen-viewport').forEach((viewport) => {
+    // ===== All items: scroll iframe content in sync with section scroll =====
+    document.querySelectorAll('.portfolio-item .screen-viewport').forEach((viewport) => {
       const content = viewport.querySelector('.screen-content');
       if (!content) return;
       const section = viewport.closest('.portfolio-item');

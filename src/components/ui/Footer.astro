@@ -4,6 +4,12 @@ const currentYear = new Date().getFullYear();
 // Footer links — kept in sync with pages that actually exist.
 // Rule: never link to a page that doesn't ship yet. If it's not in
 // src/pages/, it doesn't go here.
+//
+// Industries column was removed 2026-04-11: we actively take work from
+// far more niches than we could list in a footer, so surfacing five
+// names felt incidentally exclusionary. Niche-specific landing pages
+// still exist at /web-design-for-<niche>/ for SEO but they aren't
+// promoted from the footer.
 const footerLinks = {
   services: [
     { label: 'Essential Websites', href: '#services' },
@@ -12,20 +18,14 @@ const footerLinks = {
     { label: 'Online Booking', href: '#services' },
     { label: 'Search Optimisation', href: '#services' },
   ],
-  // Only niches with a dedicated landing page live here. Add a niche row
-  // ONLY after its /web-design-for-<niche>/ page ships in src/pages/.
-  niches: [
-    { label: 'Web Design for Plumbers', href: '/web-design-for-plumbers/' },
-    { label: 'Web Design for Electricians', href: '/web-design-for-electricians/' },
-    { label: 'Web Design for Dentists', href: '/web-design-for-dentists/' },
-    { label: 'Web Design for Hair Salons', href: '/web-design-for-hair-salons/' },
-    { label: 'Web Design for Restaurants', href: '/web-design-for-restaurants/' },
-  ],
   company: [
     { label: 'About', href: '#about' },
     { label: 'Services', href: '#services' },
     { label: 'Our Process', href: '#process' },
+    { label: 'Our Work', href: '#portfolio' },
     { label: 'Contact', href: '#contact' },
+  ],
+  legal: [
     { label: 'Privacy Policy', href: '/privacy/' },
     { label: 'Terms of Service', href: '/terms/' },
     { label: 'Cookie Policy', href: '/cookies/' },
@@ -85,11 +85,11 @@ const footerLinks = {
         </ul>
       </div>
 
-      <!-- Industries -->
+      <!-- Company -->
       <div>
-        <h3 class="font-sans text-sm font-semibold text-text uppercase tracking-wider mb-4">Industries</h3>
+        <h3 class="font-sans text-sm font-semibold text-text uppercase tracking-wider mb-4">Company</h3>
         <ul class="space-y-3">
-          {footerLinks.niches.map((link) => (
+          {footerLinks.company.map((link) => (
             <li>
               <a href={link.href} class="text-sm text-text-muted hover:text-accent transition-colors" data-hover>{link.label}</a>
             </li>
@@ -97,11 +97,11 @@ const footerLinks = {
         </ul>
       </div>
 
-      <!-- Company -->
+      <!-- Legal -->
       <div>
-        <h3 class="font-sans text-sm font-semibold text-text uppercase tracking-wider mb-4">Company</h3>
+        <h3 class="font-sans text-sm font-semibold text-text uppercase tracking-wider mb-4">Legal</h3>
         <ul class="space-y-3">
-          {footerLinks.company.map((link) => (
+          {footerLinks.legal.map((link) => (
             <li>
               <a href={link.href} class="text-sm text-text-muted hover:text-accent transition-colors" data-hover>{link.label}</a>
             </li>
