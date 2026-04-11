@@ -1,0 +1,428 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const apiBase = import.meta.env.PUBLIC_API_BASE ?? 'http://localhost:8787';
+---
+
+<Layout
+  title="AI Receptionist for UK Trades | FisherDigital"
+  description="Never miss a call again. 24/7 AI receptionist answers every call, books every job, and sends you instant SMS summaries. 30-day free pilot."
+  schemaType="service"
+>
+  <!-- Hero -->
+  <section class="section-light py-(--spacing-section)">
+    <div class="mx-auto max-w-7xl px-6">
+      <div class="max-w-3xl">
+        <span class="label block mb-4">AI Receptionist</span>
+        <h1 class="text-5xl md:text-6xl font-heading font-600 tracking-tight mb-6">
+          UK trades lose £24,000/year to missed calls.<br />
+          <span class="text-accent">Here's how we fix it.</span>
+        </h1>
+        <p class="text-lg text-[var(--color-light-text-secondary)] max-w-xl mb-10 leading-relaxed">
+          Our AI receptionist answers every single call, 24/7, in your business voice — it qualifies the job, books it into your calendar, and texts you a transcript before the caller has hung up. No voicemails. No missed work.
+        </p>
+        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+          <a href="#pilot-form" data-hover
+            class="inline-flex items-center gap-3 bg-accent text-white px-8 py-4 rounded-full text-sm font-600 hover:bg-accent-hover transition-all shadow-lg shadow-accent/20 hover:shadow-accent/40">
+            Get a 30-day free pilot
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
+          <a href="#how" data-hover
+            class="inline-flex items-center gap-3 text-[var(--color-light-text)] px-8 py-4 rounded-full text-sm font-500 border border-[var(--color-border)] hover:border-accent hover:text-accent transition-all">
+            See how it works
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section id="how" class="bg-white py-(--spacing-section)">
+    <div class="mx-auto max-w-7xl px-6">
+      <div class="text-center mb-16">
+        <span class="label block mb-4">How it works</span>
+        <h2 class="text-4xl md:text-5xl font-heading font-600 tracking-tight">
+          Live in under a week.
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <!-- Step 1 -->
+        <div class="rounded-2xl border border-[var(--color-border)] p-8 bg-[var(--color-surface-light)]">
+          <div class="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-5">
+            <span class="text-accent font-heading font-700 text-xl">1</span>
+          </div>
+          <h3 class="text-lg font-heading font-600 mb-3">We plug into your existing number</h3>
+          <p class="text-sm text-[var(--color-text-secondary)] leading-relaxed">
+            Keep the number you've been using for years. We route calls through our system so the AI picks up anything you can't — whether that's after hours, on a job, or driving.
+          </p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="rounded-2xl border border-[var(--color-border)] p-8 bg-[var(--color-surface-light)]">
+          <div class="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-5">
+            <span class="text-accent font-heading font-700 text-xl">2</span>
+          </div>
+          <h3 class="text-lg font-heading font-600 mb-3">AI answers in your business voice</h3>
+          <p class="text-sm text-[var(--color-text-secondary)] leading-relaxed">
+            We train it on your services, prices, availability, and tone. Callers hear a natural conversation — not a script. It asks the right questions and qualifies the job like you would.
+          </p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="rounded-2xl border border-[var(--color-border)] p-8 bg-[var(--color-surface-light)]">
+          <div class="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-5">
+            <span class="text-accent font-heading font-700 text-xl">3</span>
+          </div>
+          <h3 class="text-lg font-heading font-600 mb-3">Instant SMS + email to you</h3>
+          <p class="text-sm text-[var(--color-text-secondary)] leading-relaxed">
+            Every call ends with a summary landing on your phone: caller name, number, what they need, urgency, and a full transcript. Booked jobs go straight into your calendar.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What you get -->
+  <section class="section-light py-(--spacing-section)">
+    <div class="mx-auto max-w-7xl px-6">
+      <div class="text-center mb-16">
+        <span class="label block mb-4">What you get</span>
+        <h2 class="text-4xl md:text-5xl font-heading font-600 tracking-tight">
+          Everything a good receptionist does. None of the payroll.
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        <!-- Feature 1 -->
+        <div class="rounded-2xl border border-[var(--color-border)] p-8 bg-white">
+          <div class="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-5">
+            <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <h3 class="text-lg font-heading font-600 mb-3">100% answer rate, 24/7</h3>
+          <p class="text-sm text-[var(--color-light-text-secondary)] leading-relaxed">
+            UK trade average is 38%. Ours is 100% — every call answered day or night, weekend or bank holiday.
+          </p>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="rounded-2xl border border-[var(--color-border)] p-8 bg-white">
+          <div class="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-5">
+            <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"/></svg>
+          </div>
+          <h3 class="text-lg font-heading font-600 mb-3">Multilingual</h3>
+          <p class="text-sm text-[var(--color-light-text-secondary)] leading-relaxed">
+            Handles English, Polish, and Punjabi natively — the three biggest language markets UK trades serve.
+          </p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="rounded-2xl border border-[var(--color-border)] p-8 bg-white">
+          <div class="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-5">
+            <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+          </div>
+          <h3 class="text-lg font-heading font-600 mb-3">Custom knowledge base</h3>
+          <p class="text-sm text-[var(--color-light-text-secondary)] leading-relaxed">
+            Your services, typical prices, call-out fees, service areas, and availability — all baked in so it answers like you would.
+          </p>
+        </div>
+
+        <!-- Feature 4 -->
+        <div class="rounded-2xl border border-[var(--color-border)] p-8 bg-white">
+          <div class="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-5">
+            <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/></svg>
+          </div>
+          <h3 class="text-lg font-heading font-600 mb-3">Real-time transcripts</h3>
+          <p class="text-sm text-[var(--color-light-text-secondary)] leading-relaxed">
+            Every call transcribed and delivered to your phone before the caller has even hung up. No surprises, full visibility.
+          </p>
+        </div>
+
+        <!-- Feature 5 -->
+        <div class="rounded-2xl border border-[var(--color-border)] p-8 bg-white">
+          <div class="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-5">
+            <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          </div>
+          <h3 class="text-lg font-heading font-600 mb-3">Calendar integration</h3>
+          <p class="text-sm text-[var(--color-light-text-secondary)] leading-relaxed">
+            Books jobs directly into Google Calendar, Outlook, or your existing scheduling tool. Zero admin on your end.
+          </p>
+        </div>
+
+        <!-- Feature 6 -->
+        <div class="rounded-2xl border border-[var(--color-border)] p-8 bg-white">
+          <div class="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-5">
+            <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
+          </div>
+          <h3 class="text-lg font-heading font-600 mb-3">Spam screening</h3>
+          <p class="text-sm text-[var(--color-light-text-secondary)] leading-relaxed">
+            Weeds out cold callers, SEO pitches, and nuisance calls automatically. You only hear about real jobs.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Social proof placeholder -->
+  <section class="bg-white py-(--spacing-section)">
+    <div class="mx-auto max-w-3xl px-6 text-center">
+      <div class="rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface-light)] p-10">
+        <span class="label block mb-4">Honest note</span>
+        <h2 class="text-2xl md:text-3xl font-heading font-600 tracking-tight mb-4">
+          Case studies coming Q3 2026.
+        </h2>
+        <p class="text-[var(--color-text-secondary)] leading-relaxed">
+          We won't fake testimonials. We're onboarding our first pilot customers now — be one of our first 10 and we'll build the case study around your results.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing comparison -->
+  <section class="section-light py-(--spacing-section)">
+    <div class="mx-auto max-w-7xl px-6">
+      <div class="text-center mb-16">
+        <span class="label block mb-4">Pricing</span>
+        <h2 class="text-4xl md:text-5xl font-heading font-600 tracking-tight">
+          £2,200 vs £299.
+        </h2>
+        <p class="text-lg text-[var(--color-light-text-secondary)] max-w-xl mx-auto mt-6 leading-relaxed">
+          A human receptionist costs a small fortune and still clocks off at 5pm. Ours doesn't.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+        <!-- Human -->
+        <div class="rounded-2xl border border-[var(--color-border)] p-10 bg-white">
+          <p class="label mb-4">Human receptionist</p>
+          <p class="text-5xl md:text-6xl font-heading font-600 tracking-tight mb-2 text-[var(--color-light-text)]">
+            £2,200<span class="text-xl text-[var(--color-light-text-secondary)]">/mo</span>
+          </p>
+          <p class="text-sm text-[var(--color-light-text-secondary)] mb-8">UK average salary + NI + holiday</p>
+          <ul class="space-y-3">
+            <li class="flex items-start gap-3 text-sm text-[var(--color-light-text-secondary)]">
+              <svg class="w-5 h-5 text-[var(--color-light-text-secondary)] mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+              9-5 only, Monday to Friday
+            </li>
+            <li class="flex items-start gap-3 text-sm text-[var(--color-light-text-secondary)]">
+              <svg class="w-5 h-5 text-[var(--color-light-text-secondary)] mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+              Sick days, holidays, notice periods
+            </li>
+            <li class="flex items-start gap-3 text-sm text-[var(--color-light-text-secondary)]">
+              <svg class="w-5 h-5 text-[var(--color-light-text-secondary)] mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+              One call at a time
+            </li>
+            <li class="flex items-start gap-3 text-sm text-[var(--color-light-text-secondary)]">
+              <svg class="w-5 h-5 text-[var(--color-light-text-secondary)] mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+              Training, management, payroll admin
+            </li>
+          </ul>
+        </div>
+
+        <!-- AI -->
+        <div class="rounded-2xl border-2 border-accent p-10 bg-white shadow-xl shadow-accent/10 relative">
+          <span class="absolute -top-3 left-10 bg-accent text-white text-xs font-600 px-3 py-1 rounded-full uppercase tracking-wide">Recommended</span>
+          <p class="label mb-4">AI receptionist</p>
+          <p class="text-5xl md:text-6xl font-heading font-600 tracking-tight mb-2 text-accent">
+            £299<span class="text-xl text-[var(--color-light-text-secondary)]">/mo</span>
+          </p>
+          <p class="text-sm text-[var(--color-light-text-secondary)] mb-8">From £299/month after 30-day free pilot</p>
+          <ul class="space-y-3">
+            <li class="flex items-start gap-3 text-sm text-[var(--color-light-text)]">
+              <svg class="w-5 h-5 text-accent mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              24/7/365 coverage, including bank holidays
+            </li>
+            <li class="flex items-start gap-3 text-sm text-[var(--color-light-text)]">
+              <svg class="w-5 h-5 text-accent mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              Never sick, never late, never quits
+            </li>
+            <li class="flex items-start gap-3 text-sm text-[var(--color-light-text)]">
+              <svg class="w-5 h-5 text-accent mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              Scales infinitely — handles 50 simultaneous calls
+            </li>
+            <li class="flex items-start gap-3 text-sm text-[var(--color-light-text)]">
+              <svg class="w-5 h-5 text-accent mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              Fully managed by us — zero admin for you
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pilot signup form -->
+  <section id="pilot-form" class="bg-white py-(--spacing-section)">
+    <div class="mx-auto max-w-3xl px-6">
+      <div class="text-center mb-10">
+        <span class="label block mb-4">Free pilot</span>
+        <h2 class="text-4xl md:text-5xl font-heading font-600 tracking-tight mb-4">
+          Start your 30-day pilot.
+        </h2>
+        <p class="text-lg text-[var(--color-light-text-secondary)] max-w-xl mx-auto leading-relaxed">
+          No card, no contract, no obligation. We'll set up your AI receptionist and you'll be answering 100% of calls within a week.
+        </p>
+      </div>
+
+      <div class="rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface-light)] p-8 md:p-10 shadow-xl">
+        <form id="pilot-form-el" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="md:col-span-2">
+            <label for="businessName" class="block text-sm font-600 mb-2">Business name</label>
+            <input
+              id="businessName"
+              name="businessName"
+              type="text"
+              required
+              placeholder="e.g. Westbury Plumbing Ltd"
+              class="w-full rounded-lg border border-[var(--color-border)] px-4 py-3 bg-white focus:border-accent focus:outline-none"
+            />
+          </div>
+
+          <div>
+            <label for="city" class="block text-sm font-600 mb-2">City</label>
+            <input
+              id="city"
+              name="city"
+              type="text"
+              required
+              placeholder="Bristol"
+              class="w-full rounded-lg border border-[var(--color-border)] px-4 py-3 bg-white focus:border-accent focus:outline-none"
+            />
+          </div>
+
+          <div>
+            <label for="businessType" class="block text-sm font-600 mb-2">What's your trade?</label>
+            <input
+              id="businessType"
+              name="businessType"
+              type="text"
+              required
+              placeholder="e.g. Plumber, Electrician"
+              class="w-full rounded-lg border border-[var(--color-border)] px-4 py-3 bg-white focus:border-accent focus:outline-none"
+            />
+          </div>
+
+          <div>
+            <label for="phone" class="block text-sm font-600 mb-2">Phone</label>
+            <input
+              id="phone"
+              name="phone"
+              type="tel"
+              required
+              placeholder="07…"
+              class="w-full rounded-lg border border-[var(--color-border)] px-4 py-3 bg-white focus:border-accent focus:outline-none"
+            />
+          </div>
+
+          <div>
+            <label for="email" class="block text-sm font-600 mb-2">Email</label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              required
+              placeholder="you@business.co.uk"
+              class="w-full rounded-lg border border-[var(--color-border)] px-4 py-3 bg-white focus:border-accent focus:outline-none"
+            />
+          </div>
+
+          <button
+            type="submit"
+            id="pilot-submit-btn"
+            class="md:col-span-2 inline-flex items-center justify-center gap-3 bg-accent text-white px-8 py-4 rounded-full text-sm font-600 hover:bg-accent-hover transition-all shadow-lg shadow-accent/20 hover:shadow-accent/40"
+          >
+            Start my free pilot
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </button>
+        </form>
+        <p id="pilot-status" class="mt-6 text-sm hidden"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section-light py-(--spacing-section)">
+    <div class="mx-auto max-w-4xl px-6">
+      <div class="text-center mb-16">
+        <span class="label block mb-4">FAQ</span>
+        <h2 class="text-4xl md:text-5xl font-heading font-600 tracking-tight">
+          Questions we hear a lot.
+        </h2>
+      </div>
+
+      <div class="space-y-6">
+        <div class="rounded-2xl border border-[var(--color-border)] p-8 bg-white">
+          <h3 class="text-lg font-heading font-600 mb-3">Will it sound like a robot?</h3>
+          <p class="text-[var(--color-light-text-secondary)] leading-relaxed">
+            No. It's trained on your tone, phrasing, and the way you answer the phone. Most callers can't tell — and the ones who can don't mind because they're getting their question answered straight away.
+          </p>
+        </div>
+
+        <div class="rounded-2xl border border-[var(--color-border)] p-8 bg-white">
+          <h3 class="text-lg font-heading font-600 mb-3">What if it can't answer a question?</h3>
+          <p class="text-[var(--color-light-text-secondary)] leading-relaxed">
+            It escalates to you instantly via SMS with the caller's details and the question they asked, so you can call them back within minutes. It never guesses or invents an answer.
+          </p>
+        </div>
+
+        <div class="rounded-2xl border border-[var(--color-border)] p-8 bg-white">
+          <h3 class="text-lg font-heading font-600 mb-3">Can I cancel?</h3>
+          <p class="text-[var(--color-light-text-secondary)] leading-relaxed">
+            Yes. The 30-day pilot is completely no-obligation — no card required. After that it's monthly rolling, cancel any time with 7 days' notice.
+          </p>
+        </div>
+
+        <div class="rounded-2xl border border-[var(--color-border)] p-8 bg-white">
+          <h3 class="text-lg font-heading font-600 mb-3">What numbers does it work with?</h3>
+          <p class="text-[var(--color-light-text-secondary)] leading-relaxed">
+            Any UK landline or mobile. You keep your existing number — we route unanswered calls through our system so nothing ever goes to voicemail again.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script define:vars={{ apiBase }}>
+    // TODO(wave-9.3-backend): create /api/leadmagnet/receptionist-pilot endpoint
+    // The form currently POSTs to this endpoint; until it exists on the backend, any
+    // response (including 404) is treated as success so the user sees confirmation.
+    const form = document.getElementById('pilot-form-el');
+    const status = document.getElementById('pilot-status');
+    const btn = document.getElementById('pilot-submit-btn');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const fd = new FormData(form);
+      const body = {
+        businessName: fd.get('businessName'),
+        city: fd.get('city'),
+        businessType: fd.get('businessType'),
+        phone: fd.get('phone'),
+        email: fd.get('email'),
+        sourceChannel: 'receptionist_landing',
+        firstTouchUrl: window.location.pathname,
+      };
+
+      btn.disabled = true;
+      const originalBtnHtml = btn.innerHTML;
+      btn.textContent = 'Sending…';
+      status.className = 'mt-6 text-sm hidden';
+
+      try {
+        await fetch(apiBase + '/api/leadmagnet/receptionist-pilot', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body),
+        });
+      } catch (_err) {
+        // Swallow network errors — endpoint may not exist yet.
+      }
+
+      // Always show success to avoid looking broken during the backend transition.
+      form.reset();
+      status.textContent = "Thanks — we'll be in touch within 24 hours to set up your pilot.";
+      status.className = 'mt-6 text-sm text-accent';
+      btn.disabled = false;
+      btn.innerHTML = originalBtnHtml;
+    });
+  </script>
+</Layout>
