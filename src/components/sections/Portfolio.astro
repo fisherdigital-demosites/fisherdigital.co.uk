@@ -32,9 +32,13 @@ import { demoSites } from '../../data/portfolio';
                 <div class="fs-bezel-highlight"></div>
                 <!-- Inner bezel edge -->
                 <div class="fs-bezel-inner"></div>
-                <!-- Screen -->
+                <!-- Screen. Iframe uses data-src — the hydration script
+                     below promotes it to src only on desktop, so mobile
+                     never pays the cost of loading a full sub-document.
+                     Mobile sees the static preview image instead. -->
                 <div class="fs-screen screen-viewport">
-                  <iframe src="/demos/westbury-plumbing/index.html" title="Westbury Plumbing preview" class="screen-content fs-iframe" loading="lazy" sandbox="allow-same-origin"></iframe>
+                  <iframe data-src="/demos/westbury-plumbing/index.html" title="Westbury Plumbing preview" class="screen-content fs-iframe hidden md:block" loading="lazy" sandbox="allow-same-origin"></iframe>
+                  <img src="/demos/westbury-plumbing/preview.jpg" alt="Westbury Plumbing site preview" class="demo-preview md:hidden" loading="lazy" decoding="async" />
                   <!-- Glass reflection layers -->
                   <div class="fs-glass"></div>
                   <div class="fs-glare"></div>
@@ -111,7 +115,8 @@ import { demoSites } from '../../data/portfolio';
                   <!-- Screen — iframe rendered at 375px then scaled down for proper mobile layout -->
                   <div class="fp-screen">
                     <div class="fp-screen-inner screen-viewport">
-                      <iframe src="/demos/bright-smile-dental/index.html" title="Bright Smile Dental preview" class="screen-content fp-iframe" loading="lazy" sandbox="allow-same-origin"></iframe>
+                      <iframe data-src="/demos/bright-smile-dental/index.html" title="Bright Smile Dental preview" class="screen-content fp-iframe hidden md:block" loading="lazy" sandbox="allow-same-origin"></iframe>
+                      <img src="/demos/bright-smile-dental/preview.jpg" alt="Bright Smile Dental site preview" class="demo-preview fp-preview md:hidden" loading="lazy" decoding="async" />
                     </div>
                   </div>
                 </div>
@@ -179,7 +184,8 @@ import { demoSites } from '../../data/portfolio';
             <!-- Bezel highlight like the item 1 monitor — sells the depth -->
             <div class="fb-bezel-highlight"></div>
             <div class="fb-screen screen-viewport" id="fb-screen">
-              <iframe src="/demos/redwood-and-co/index.html" title="Redwood & Co preview" class="fb-iframe screen-content" loading="lazy" sandbox="allow-same-origin"></iframe>
+              <iframe data-src="/demos/redwood-and-co/index.html" title="Redwood & Co preview" class="fb-iframe screen-content hidden md:block" loading="lazy" sandbox="allow-same-origin"></iframe>
+              <img src="/demos/redwood-and-co/preview.jpg" alt="Redwood & Co site preview" class="demo-preview md:hidden" loading="lazy" decoding="async" />
               <!-- Glass reflection layers (match item 1) -->
               <div class="fb-glass"></div>
               <div class="fb-glare"></div>
@@ -210,6 +216,27 @@ import { demoSites } from '../../data/portfolio';
 <!-- STYLES -->
 <!-- ============================== -->
 <style>
+  /* ===== Shared: mobile preview image replacement =====
+     Each demo iframe has a sibling <img src="preview.jpg"> that takes
+     over on mobile via md:hidden/hidden md:block. The image fills the
+     same slot as the iframe so the device frames look identical. */
+  .demo-preview {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    border: 0;
+  }
+  /* Bright Smile's preview is mounted inside fp-screen-inner, which is
+     itself scaled to fit the phone frame at 375px wide. The other
+     items put the image directly in .screen-viewport at natural size. */
+  .fp-preview {
+    width: 375px;
+    height: 812px;
+  }
+
   /* ===== ITEM 1: Floating Monitor (21st.dev-inspired) ===== */
   .floating-screen-scene {
     position: relative;
@@ -529,6 +556,22 @@ import { demoSites } from '../../data/portfolio';
 
   function initPortfolio() {
 
+    // ===== Mobile-first: iframe hydration gate =====
+    // Iframes ship with data-src instead of src so browsers can't start
+    // loading them on mobile. Promote data-src → src only on desktop.
+    // The mobile path keeps the static <img> preview that sits beside
+    // each iframe in the markup.
+    const isDesktopViewport = window.matchMedia('(min-width: 768px)').matches;
+    if (isDesktopViewport) {
+      document.querySelectorAll<HTMLIFrameElement>('iframe[data-src]').forEach((iframe) => {
+        const src = iframe.getAttribute('data-src');
+        if (src) {
+          iframe.src = src;
+          iframe.removeAttribute('data-src');
+        }
+      });
+    }
+
     // ===== ITEM 1: Floating Monitor — entrance animation =====
     const fsMonitor = document.getElementById('fs-wrap');
     const item1 = document.querySelector('[data-style="multi-device"]');
@@ -559,9 +602,14 @@ import { demoSites } from '../../data/portfolio';
     }
 
     // ===== ITEM 2: Floating phone with mouse follow =====
+    // Gated behind (pointer: fine) — on touch devices this ran a pair of
+    // infinite requestAnimationFrame loops for zero visual benefit
+    // (there's no mouse to follow). On mobile we fall back to the
+    // CSS-keyframe fpFloat animation already defined in the stylesheet.
+    const hasFinePointer = window.matchMedia('(pointer: fine)').matches;
     const fpScene = document.getElementById('floating-phone-scene');
     const fpDevice = document.getElementById('fp-device');
-    if (fpScene && fpDevice) {
+    if (fpScene && fpDevice && hasFinePointer) {
       let px = -14, py = 4, tpx = -14, tpy = 4;
       function fpLoop() {
         px += (tpx - px) * 0.05;
@@ -634,21 +682,28 @@ import { demoSites } from '../../data/portfolio';
     }
 
     // ===== All items: scroll iframe content in sync with section scroll =====
-    document.querySelectorAll('.portfolio-item .screen-viewport').forEach((viewport) => {
-      const content = viewport.querySelector('.screen-content');
-      if (!content) return;
-      const section = viewport.closest('.portfolio-item');
-      if (!section) return;
+    // Desktop-only. On mobile, three iframes scroll-scrubbed on every tick
+    // is the #1 cause of jank — each scrub fires a layout/paint on a full
+    // sub-document. Mobile just sees the iframe at its initial offset,
+    // which is fine since the device frames are smaller anyway.
+    const mmPortfolio = gsap.matchMedia();
+    mmPortfolio.add('(min-width: 768px)', () => {
+      document.querySelectorAll('.portfolio-item .screen-viewport').forEach((viewport) => {
+        const content = viewport.querySelector('.screen-content');
+        if (!content) return;
+        const section = viewport.closest('.portfolio-item');
+        if (!section) return;
 
-      gsap.to(content, {
-        y: '-66.6%',
-        ease: 'none',
-        scrollTrigger: {
-          trigger: section,
-          start: 'top 80%',
-          end: 'bottom 20%',
-          scrub: 1.5,
-        },
+        gsap.to(content, {
+          y: '-66.6%',
+          ease: 'none',
+          scrollTrigger: {
+            trigger: section,
+            start: 'top 80%',
+            end: 'bottom 20%',
+            scrub: 1.5,
+          },
+        });
       });
     });
   }
