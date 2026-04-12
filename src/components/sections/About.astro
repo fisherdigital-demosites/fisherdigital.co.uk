@@ -56,20 +56,23 @@
   gsap.registerPlugin(ScrollTrigger);
 
   function initAbout() {
-    gsap.from('.about-photo', {
-      scrollTrigger: { trigger: '#about', start: 'top 75%' },
-      x: -60,
-      opacity: 0,
-      duration: 1,
-      ease: 'expo.out',
-    });
-    gsap.from('.about-content', {
-      scrollTrigger: { trigger: '#about', start: 'top 75%' },
-      x: 40,
-      opacity: 0,
-      duration: 1,
-      delay: 0.15,
-      ease: 'expo.out',
+    const mm = gsap.matchMedia();
+    mm.add('(min-width: 768px)', () => {
+      gsap.from('.about-photo', {
+        scrollTrigger: { trigger: '#about', start: 'top 75%' },
+        x: -60,
+        opacity: 0,
+        duration: 1,
+        ease: 'expo.out',
+      });
+      gsap.from('.about-content', {
+        scrollTrigger: { trigger: '#about', start: 'top 75%' },
+        x: 40,
+        opacity: 0,
+        duration: 1,
+        delay: 0.15,
+        ease: 'expo.out',
+      });
     });
   }
 

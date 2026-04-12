@@ -299,41 +299,51 @@ const chatMessages = [
   gsap.registerPlugin(ScrollTrigger);
 
   function initAIFeatures() {
-    gsap.from('.ai-feature-card', {
-      scrollTrigger: { trigger: '#ai-features', start: 'top 70%' },
-      y: 60, opacity: 0, duration: 0.8, stagger: 0.2, ease: 'expo.out',
+    const mm = gsap.matchMedia();
+
+    mm.add('(min-width: 768px)', () => {
+      gsap.from('.ai-feature-card', {
+        scrollTrigger: { trigger: '#ai-features', start: 'top 70%' },
+        y: 60, opacity: 0, duration: 0.8, stagger: 0.2, ease: 'expo.out',
+      });
+
+      let chatTriggered = false;
+      ScrollTrigger.create({
+        trigger: '#chat-demo',
+        start: 'top 80%',
+        onEnter: () => {
+          if (chatTriggered) return;
+          chatTriggered = true;
+
+          const msgs = document.querySelectorAll('.chat-msg');
+          const typingIndicator = document.getElementById('typing-indicator');
+
+          msgs.forEach((msg, i) => {
+            const delay = parseFloat((msg as HTMLElement).dataset.delay || '0');
+            const isBotMsg = msg.querySelector('.bg-\\[var\\(--color-light-surface\\)\\]');
+
+            if (isBotMsg && typingIndicator) {
+              gsap.to(typingIndicator, { opacity: 1, duration: 0.2, delay: delay - 0.8 });
+              gsap.to(typingIndicator, { opacity: 0, duration: 0.2, delay: delay - 0.1 });
+            }
+
+            gsap.to(msg, {
+              opacity: 1, y: 0, duration: 0.4,
+              delay: delay, ease: 'back.out(1.2)',
+            });
+            gsap.from(msg, {
+              y: 10, duration: 0.4,
+              delay: delay, ease: 'back.out(1.2)',
+            });
+          });
+        },
+      });
     });
 
-    let chatTriggered = false;
-    ScrollTrigger.create({
-      trigger: '#chat-demo',
-      start: 'top 80%',
-      onEnter: () => {
-        if (chatTriggered) return;
-        chatTriggered = true;
-
-        const msgs = document.querySelectorAll('.chat-msg');
-        const typingIndicator = document.getElementById('typing-indicator');
-
-        msgs.forEach((msg, i) => {
-          const delay = parseFloat((msg as HTMLElement).dataset.delay || '0');
-          const isBotMsg = msg.querySelector('.bg-\\[var\\(--color-light-surface\\)\\]');
-
-          if (isBotMsg && typingIndicator) {
-            gsap.to(typingIndicator, { opacity: 1, duration: 0.2, delay: delay - 0.8 });
-            gsap.to(typingIndicator, { opacity: 0, duration: 0.2, delay: delay - 0.1 });
-          }
-
-          gsap.to(msg, {
-            opacity: 1, y: 0, duration: 0.4,
-            delay: delay, ease: 'back.out(1.2)',
-          });
-          gsap.from(msg, {
-            y: 10, duration: 0.4,
-            delay: delay, ease: 'back.out(1.2)',
-          });
-        });
-      },
+    // Mobile: show chat messages and transcript lines immediately
+    mm.add('(max-width: 767px)', () => {
+      gsap.set('.chat-msg', { opacity: 1 });
+      gsap.set('.transcript-line', { opacity: 1 });
     });
 
     // Audio player

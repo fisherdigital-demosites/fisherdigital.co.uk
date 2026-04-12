@@ -61,25 +61,26 @@ const icons: Record<string, string> = {
   gsap.registerPlugin(ScrollTrigger);
 
   function initProcess() {
-    // Steps stagger in
-    gsap.from('.process-step', {
-      scrollTrigger: { trigger: '#process', start: 'top 70%' },
-      y: 40,
-      opacity: 0,
-      duration: 0.8,
-      stagger: 0.12,
-      ease: 'expo.out',
-    });
+    const mm = gsap.matchMedia();
+    mm.add('(min-width: 768px)', () => {
+      gsap.from('.process-step', {
+        scrollTrigger: { trigger: '#process', start: 'top 70%' },
+        y: 40,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.12,
+        ease: 'expo.out',
+      });
 
-    // Progress line draws across
-    gsap.to('#process-line', {
-      scaleX: 1,
-      scrollTrigger: {
-        trigger: '#process',
-        start: 'top 60%',
-        end: 'bottom 60%',
-        scrub: 0.5,
-      },
+      gsap.to('#process-line', {
+        scaleX: 1,
+        scrollTrigger: {
+          trigger: '#process',
+          start: 'top 60%',
+          end: 'bottom 60%',
+          scrub: 0.5,
+        },
+      });
     });
   }
 
