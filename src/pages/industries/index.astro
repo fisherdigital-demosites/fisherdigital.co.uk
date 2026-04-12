@@ -1,0 +1,114 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const industries = [
+  {
+    slug: '/web-design-for-plumbers',
+    name: 'Plumbers',
+    tagline: 'Your next job is searching Google right now.',
+    summary: 'Emergency callouts, boiler fixes, bathroom fits — websites built to earn the click and land the job.',
+    accent: 'from-blue-500/20 to-cyan-500/10',
+  },
+  {
+    slug: '/web-design-for-electricians',
+    name: 'Electricians',
+    tagline: 'Certified work deserves a certified website.',
+    summary: 'NICEIC badges, emergency rates, EV installs. Trust signals that convert, not a 2012 WordPress template.',
+    accent: 'from-amber-500/20 to-yellow-500/10',
+  },
+  {
+    slug: '/web-design-for-dentists',
+    name: 'Dentists',
+    tagline: 'First impressions happen before the waiting room.',
+    summary: 'Private treatments, online booking, reviews that matter. Websites new patients actually trust.',
+    accent: 'from-emerald-500/20 to-teal-500/10',
+  },
+  {
+    slug: '/web-design-for-hair-salons',
+    name: 'Hair salons',
+    tagline: 'Your portfolio belongs on your website, not just Instagram.',
+    summary: 'Stylist pages, online booking, gallery-first design. Own your brand, not a platform.',
+    accent: 'from-pink-500/20 to-rose-500/10',
+  },
+  {
+    slug: '/web-design-for-restaurants',
+    name: 'Restaurants',
+    tagline: 'The menu loads first. Everything else second.',
+    summary: 'Fast-loading menus, reservations, click-to-call, opening hours. The stuff hungry people actually need.',
+    accent: 'from-orange-500/20 to-red-500/10',
+  },
+];
+---
+
+<Layout
+  title="Industries We Build For | FisherDigital"
+  description="Professional websites for UK local businesses — plumbers, electricians, dentists, hair salons, restaurants. Each site built around how your industry actually gets hired."
+  schemaType="service"
+>
+  <!-- Hero -->
+  <section class="section-light py-(--spacing-section)">
+    <div class="mx-auto max-w-7xl px-6">
+      <div class="max-w-3xl">
+        <span class="label block mb-4">Industries</span>
+        <h1 class="text-5xl md:text-6xl font-heading font-600 tracking-tight mb-6">
+          We build for<br />
+          <span class="text-accent italic">specific trades.</span>
+        </h1>
+        <p class="text-lg text-[var(--color-light-text-secondary)] max-w-xl mb-10 leading-relaxed">
+          Generic web studios build the same site for everyone. We don't. Each
+          industry has its own way of getting hired — emergency callouts, private
+          treatments, Instagram-first discovery, menu-first hunger. Our sites
+          reflect that.
+        </p>
+        <a href="/#contact" data-hover
+          class="inline-flex items-center gap-3 bg-accent text-white px-8 py-4 rounded-full text-sm font-600 hover:bg-accent-hover transition-all shadow-lg shadow-accent/20 hover:shadow-accent/40">
+          Book a free call
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Industry grid -->
+  <section class="bg-white py-(--spacing-section) border-t border-[var(--color-light-border)]/50">
+    <div class="mx-auto max-w-7xl px-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {industries.map((ind) => (
+          <a
+            href={ind.slug}
+            data-hover
+            class={`group relative overflow-hidden rounded-2xl border border-[var(--color-light-border)] bg-gradient-to-br ${ind.accent} p-8 md:p-10 transition-all hover:border-accent/40 hover:shadow-xl hover:shadow-accent/5`}
+          >
+            <div class="relative z-10">
+              <span class="label block mb-3 text-[var(--color-light-muted)]">{ind.name}</span>
+              <h3 class="text-2xl md:text-3xl font-heading font-600 tracking-tight mb-4 text-[var(--color-light-text)] group-hover:text-accent transition-colors">
+                {ind.tagline}
+              </h3>
+              <p class="text-[var(--color-light-text-secondary)] leading-relaxed mb-6 max-w-md">
+                {ind.summary}
+              </p>
+              <span class="inline-flex items-center gap-2 text-sm font-600 text-accent">
+                See the {ind.name.toLowerCase()} page
+                <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                </svg>
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      <div class="mt-16 text-center max-w-2xl mx-auto">
+        <p class="text-[var(--color-light-text-secondary)] mb-6">
+          Don't see your trade? We build for most UK local service businesses.
+          Book a call and we'll talk through what you need.
+        </p>
+        <a href="/#contact" data-hover
+          class="inline-flex items-center gap-3 bg-accent text-white px-8 py-4 rounded-full text-sm font-600 hover:bg-accent-hover transition-all shadow-lg shadow-accent/20 hover:shadow-accent/40">
+          Start a conversation
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

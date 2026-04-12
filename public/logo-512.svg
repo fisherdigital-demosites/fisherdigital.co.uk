@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <rect width="512" height="512" rx="112" fill="#1a1a2e"/>
+  <text x="256" y="340" font-family="Sora, system-ui, -apple-system, sans-serif" font-size="220" font-weight="700" text-anchor="middle">
+    <tspan fill="#ffffff">F</tspan><tspan fill="#0866FF">D</tspan>
+  </text>
+</svg>

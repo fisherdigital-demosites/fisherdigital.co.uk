@@ -1,4 +1,8 @@
 ---
+// Homepage contact form. POSTs to the pipeline API via the Cloudflare Tunnel
+// (Wave 9.5.7). Replaces the old Formspree hand-off so inbound leads land
+// directly in the pipeline SQLite DB as stage='outreach' / sub='awaiting_approval'.
+const apiBase = import.meta.env.PUBLIC_API_BASE ?? 'https://api.fisherdigital.co.uk';
 ---
 
 <section id="contact" class="section-light py-(--spacing-section) relative overflow-hidden border-t border-[var(--color-light-border)]/50">
@@ -34,16 +38,9 @@
         </div>
       </div>
 
-      <!-- Right: Plain HTML form — no React, no hydration -->
+      <!-- Right: Form POSTs JSON to pipeline API -->
       <div class="rounded-2xl bg-white border border-[var(--color-light-border)] p-6 lg:p-8 shadow-sm">
-        <form
-          action="https://formspree.io/f/mojpnokn"
-          method="POST"
-          class="space-y-5"
-        >
-          <input type="hidden" name="lead_source" value="inbound_website" />
-          <input type="hidden" name="_subject" value="New Inbound Lead - FisherDigital" />
-
+        <form id="contact-form-el" class="space-y-5">
           <div>
             <label for="name" class="block text-sm font-medium mb-2 text-[var(--color-light-text)]">
               Your name
@@ -99,17 +96,62 @@
           </div>
 
           <button
+            id="contact-submit-btn"
             type="submit"
             class="w-full inline-flex items-center justify-center gap-2 rounded-full bg-accent px-8 py-4 text-sm font-semibold text-white hover:bg-accent-hover transition-all cursor-pointer shadow-lg shadow-accent/20 hover:shadow-accent/40"
           >
             Book my free call
           </button>
 
-          <p class="text-xs text-center text-[var(--color-light-muted)]">
+          <p id="contact-status" class="text-xs text-center text-[var(--color-light-muted)]">
             We'll call you within 24 hours. No spam, no hard sell.
           </p>
         </form>
       </div>
     </div>
   </div>
+
+<script define:vars={{ apiBase }}>
+  const form = document.getElementById('contact-form-el');
+  const status = document.getElementById('contact-status');
+  const btn = document.getElementById('contact-submit-btn');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const fd = new FormData(form);
+    const body = {
+      name: fd.get('name'),
+      email: fd.get('email'),
+      phone: fd.get('phone') || '',
+      message: fd.get('message') || '',
+      sourceChannel: 'direct_form',
+      firstTouchUrl: window.location.pathname,
+    };
+
+    btn.disabled = true;
+    const originalBtnText = btn.textContent;
+    btn.textContent = 'Sending…';
+    status.className = 'text-xs text-center text-[var(--color-light-muted)]';
+
+    try {
+      const res = await fetch(apiBase + '/api/leadmagnet/contact-form', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+      });
+      if (!res.ok && res.status !== 200 && res.status !== 201) {
+        throw new Error(`status ${res.status}`);
+      }
+      form.reset();
+      status.textContent = "Thanks — we'll be in touch within 24 hours.";
+      status.className = 'text-sm text-center text-accent font-medium';
+    } catch (_err) {
+      status.textContent = "Something went wrong. Please email fisherwebco@gmail.com directly.";
+      status.className = 'text-sm text-center text-red-600';
+    } finally {
+      btn.disabled = false;
+      btn.textContent = originalBtnText;
+    }
+  });
+</script>
 </section>
