@@ -42,7 +42,7 @@ const Home = ({ tw }) => (
     <section className="hero dark-section">
       <div className="glow glow-1" />
       <div className="glow glow-2" />
-      <div className="container" style={{ position: "relative" }}>
+      <div className="container hero-grid">
         <div className="hero-content reveal">
           <h1>
             More leads answered.<br />
@@ -72,23 +72,13 @@ const Home = ({ tw }) => (
               <span className="dot" /><span className="dot" /><span className="dot" />
               <span className="label">9:42pm</span>
             </div>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
-              <span style={{ fontSize: 11, color: "var(--dark-muted)" }}>Incoming call</span>
-              <span style={{ fontSize: 11, color: "#22c55e", display: "inline-flex", alignItems: "center", gap: 5 }}>
-                <span style={{ width: 5, height: 5, borderRadius: "50%", background: "#22c55e" }} /> Answered
-              </span>
-            </div>
             <div className="chat-line"><div className="av user">C</div><div className="bubble">My boiler's leaking, can someone come out?</div></div>
             <div className="chat-line ai"><div className="av ai">FD</div><div className="bubble">Of course. What's your postcode?</div></div>
             <div className="chat-line"><div className="av user">C</div><div className="bubble">SW6 4LP</div></div>
             <div className="chat-line ai"><div className="av ai">FD</div><div className="bubble">Tom can be there at 7am. Confirmation text sent.</div></div>
-            <div style={{ display: "flex", gap: 6, marginTop: 6 }}>
-              <div style={{ flex: 1, padding: "6px 8px", background: "rgba(8,102,255,0.08)", border: "1px solid rgba(8,102,255,0.12)", borderRadius: 6, fontSize: 11, color: "var(--dark-text)" }}>
-                <span style={{ color: "var(--brand)" }}>Calendar</span> — 7am booked
-              </div>
-              <div style={{ flex: 1, padding: "6px 8px", background: "rgba(34,197,94,0.06)", border: "1px solid rgba(34,197,94,0.12)", borderRadius: 6, fontSize: 11, color: "var(--dark-text)" }}>
-                <span style={{ color: "#22c55e" }}>SMS</span> — Confirmed
-              </div>
+            <div style={{ borderTop: "1px solid var(--dark-line)", marginTop: 6, paddingTop: 8, display: "flex", gap: 12, fontSize: 11, color: "var(--dark-muted)" }}>
+              <span style={{ display: "inline-flex", alignItems: "center", gap: 4 }}><Icon name="check" size={11} /> <span style={{ color: "#22c55e" }}>Calendar booked</span></span>
+              <span style={{ display: "inline-flex", alignItems: "center", gap: 4 }}><Icon name="check" size={11} /> <span style={{ color: "#22c55e" }}>SMS confirmed</span></span>
             </div>
           </div>
         </div>
@@ -107,30 +97,30 @@ const Home = ({ tw }) => (
       </div>
     </section>
 
-    {/* How it works — dark */}
+    {/* How it works */}
     <section className="section dark-section">
       <div className="glow glow-1" style={{ opacity: 0.7 }} />
       <div className="container" style={{ position: "relative", zIndex: 1 }}>
         <SectionHead
           eyebrow="How it works"
           title="From first call to fully running. Two to four weeks."
-          lead="No long contracts. No big upfront cost. We audit, build, and hand over — then stay on to make sure it keeps working."
+          lead="No long contracts. No big upfront cost. We audit, build, and hand over, then stay on to make sure it keeps working."
         />
         <div className="steps reveal">
           <div className="step">
-            <span className="step-num">01 — Discovery</span>
+            <span className="step-num">01 / Discovery</span>
             <h3>We find where you're losing leads</h3>
-            <p>A 20-minute call where we map out your customer journey — where enquiries come from, where they drop off, and what's eating your time. You leave with a written plan, free, whether or not we work together.</p>
+            <p>A 20-minute call where we map out your customer journey: where enquiries come from, where they drop off, and what's eating your time. You leave with a written plan, free, whether or not we work together.</p>
           </div>
           <div className="step">
-            <span className="step-num">02 — Setup</span>
+            <span className="step-num">02 / Setup</span>
             <h3>We build it around your business</h3>
             <p>We configure everything on your phone number, website, and tools. Trained on your services, your prices, your way of doing things. You review it, we tweak it, we go live.</p>
           </div>
           <div className="step">
-            <span className="step-num">03 — Support</span>
+            <span className="step-num">03 / Support</span>
             <h3>Monthly reports. Real people.</h3>
-            <p>Every month you get a clear report — calls answered, leads captured, reviews gained, time saved. Plus a real person to message whenever something needs changing.</p>
+            <p>Every month you get a clear report: calls answered, leads captured, reviews gained, time saved. Plus a real person to message whenever something needs changing.</p>
           </div>
         </div>
 
@@ -251,7 +241,7 @@ const ServiceMock = ({ service }) => {
             </span>
           </div>
           <div className="chat-line"><div className="av user">C</div><div className="bubble">Hi, my boiler is leaking water everywhere.</div></div>
-          <div className="chat-line ai"><div className="av ai">FD</div><div className="bubble">That sounds urgent — what's your postcode?</div></div>
+          <div className="chat-line ai"><div className="av ai">FD</div><div className="bubble">That sounds urgent. What's your postcode?</div></div>
           <div className="chat-line"><div className="av user">C</div><div className="bubble">SW6 4LP</div></div>
           <div className="chat-line ai"><div className="av ai">FD</div><div className="bubble">Tom can be there at 7am. Confirmation text sent.</div></div>
         </div>
@@ -264,14 +254,14 @@ const ServiceMock = ({ service }) => {
             <span className="label">missed call recovery</span>
           </div>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
-            <span style={{ fontSize: 11, color: "#ef4444" }}>Missed call — 14:32</span>
+            <span style={{ fontSize: 11, color: "#ef4444" }}>Missed call / 14:32</span>
             <span style={{ fontSize: 11, color: "#22c55e", display: "inline-flex", alignItems: "center", gap: 5 }}>
               <span style={{ width: 5, height: 5, borderRadius: "50%", background: "#22c55e" }} /> Text sent
             </span>
           </div>
           <div className="chat-line ai"><div className="av ai">FD</div><div className="bubble">Sorry we missed your call! How can we help? Reply here or we'll call you back shortly.</div></div>
           <div className="chat-line"><div className="av user">C</div><div className="bubble">Need a quote for a new boiler install please</div></div>
-          <div className="chat-line ai"><div className="av ai">FD</div><div className="bubble">Of course — what's the best time for us to call you back today?</div></div>
+          <div className="chat-line ai"><div className="av ai">FD</div><div className="bubble">Of course! What's the best time for us to call you back today?</div></div>
           <div className="chat-line"><div className="av user">C</div><div className="bubble">After 4pm works</div></div>
         </div>
       );
@@ -284,7 +274,7 @@ const ServiceMock = ({ service }) => {
           </div>
           <div className="chat-line ai"><div className="av ai">FD</div><div className="bubble">Hi! I can help you book or get a quote. What are you looking for?</div></div>
           <div className="chat-line"><div className="av user">V</div><div className="bubble">How much for a balayage?</div></div>
-          <div className="chat-line ai"><div className="av ai">FD</div><div className="bubble">Balayage starts at £140. I can book you in for Saturday at 11am — want the slot?</div></div>
+          <div className="chat-line ai"><div className="av ai">FD</div><div className="bubble">Balayage starts at £140. I can book you in for Saturday at 11am. Want the slot?</div></div>
           <div style={{ display: "flex", gap: 6, paddingLeft: 30 }}>
             <span style={{ fontSize: 12, padding: "5px 10px", background: "rgba(8,102,255,0.06)", border: "1px solid var(--line)", borderRadius: 6, color: "var(--brand)", fontWeight: 500 }}>Yes please</span>
             <span style={{ fontSize: 12, padding: "5px 10px", background: "var(--surface-2)", border: "1px solid var(--line)", borderRadius: 6, color: "var(--muted)" }}>Different time</span>
@@ -316,7 +306,7 @@ const ServiceMock = ({ service }) => {
             <div style={{ display: "flex", gap: 2, color: "var(--brand)", marginBottom: 4 }}>
               {Array.from({ length: 5 }).map((_, i) => <Icon key={i} name="star" size={10} />)}
             </div>
-            <div style={{ color: "var(--ink)" }}>"Sarah was brilliant — really took the time to explain everything."</div>
+            <div style={{ color: "var(--ink)" }}>"Sarah was brilliant, really took the time to explain everything."</div>
             <div style={{ marginTop: 6, paddingTop: 6, borderTop: "1px solid var(--line)", color: "var(--muted)", fontSize: 11 }}>
               <strong style={{ color: "var(--brand)" }}>Auto-reply:</strong> Thanks so much! We'll pass that on to Sarah.
             </div>
@@ -331,7 +321,7 @@ const ServiceMock = ({ service }) => {
             <span className="label">follow-up sequence</span>
           </div>
           {[
-            { day: "Day 0", ch: "Email", title: "Your quote — roof repair", status: "Sent", active: true },
+            { day: "Day 0", ch: "Email", title: "Your quote: roof repair", status: "Sent", active: true },
             { day: "Day 2", ch: "SMS", title: "Quick check on the quote", status: "Sent", active: true },
             { day: "Day 5", ch: "Email", title: "We've got an opening next week", status: "Scheduled", active: false },
             { day: "Day 9", ch: "SMS", title: "Final follow-up", status: "Pending", active: false },
@@ -340,7 +330,7 @@ const ServiceMock = ({ service }) => {
               <span style={{ width: 22, height: 22, borderRadius: 6, background: s.active ? "rgba(8,102,255,0.06)" : "var(--surface-2)", color: s.active ? "var(--brand)" : "var(--muted-2)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 9, fontWeight: 600 }}>{s.ch[0]}</span>
               <div style={{ flex: 1 }}>
                 <div style={{ fontSize: 12, color: "var(--ink)" }}>{s.title}</div>
-                <div style={{ fontSize: 10, color: "var(--muted-2)" }}>{s.day} — {s.ch}</div>
+                <div style={{ fontSize: 10, color: "var(--muted-2)" }}>{s.day} / {s.ch}</div>
               </div>
               <span style={{ fontSize: 10, color: s.active ? "#22c55e" : "var(--muted-2)", fontWeight: 500 }}>{s.status}</span>
             </div>
@@ -403,7 +393,7 @@ const ServiceMock = ({ service }) => {
             })}
           </div>
           <div style={{ marginTop: 10, padding: 10, background: "var(--surface-2)", borderRadius: 8, fontSize: 12 }}>
-            <div style={{ fontSize: 10, color: "var(--brand)", marginBottom: 3, fontWeight: 600 }}>NEXT POST — TUE 9AM</div>
+            <div style={{ fontSize: 10, color: "var(--brand)", marginBottom: 3, fontWeight: 600 }}>NEXT POST / TUE 9AM</div>
             <div style={{ color: "var(--ink)" }}>"Three signs your bathroom needs re-grouting before winter"</div>
           </div>
         </div>
@@ -456,7 +446,7 @@ const AboutPage = ({ tw }) => (
           <h2 style={{ marginTop: 12, marginBottom: 18 }}>Big company systems, set up for small businesses.</h2>
           <p style={{ fontSize: 16, color: "var(--muted)", marginBottom: 14, lineHeight: 1.65 }}>{tw.founderStory}</p>
           <p style={{ fontSize: 16, color: "var(--muted)", lineHeight: 1.65 }}>
-            Our customers are tradespeople, clinicians, salon owners, and restaurateurs. They don't have time to learn new platforms — so we handle everything for them.
+            Our customers are tradespeople, clinicians, salon owners, and restaurateurs. They don't have time to learn new platforms, so we handle everything for them.
           </p>
         </div>
         <div className="mock" style={{ padding: 20 }}>
@@ -540,7 +530,7 @@ const ContactPage = ({ tw }) => {
         <div className="container">
           <span className="eyebrow">Get started</span>
           <h1>Tell us about your business. We'll find what's worth fixing.</h1>
-          <p className="lead">A short discovery call where we audit your customer journey and show you where you're losing leads. You'll leave with a written plan — free, no obligation.</p>
+          <p className="lead">A short discovery call where we audit your customer journey and show you where you're losing leads. You'll leave with a written plan. Free, no obligation.</p>
         </div>
       </section>
 
@@ -572,7 +562,7 @@ const ContactPage = ({ tw }) => {
               <div className="ic"><Icon name="shield" size={16} /></div>
               <div>
                 <h4>What you'll get</h4>
-                <p>A clear breakdown of where you're losing leads and what each fix is worth — yours to keep, no strings attached.</p>
+                <p>A clear breakdown of where you're losing leads and what each fix is worth. Yours to keep, no strings attached.</p>
               </div>
             </div>
           </div>
@@ -587,7 +577,7 @@ const ContactPage = ({ tw }) => {
                 <div style={{ width: 44, height: 44, borderRadius: "50%", background: "rgba(8,102,255,0.06)", color: "var(--brand)", display: "flex", alignItems: "center", justifyContent: "center" }}>
                   <Icon name="check" size={20} />
                 </div>
-                <div style={{ fontSize: 17, color: "var(--ink)", fontWeight: 600 }}>Thanks — we'll be in touch.</div>
+                <div style={{ fontSize: 17, color: "var(--ink)", fontWeight: 600 }}>Thanks! We'll be in touch.</div>
                 <div style={{ fontSize: 13, color: "var(--muted)" }}>We'll get back to you within one working day.</div>
               </div>
             ) : (
@@ -602,12 +592,12 @@ const ContactPage = ({ tw }) => {
                 </div>
                 <div className="form-group">
                   <label className="form-label">Business name and type</label>
-                  <input className="form-input" value={form.business} onChange={(e) => setForm({...form, business: e.target.value})} placeholder="Carter Plumbing — domestic plumbing in Bristol" />
+                  <input className="form-input" value={form.business} onChange={(e) => setForm({...form, business: e.target.value})} placeholder="Carter Plumbing, domestic plumbing in Bristol" />
                 </div>
                 <div className="form-group">
                   <label className="form-label">What's your biggest challenge right now?</label>
                   <select className="form-select" value={form.services} onChange={(e) => setForm({...form, services: e.target.value})}>
-                    <option value="">Not sure yet — want to chat</option>
+                    <option value="">Not sure yet, just want to chat</option>
                     <option value="missed-calls">Missing calls and enquiries</option>
                     <option value="follow-ups">Leads going cold / no follow-up</option>
                     <option value="reviews">Not enough Google reviews</option>

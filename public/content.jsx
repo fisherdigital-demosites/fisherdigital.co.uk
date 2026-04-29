@@ -4,8 +4,8 @@ const DEFAULT_CONTENT = /*EDITMODE-BEGIN*/{
   "ctaUrl": "#book",
   "email": "hello@fisherdigital.co.uk",
   "location": "United Kingdom",
-  "founderStory": "We started FisherDigital because the businesses that keep our high streets running — plumbers, dentists, hairdressers — were losing work to missed calls, slow follow-ups, and no time for marketing. The tools to fix this existed, but they were built for big companies with IT departments. So we set up the same systems for local businesses, without them needing to learn a single new platform.",
-  "missionLine": "The systems that big companies use to capture every lead and automate their admin — set up and managed for local businesses.",
+  "founderStory": "We started FisherDigital because the businesses that keep our high streets running (plumbers, dentists, hairdressers) were losing work to missed calls, slow follow-ups, and no time for marketing. The tools to fix this existed, but they were built for big companies with IT departments. So we set up the same systems for local businesses, without them needing to learn a single new platform.",
+  "missionLine": "The systems that big companies use to capture every lead and automate their admin, set up and managed for local businesses.",
   "service1Desc": "A friendly voice answers every call, books appointments, and sends confirmations - even at 2am. Your customers never hit voicemail again.",
   "service2Desc": "When a call goes unanswered, an instant text goes out: \"Sorry we missed you - how can we help?\" Turns missed calls into conversations within seconds.",
   "service3Desc": "Instant replies on your website, WhatsApp, and Facebook. Answers questions, qualifies leads, and books jobs while you're on the tools.",
@@ -18,7 +18,7 @@ const DEFAULT_CONTENT = /*EDITMODE-BEGIN*/{
   "trustedByLabel": "Trusted by local service businesses across the UK",
   "ctaHeading": "Find out where your business is losing leads.",
   "ctaSub": "Book a free 20-minute call. We'll audit your customer journey, show you where enquiries are slipping through, and give you a plan to fix it. No jargon, no obligation.",
-  "joshBio": "Handles the technical side — setting up and managing every system so clients never have to touch a dashboard.",
+  "joshBio": "Handles the technical side. Setting up and managing every system so clients never have to touch a dashboard.",
   "billyBio": "Runs sales and client relationships. If you've spoken to FisherDigital, you've probably spoken to Billy."
 };/*EDITMODE-END*/;
 
