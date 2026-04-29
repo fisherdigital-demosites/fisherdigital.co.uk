@@ -48,7 +48,7 @@ const Nav = ({ currentRoute }) => {
   const scrolled = useScrolled();
   const [open, setOpen] = useState(false);
   return (
-    <header className={`nav ${scrolled ? "scrolled" : ""}`}>
+    <header className={`nav nav-dark ${scrolled ? "scrolled" : ""}`}>
       <div className="container nav-inner">
         <a href="#/" aria-label="FisherDigital home"><Logo /></a>
         <nav className="nav-links" aria-label="Primary">
@@ -63,41 +63,44 @@ const Nav = ({ currentRoute }) => {
           ))}
         </nav>
         <div className="nav-cta">
-          <a href="#/contact" className="btn btn-primary">
+          <a href="#/contact" className="btn btn-white btn-sm">
             Book a Discovery Call
             <Icon name="arrow-right" size={14} />
           </a>
           <button
-            className="btn btn-secondary"
-            style={{ padding: "8px", display: "none" }}
+            className="mobile-menu-btn"
             aria-label="Menu"
             onClick={() => setOpen(true)}
           >
-            <Icon name="menu" size={18} />
+            <Icon name="menu" size={20} />
           </button>
         </div>
       </div>
       {open && (
         <div
           style={{
-            position: "fixed", inset: 0, background: "rgba(10,11,13,0.4)", zIndex: 60,
+            position: "fixed", inset: 0, background: "rgba(0,0,0,0.6)", zIndex: 60,
             display: "flex", justifyContent: "flex-end",
           }}
           onClick={() => setOpen(false)}
         >
           <div
-            style={{ width: 280, background: "#fff", padding: 24, height: "100%" }}
+            style={{ width: 280, background: "var(--dark-bg)", padding: 24, height: "100%" }}
             onClick={(e) => e.stopPropagation()}
           >
-            <button onClick={() => setOpen(false)} style={{ marginBottom: 24 }}>
+            <button onClick={() => setOpen(false)} style={{ marginBottom: 24, color: "#fff", background: "none", border: "none", cursor: "pointer" }}>
               <Icon name="close" size={20} />
             </button>
             {NAV_ITEMS.map((i) => (
               <a key={i.href} href={i.href} onClick={() => setOpen(false)}
-                 style={{ display: "block", padding: "12px 0", borderBottom: "1px solid var(--line)", color: "var(--ink)", fontWeight: 500 }}>
+                 style={{ display: "block", padding: "12px 0", borderBottom: "1px solid var(--dark-line)", color: "#fff", fontWeight: 500, textDecoration: "none" }}>
                 {i.label}
               </a>
             ))}
+            <a href="#/contact" onClick={() => setOpen(false)}
+               style={{ display: "block", marginTop: 20, padding: "12px 16px", background: "#fff", color: "var(--dark-bg)", borderRadius: 8, textAlign: "center", fontWeight: 600, textDecoration: "none", fontSize: 14 }}>
+              Book a Discovery Call
+            </a>
           </div>
         </div>
       )}
@@ -106,16 +109,18 @@ const Nav = ({ currentRoute }) => {
 };
 
 const Footer = ({ tw }) => (
-  <footer className="footer">
+  <footer className="footer footer-dark">
     <div className="container">
       <div className="footer-grid">
         <div className="footer-col" style={{ maxWidth: 320 }}>
           <Logo />
-          <p style={{ marginTop: 12, fontSize: 14, color: "var(--muted)" }}>
+          <p style={{ marginTop: 12, fontSize: 14, color: "var(--dark-muted)" }}>
             Automation built for local service businesses. Based in the UK.
           </p>
           <div style={{ display: "flex", gap: 8, marginTop: 20 }}>
-            <span className="pill"><span className="pill-dot" /> Pre-launch · Discovery calls open</span>
+            <span className="pill" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid var(--dark-line)", color: "var(--dark-muted)" }}>
+              <span className="pill-dot" /> Accepting new clients
+            </span>
           </div>
         </div>
         <div className="footer-col">
@@ -140,13 +145,12 @@ const Footer = ({ tw }) => (
           <h5>Contact</h5>
           <ul>
             <li><a href={`mailto:${tw.email}`}>{tw.email}</a></li>
-            <li><a href={`tel:${tw.phone.replace(/\s/g, "")}`}>{tw.phone}</a></li>
-            <li><span style={{ color: "var(--muted)" }}>fisherdigital.co.uk</span></li>
+            <li><span>fisherdigital.co.uk</span></li>
           </ul>
         </div>
       </div>
       <div className="footer-bottom">
-        <span>© 2026 FisherDigital Ltd. Based in the UK.</span>
+        <span>&copy; 2026 FisherDigital Ltd. Based in the UK.</span>
         <span style={{ display: "inline-flex", gap: 16 }}>
           <a href="#">Privacy</a>
           <a href="#">Terms</a>

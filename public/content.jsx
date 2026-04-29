@@ -2,7 +2,6 @@
 // Default content — wrapped in EDITMODE markers so Tweaks can persist edits.
 const DEFAULT_CONTENT = /*EDITMODE-BEGIN*/{
   "ctaUrl": "#book",
-  "phone": "+44 XXXX XXXXXX",
   "email": "hello@fisherdigital.co.uk",
   "location": "United Kingdom",
   "founderStory": "We started FisherDigital because the businesses that keep our high streets running - plumbers, dentists, hairdressers - were losing work to missed calls, slow follow-ups, and zero online presence. The tools to fix this existed, but they were built for corporations with IT departments. So we built a service that handles it all, without our clients needing to learn a single new platform.",

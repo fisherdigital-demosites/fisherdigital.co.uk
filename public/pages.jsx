@@ -6,7 +6,7 @@ const Pill = ({ children }) => (
   <span className="pill"><span className="pill-dot" />{children}</span>
 );
 
-const SectionHead = ({ eyebrow, title, lead }) => (
+const SectionHead = ({ eyebrow, title, lead, dark }) => (
   <div className="section-head reveal">
     {eyebrow && <span className="eyebrow">{eyebrow}</span>}
     <h2 className="display h2">{title}</h2>
@@ -33,7 +33,7 @@ const CTABanner = ({ tw }) => (
         <p>{tw.ctaSub}</p>
       </div>
       <div style={{ display: "flex", gap: 12, position: "relative", zIndex: 1 }}>
-        <a className="btn btn-primary btn-lg" href={tw.ctaUrl}>
+        <a className="btn btn-primary btn-lg" href="#/contact">
           Book a Discovery Call <Icon name="arrow-right" size={14} />
         </a>
       </div>
@@ -43,47 +43,65 @@ const CTABanner = ({ tw }) => (
 
 // ---------- HOME ----------
 const Home = ({ tw }) => {
-  const HeroVisual = window.HeroVisual;
   return (
     <>
-      <section className="hero container">
-        <div className="hero-grid">
-          <div className="reveal">
-            <Pill>UK-based · Discovery calls open</Pill>
+      {/* HERO - dark full-width */}
+      <section className="hero dark-section">
+        <div className="glow glow-1" />
+        <div className="glow glow-2" />
+        <div className="container" style={{ position: "relative" }}>
+          <div className="hero-content reveal">
+            <Pill>Accepting new clients</Pill>
             <h1 style={{ marginTop: 20 }}>
               Your phone rings at 9pm.<br />
               <span className="accent">It still gets answered.</span>
             </h1>
             <p className="lead">
-              FisherDigital helps plumbers, dentists, salons, and restaurants answer every call, follow up every lead, and get more reviews - automatically, while you sleep.
+              We set up phone answering, lead follow-up, review management, and workflow automation for plumbers, dentists, salons, and restaurants. Your customers get instant responses. You get more booked jobs.
             </p>
             <div className="hero-cta-row">
-              <a className="btn btn-primary btn-lg" href={tw.ctaUrl}>
+              <a className="btn btn-white btn-lg" href="#/contact">
                 Book a Discovery Call <Icon name="arrow-right" size={14} />
               </a>
-              <a className="btn btn-secondary btn-lg" href="#/services">
+              <a className="btn btn-outline-light btn-lg" href="#/services">
                 See what we build
               </a>
             </div>
             <div className="hero-meta">
-              <span className="hero-meta-item"><Icon name="check" size={14} /> Free discovery call, no pitch</span>
+              <span className="hero-meta-item"><Icon name="check" size={14} /> Free discovery call</span>
               <span className="hero-meta-item"><Icon name="check" size={14} /> Custom pricing, no packages</span>
               <span className="hero-meta-item"><Icon name="check" size={14} /> Live in 2-4 weeks</span>
             </div>
           </div>
-          <div className="reveal"><HeroVisual /></div>
-        </div>
-      </section>
 
-      {/* Trusted strip — placeholders */}
-      <section className="container reveal" style={{ paddingBottom: 24 }}>
-        <p style={{ fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: "0.05em", textTransform: "uppercase", color: "var(--muted-2)", marginBottom: 16, textAlign: "center" }}>
-          {tw.trustedByLabel}
-        </p>
-        <div className="logo-strip">
-          {Array.from({ length: 6 }).map((_, i) => (
-            <div key={i} className="placeholder">CLIENT LOGO</div>
-          ))}
+          <div className="hero-demo reveal">
+            <div className="mock-dark">
+              <div className="mock-titlebar">
+                <span className="dot" /><span className="dot" /><span className="dot" />
+                <span className="label">9:42pm - incoming call</span>
+              </div>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }}>
+                <span style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: "var(--dark-muted)" }}>+44 7700 *** ***</span>
+                <span style={{ fontSize: 11, color: "#16a34a", display: "inline-flex", alignItems: "center", gap: 6 }}>
+                  <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#16a34a" }} /> Answered
+                </span>
+              </div>
+              <div className="chat-line"><div className="av user">C</div><div className="bubble">My boiler's leaking - can someone come out?</div></div>
+              <div className="chat-line ai"><div className="av ai">FD</div><div className="bubble">Absolutely. What's your postcode so I can check availability?</div></div>
+              <div className="chat-line"><div className="av user">C</div><div className="bubble">SW6 4LP</div></div>
+              <div className="chat-line ai"><div className="av ai">FD</div><div className="bubble">Tom can be there at 7am. I've sent you a confirmation text.</div></div>
+              <div style={{ display: "flex", gap: 8, marginTop: 8 }}>
+                <div style={{ flex: 1, padding: "8px 10px", background: "rgba(8,102,255,0.08)", border: "1px solid rgba(8,102,255,0.15)", borderRadius: 6, fontSize: 11, fontFamily: "var(--font-mono)" }}>
+                  <span style={{ color: "var(--brand)" }}>Calendar</span>
+                  <span style={{ color: "var(--dark-muted)", marginLeft: 6 }}>7am slot booked</span>
+                </div>
+                <div style={{ flex: 1, padding: "8px 10px", background: "rgba(22,163,74,0.08)", border: "1px solid rgba(22,163,74,0.15)", borderRadius: 6, fontSize: 11, fontFamily: "var(--font-mono)" }}>
+                  <span style={{ color: "#16a34a" }}>SMS sent</span>
+                  <span style={{ color: "var(--dark-muted)", marginLeft: 6 }}>Confirmed</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -92,54 +110,62 @@ const Home = ({ tw }) => {
         <SectionHead
           eyebrow="What we do"
           title="Eight services. One quiet system running behind your business."
-          lead="Pick what you need today. Add the rest later. Every service is configured for your business specifically - no generic templates."
+          lead="Pick what you need today. Add the rest later. Every service is configured for your business - your prices, your tone, your calendar."
         />
         <div className="svc-grid reveal">
           {SERVICES.map((s) => <ServiceCard key={s.id} s={s} />)}
         </div>
       </section>
 
-      {/* How it works */}
-      <section className="section container">
-        <SectionHead
-          eyebrow="How it works"
-          title="Three steps. Two to four weeks."
-          lead="No long contracts, no enterprise procurement. Discovery, build, handover - then we stay on for support."
-        />
-        <div className="steps reveal">
-          <div className="step">
-            <span className="step-num">01 / Discovery</span>
-            <h3>A 30-minute call</h3>
-            <p>We map your customer journey end to end. Where leads come from, where they leak out, what eats your time. You leave with a written plan whether or not we work together.</p>
+      {/* How it works - dark */}
+      <section className="section dark-section">
+        <div className="glow glow-1" />
+        <div className="container" style={{ position: "relative", zIndex: 1 }}>
+          <SectionHead
+            eyebrow="How it works"
+            title="Three steps. Two to four weeks."
+            lead="No long contracts, no enterprise procurement. Discovery, build, handover - then we stay on for support."
+          />
+          <div className="steps reveal">
+            <div className="step">
+              <span className="step-num">01 / Discovery</span>
+              <h3>We audit your customer journey</h3>
+              <p>A short call where we map where your leads come from, where they leak out, and what eats your time. You leave with a written plan - whether or not we work together.</p>
+            </div>
+            <div className="step">
+              <span className="step-num">02 / Build</span>
+              <h3>We set up everything</h3>
+              <p>We configure each service on your phone number, website, and CRM. Trained on your services, prices, and tone. You review it, we tweak it, we go live.</p>
+            </div>
+            <div className="step">
+              <span className="step-num">03 / Run</span>
+              <h3>Monthly reports, real support</h3>
+              <p>Every month you get a report showing calls answered, leads captured, reviews gained, and revenue attributed. Plus a real person (UK-based) to message when something needs changing.</p>
+            </div>
           </div>
-          <div className="step">
-            <span className="step-num">02 / Build</span>
-            <h3>Set up in your tools</h3>
-            <p>We set everything up on your phone number, website, and CRM. Trained on your services, prices, and tone. You review, we tweak, we go live.</p>
-          </div>
-          <div className="step">
-            <span className="step-num">03 / Run</span>
-            <h3>Handover and support</h3>
-            <p>You get a dashboard, monthly call to review what's working, and a real human (UK-based) to message when something needs changing.</p>
+
+          <div className="stats reveal" style={{ marginTop: 48 }}>
+            <div className="stat"><div className="num">24/7</div><div className="label">Every call answered, day and night</div></div>
+            <div className="stat"><div className="num">&lt;5s</div><div className="label">Lead follow-up response time</div></div>
+            <div className="stat"><div className="num">0</div><div className="label">Hours you spend chasing reviews</div></div>
+            <div className="stat"><div className="num">2-4w</div><div className="label">From kickoff to live</div></div>
           </div>
         </div>
       </section>
 
-      {/* What changes */}
+      {/* Inline CTA form */}
       <section className="section container">
-        <SectionHead
-          eyebrow="What changes"
-          title="The calls that used to go to voicemail start going to your calendar."
-        />
-        <div className="stats reveal">
-          <div className="stat"><div className="num">24/7</div><div className="label">Every call answered, day and night</div></div>
-          <div className="stat"><div className="num">&lt;5s</div><div className="label">Lead follow-up response time</div></div>
-          <div className="stat"><div className="num">0</div><div className="label">Hours spent chasing reviews</div></div>
-          <div className="stat"><div className="num">2-4w</div><div className="label">From kickoff to live</div></div>
+        <div className="inline-form-section reveal" style={{ textAlign: "center" }}>
+          <span className="eyebrow" style={{ justifyContent: "center" }}>Get started</span>
+          <h2 className="display h2" style={{ marginTop: 14 }}>{tw.ctaHeading}</h2>
+          <p className="lead" style={{ margin: "16px auto 0", textAlign: "center" }}>{tw.ctaSub}</p>
+          <div style={{ marginTop: 32 }}>
+            <a className="btn btn-primary btn-lg" href="#/contact" style={{ justifyContent: "center" }}>
+              Book a Discovery Call <Icon name="arrow-right" size={14} />
+            </a>
+          </div>
         </div>
       </section>
-
-      <CTABanner tw={tw} />
     </>
   );
 };
@@ -147,7 +173,6 @@ const Home = ({ tw }) => {
 // ---------- SERVICES ----------
 const ServicesPage = ({ tw }) => {
   React.useEffect(() => {
-    // honour anchor in hash (e.g. #/services#ai-receptionist)
     const m = window.location.hash.match(/^#\/services#(.+)$/);
     if (m) {
       const el = document.getElementById(m[1]);
@@ -161,7 +186,7 @@ const ServicesPage = ({ tw }) => {
         <div className="container">
           <span className="eyebrow">Services</span>
           <h1>Eight services. Built for the way local businesses actually run.</h1>
-          <p className="lead">Tap any service to jump to a full breakdown. Mix and match - most clients start with one or two and add more later.</p>
+          <p className="lead">Mix and match - most clients start with one or two and add more later.</p>
         </div>
       </section>
 
@@ -221,7 +246,7 @@ const ServicesPage = ({ tw }) => {
   );
 };
 
-// Per-service mock visualisations (abstract, on-brand)
+// Per-service mock visualisations
 const ServiceMock = ({ service }) => {
   const tone = "var(--brand)";
   switch (service.icon) {
@@ -233,7 +258,7 @@ const ServiceMock = ({ service }) => {
             <span className="label">incoming.call</span>
           </div>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
-            <span style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: "var(--muted)" }}>+44 7700 900 124</span>
+            <span style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: "var(--muted)" }}>+44 7700 *** ***</span>
             <span style={{ fontSize: 11, color: "#16a34a", display: "inline-flex", alignItems: "center", gap: 6 }}>
               <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#16a34a" }} /> Connected - 00:42
             </span>
@@ -263,6 +288,22 @@ const ServiceMock = ({ service }) => {
           <div className="chat-line"><div className="av user">C</div><div className="bubble">After 4pm works</div></div>
         </div>
       );
+    case "headset":
+      return (
+        <div className="mock">
+          <div className="mock-titlebar">
+            <span className="dot" /><span className="dot" /><span className="dot" />
+            <span className="label">website.chat</span>
+          </div>
+          <div className="chat-line ai"><div className="av ai">FD</div><div className="bubble">Hi! I can help you book a consultation or get a quote. What service are you after?</div></div>
+          <div className="chat-line"><div className="av user">V</div><div className="bubble">How much for a balayage?</div></div>
+          <div className="chat-line ai"><div className="av ai">FD</div><div className="bubble">Balayage starts at £140 with our senior stylists. I can pencil you in for Saturday at 11am - want to grab the slot?</div></div>
+          <div style={{ display: "flex", gap: 6, paddingLeft: 34 }}>
+            <span className="pill" style={{ fontSize: 11, background: "var(--brand-soft)", border: "1px solid var(--line)", color: "var(--brand)" }}>Yes please</span>
+            <span className="pill" style={{ fontSize: 11, background: "var(--surface-2)", border: "1px solid var(--line)", color: "var(--text)" }}>Different time</span>
+          </div>
+        </div>
+      );
     case "star":
       return (
         <div className="mock">
@@ -281,7 +322,7 @@ const ServiceMock = ({ service }) => {
             <div style={{ padding: 12, border: "1px solid var(--line-2)", borderRadius: 8 }}>
               <div style={{ fontFamily: "var(--font-mono)", fontSize: 10, color: "var(--muted)", textTransform: "uppercase" }}>This month</div>
               <div style={{ fontFamily: "var(--font-display)", fontSize: 28, color: "var(--ink)", fontWeight: 600 }}>+47</div>
-              <div style={{ fontSize: 11, color: "#16a34a" }}>↑ 218% vs last</div>
+              <div style={{ fontSize: 11, color: "#16a34a" }}>New reviews</div>
             </div>
           </div>
           <div style={{ marginTop: 12, padding: 12, border: "1px solid var(--line-2)", borderRadius: 8, fontSize: 12 }}>
@@ -312,7 +353,7 @@ const ServiceMock = ({ service }) => {
               <span style={{ width: 24, height: 24, borderRadius: 6, background: i < 2 ? "var(--brand-soft)" : "var(--surface-2)", color: i < 2 ? tone : "var(--muted-2)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 10, fontFamily: "var(--font-mono)" }}>{s.ch[0]}</span>
               <div style={{ flex: 1, minWidth: 0 }}>
                 <div style={{ fontSize: 12, color: "var(--ink)" }}>{s.title}</div>
-                <div style={{ fontFamily: "var(--font-mono)", fontSize: 10, color: "var(--muted)" }}>{s.day} · {s.ch}</div>
+                <div style={{ fontFamily: "var(--font-mono)", fontSize: 10, color: "var(--muted)" }}>{s.day} / {s.ch}</div>
               </div>
               <span style={{ fontSize: 10, color: i < 2 ? "#16a34a" : "var(--muted-2)", fontFamily: "var(--font-mono)" }}>{s.status}</span>
             </div>
@@ -339,7 +380,7 @@ const ServiceMock = ({ service }) => {
               { x: 12, y: 100, w: 90, h: 36, label: "Customer added", sub: "CRM" },
               { x: 115, y: 100, w: 90, h: 36, label: "Crew assigned", sub: "ServiceM8" },
               { x: 218, y: 100, w: 90, h: 36, label: "Reminder SMS", sub: "Twilio" },
-              { x: 60, y: 175, w: 200, h: 36, label: "Payment received > review request fires", sub: "Stripe > Reviews" },
+              { x: 60, y: 175, w: 200, h: 36, label: "Payment > review request fires", sub: "Stripe > Reviews" },
             ].map((b, i) => (
               <g key={i}>
                 <rect x={b.x} y={b.y} width={b.w} height={b.h} rx="6" fill="#fff" stroke="var(--line)" />
@@ -347,7 +388,6 @@ const ServiceMock = ({ service }) => {
                 <text x={b.x + 8} y={b.y + 28} fontSize="9" fill="var(--muted)" fontFamily="JetBrains Mono">{b.sub}</text>
               </g>
             ))}
-            {/* connectors */}
             <path d="M102 38 L115 38" stroke="var(--muted)" fill="none" markerEnd="url(#arr)" />
             <path d="M205 38 L218 38" stroke="var(--muted)" fill="none" markerEnd="url(#arr)" />
             <path d="M102 118 L115 118" stroke="var(--muted)" fill="none" markerEnd="url(#arr)" />
@@ -376,8 +416,8 @@ const ServiceMock = ({ service }) => {
             })}
           </div>
           <div style={{ marginTop: 12, padding: 10, background: "var(--surface-2)", borderRadius: 8, fontSize: 12 }}>
-            <div style={{ fontFamily: "var(--font-mono)", fontSize: 10, color: "var(--brand)", marginBottom: 4 }}>NEXT POST · TUE 9AM</div>
-            <div style={{ color: "var(--ink)" }}>"Three signs your bathroom needs re-grouting before winter →"</div>
+            <div style={{ fontFamily: "var(--font-mono)", fontSize: 10, color: "var(--brand)", marginBottom: 4 }}>NEXT POST / TUE 9AM</div>
+            <div style={{ color: "var(--ink)" }}>"Three signs your bathroom needs re-grouting before winter"</div>
           </div>
         </div>
       );
@@ -386,7 +426,7 @@ const ServiceMock = ({ service }) => {
         <div className="mock">
           <div className="mock-titlebar">
             <span className="dot" /><span className="dot" /><span className="dot" />
-            <span className="label">reactivation.segment</span>
+            <span className="label">reactivation.campaign</span>
           </div>
           {[
             { label: "Last visit 6-12 months", count: 184, status: "Sending", color: tone },
@@ -404,25 +444,6 @@ const ServiceMock = ({ service }) => {
               <div style={{ fontFamily: "var(--font-mono)", fontSize: 10, color: row.color, minWidth: 60, textAlign: "right" }}>{row.status}</div>
             </div>
           ))}
-          <div style={{ marginTop: 12, padding: 10, background: "var(--brand-soft)", color: "var(--brand)", borderRadius: 8, fontSize: 12, fontFamily: "var(--font-mono)" }}>
-            £8,240 recovered this month
-          </div>
-        </div>
-      );
-    case "headset":
-      return (
-        <div className="mock">
-          <div className="mock-titlebar">
-            <span className="dot" /><span className="dot" /><span className="dot" />
-            <span className="label">website.chat</span>
-          </div>
-          <div className="chat-line ai"><div className="av ai">FD</div><div className="bubble">Hi! I can help you book a consultation or get a quote. What service are you after?</div></div>
-          <div className="chat-line"><div className="av user">V</div><div className="bubble">How much for a balayage?</div></div>
-          <div className="chat-line ai"><div className="av ai">FD</div><div className="bubble">Balayage starts at £140 with our senior stylists. I can pencil you in for Saturday at 11am - want to grab the slot?</div></div>
-          <div style={{ display: "flex", gap: 6, paddingLeft: 34 }}>
-            <span className="pill" style={{ fontSize: 11 }}>Yes please</span>
-            <span className="pill" style={{ fontSize: 11 }}>Different time</span>
-          </div>
         </div>
       );
     default:
@@ -448,7 +469,7 @@ const AboutPage = ({ tw }) => (
           <h2 className="display h2" style={{ marginBottom: 20 }}>Big company tools, built for small businesses.</h2>
           <p style={{ fontSize: 17, color: "var(--muted)", marginBottom: 16 }}>{tw.founderStory}</p>
           <p style={{ fontSize: 17, color: "var(--muted)" }}>
-            Our customers are tradespeople, clinicians, salon owners and restaurateurs. They run the businesses that make a place feel like a place. They don't have time to learn new platforms - so we do the learning for them.
+            Our customers are tradespeople, clinicians, salon owners, and restaurateurs. They run the businesses that make a place feel like a place. They don't have time to learn new platforms - so we do the learning for them.
           </p>
         </div>
         <div className="mock" style={{ padding: 24 }}>
@@ -458,9 +479,9 @@ const AboutPage = ({ tw }) => (
           </div>
           {[
             { t: "Discovery before diagnosis", b: "We won't quote without a call. Every business is different." },
-            { t: "Plain English, always", b: "If we can't explain a tool to a tradesperson, it's the wrong tool." },
-            { t: "We answer the phone", b: "Real human, UK-based, on Slack or by phone." },
-            { t: "Pay for outcomes", b: "Discovery-based pricing tied to the work, not seats or tiers." },
+            { t: "Plain English, always", b: "If we can't explain it to a tradesperson, it's the wrong tool." },
+            { t: "We answer the phone", b: "Real human, UK-based. Not a chatbot." },
+            { t: "Pay for outcomes", b: "Custom pricing tied to the work, not seats or tiers." },
           ].map((p, i) => (
             <div key={i} style={{ padding: "14px 0", borderBottom: i < 3 ? "1px solid var(--line-2)" : "none" }}>
               <div style={{ display: "flex", alignItems: "flex-start", gap: 10 }}>
@@ -480,18 +501,18 @@ const AboutPage = ({ tw }) => (
       <SectionHead eyebrow="The team" title="Two founders. One phone number." />
       <div className="team-grid reveal">
         <div className="team-card">
-          <div className="avatar-placeholder">JOSH</div>
+          <img className="team-photo" src="/josh.jpg" alt="Josh Fisher" />
           <div>
             <h3>Josh Fisher</h3>
-            <div className="role">Co-founder · Technical Delivery</div>
+            <div className="role">Founder</div>
           </div>
           <p>{tw.joshBio}</p>
         </div>
         <div className="team-card">
-          <div className="avatar-placeholder">BILLY</div>
+          <img className="team-photo" src="/billy.jpg" alt="Billy Loughman" />
           <div>
             <h3>Billy Loughman</h3>
-            <div className="role">Co-founder · Sales</div>
+            <div className="role">Co-founder</div>
           </div>
           <p>{tw.billyBio}</p>
         </div>
@@ -508,7 +529,23 @@ const AboutPage = ({ tw }) => (
 const ContactPage = ({ tw }) => {
   const [form, setForm] = usePState({ name: "", email: "", business: "", services: "", note: "" });
   const [sent, setSent] = usePState(false);
-  const submit = (e) => { e.preventDefault(); setSent(true); };
+  const [sending, setSending] = usePState(false);
+
+  const submit = async (e) => {
+    e.preventDefault();
+    setSending(true);
+    try {
+      await fetch("https://formspree.io/f/mojpnokn", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        body: JSON.stringify(form),
+      });
+      setSent(true);
+    } catch (err) {
+      setSent(true);
+    }
+    setSending(false);
+  };
 
   return (
     <>
@@ -528,9 +565,6 @@ const ContactPage = ({ tw }) => {
               <div>
                 <h4>Pick a time</h4>
                 <p>Zoom or phone. UK working hours, plus evenings on request.</p>
-                <a className="btn btn-primary" style={{ marginTop: 12 }} href={tw.ctaUrl}>
-                  Open booking calendar <Icon name="arrow-up-right" size={14} />
-                </a>
               </div>
             </div>
             <div className="contact-item">
@@ -541,24 +575,24 @@ const ContactPage = ({ tw }) => {
               </div>
             </div>
             <div className="contact-item">
-              <div className="ic"><Icon name="phone" size={18} /></div>
-              <div>
-                <h4>Or just call</h4>
-                <p><a href={`tel:${tw.phone.replace(/\s/g, "")}`} style={{ color: "var(--brand)" }}>{tw.phone}</a> - a real person, every time.</p>
-              </div>
-            </div>
-            <div className="contact-item">
               <div className="ic"><Icon name="pin" size={18} /></div>
               <div>
                 <h4>Where we are</h4>
                 <p>{tw.location}. Working with businesses across the UK.</p>
               </div>
             </div>
+            <div className="contact-item">
+              <div className="ic"><Icon name="shield" size={18} /></div>
+              <div>
+                <h4>What you get</h4>
+                <p>A written plan showing where you're losing leads and what each fix is worth - free, whether or not we work together.</p>
+              </div>
+            </div>
           </div>
 
           <form className="card reveal" style={{ padding: 28, display: "flex", flexDirection: "column", gap: 16 }} onSubmit={submit}>
             <div>
-              <h3 className="display h3" style={{ marginBottom: 6 }}>Send a quick note</h3>
+              <h3 className="display h3" style={{ marginBottom: 6 }}>Get in touch</h3>
               <p style={{ color: "var(--muted)", fontSize: 14 }}>We'll reply within one working day.</p>
             </div>
             {sent ? (
@@ -580,7 +614,7 @@ const ContactPage = ({ tw }) => {
                   <input className="form-input" type="email" required value={form.email} onChange={(e) => setForm({...form, email: e.target.value})} placeholder="sam@example.co.uk" />
                 </div>
                 <div className="form-group">
-                  <label className="form-label">Business name & type</label>
+                  <label className="form-label">Business name and type</label>
                   <input className="form-input" value={form.business} onChange={(e) => setForm({...form, business: e.target.value})} placeholder="Carter Plumbing - domestic plumbing in Bristol" />
                 </div>
                 <div className="form-group">
@@ -594,12 +628,9 @@ const ContactPage = ({ tw }) => {
                   <label className="form-label">Anything else?</label>
                   <textarea className="form-textarea" value={form.note} onChange={(e) => setForm({...form, note: e.target.value})} placeholder="A line or two about what you're hoping to fix." />
                 </div>
-                <button className="btn btn-primary btn-lg" style={{ justifyContent: "center" }} type="submit">
-                  Send message <Icon name="arrow-right" size={14} />
+                <button className="btn btn-primary btn-lg" style={{ justifyContent: "center" }} type="submit" disabled={sending}>
+                  {sending ? "Sending..." : "Send message"} {!sending && <Icon name="arrow-right" size={14} />}
                 </button>
-                <p style={{ fontSize: 12, color: "var(--muted-2)", textAlign: "center" }}>
-                  Or skip the form and <a href={tw.ctaUrl} style={{ color: "var(--brand)" }}>book a call directly</a>.
-                </p>
               </>
             )}
           </form>
