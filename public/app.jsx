@@ -56,7 +56,6 @@ const App = () => {
         <TweakSection label="CTA & contact">
           <TweakText label="Booking URL" value={tw.ctaUrl} onChange={(v) => setTweak("ctaUrl", v)} />
           <TweakText label="Email" value={tw.email} onChange={(v) => setTweak("email", v)} />
-          <TweakText label="Phone" value={tw.phone} onChange={(v) => setTweak("phone", v)} />
           <TweakText label="Location" value={tw.location} onChange={(v) => setTweak("location", v)} />
         </TweakSection>
         <TweakSection label="CTA banner">

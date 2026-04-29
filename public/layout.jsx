@@ -48,7 +48,7 @@ const Nav = ({ currentRoute }) => {
   const scrolled = useScrolled();
   const [open, setOpen] = useState(false);
   return (
-    <header className={`nav nav-dark ${scrolled ? "scrolled" : ""}`}>
+    <header className={`nav ${scrolled ? "scrolled" : ""}`}>
       <div className="container nav-inner">
         <a href="#/" aria-label="FisherDigital home"><Logo /></a>
         <nav className="nav-links" aria-label="Primary">
@@ -109,19 +109,14 @@ const Nav = ({ currentRoute }) => {
 };
 
 const Footer = ({ tw }) => (
-  <footer className="footer footer-dark">
+  <footer className="footer">
     <div className="container">
       <div className="footer-grid">
         <div className="footer-col" style={{ maxWidth: 320 }}>
           <Logo />
-          <p style={{ marginTop: 12, fontSize: 14, color: "var(--dark-muted)" }}>
-            Automation built for local service businesses. Based in the UK.
+          <p style={{ marginTop: 10, fontSize: 14, color: "var(--dark-muted)" }}>
+            We help local service businesses capture more leads, save time, and grow — without learning new software.
           </p>
-          <div style={{ display: "flex", gap: 8, marginTop: 20 }}>
-            <span className="pill" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid var(--dark-line)", color: "var(--dark-muted)" }}>
-              <span className="pill-dot" /> Accepting new clients
-            </span>
-          </div>
         </div>
         <div className="footer-col">
           <h5>Pages</h5>
