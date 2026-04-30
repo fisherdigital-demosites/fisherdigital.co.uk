@@ -877,9 +877,8 @@ const CareersPage = () => {
               )}
             </div>
           </div>
-        </div>
 
-          <div className="container" style={{ marginTop: 56 }}>
+          <div style={{ marginTop: 56 }}>
             <div className="cta-banner reveal" style={{ background: "var(--dark-surface)", border: "1px solid var(--dark-line)" }}>
               <div>
                 <h2>Don't see the right role?</h2>
