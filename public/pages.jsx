@@ -1,9 +1,9 @@
-/* global React, Icon, SERVICES */
+/* global React, Icon, SERVICES, FAQ_ITEMS, CAREER_ROLES */
 const { useState: usePState } = React;
 
 // ---------- Reusable ----------
-const SectionHead = ({ eyebrow, title, lead }) => (
-  <div className="section-head reveal">
+const SectionHead = ({ eyebrow, title, lead, center }) => (
+  <div className={`section-head reveal${center ? " section-head-center" : ""}`}>
     {eyebrow && <span className="eyebrow">{eyebrow}</span>}
     <h2>{title}</h2>
     {lead && <p className="lead">{lead}</p>}
@@ -34,6 +34,19 @@ const CTABanner = ({ tw }) => (
     </div>
   </section>
 );
+
+const FAQItem = ({ item }) => {
+  const [open, setOpen] = usePState(false);
+  return (
+    <div className={`faq-item${open ? " open" : ""}`} onClick={() => setOpen(!open)}>
+      <div className="faq-q">
+        <span>{item.q}</span>
+        <span className="faq-icon"><Icon name={open ? "close" : "plus"} size={14} /></span>
+      </div>
+      {open && <div className="faq-a">{item.a}</div>}
+    </div>
+  );
+};
 
 // ---------- HOME ----------
 const Home = ({ tw }) => (
@@ -130,6 +143,19 @@ const Home = ({ tw }) => (
           <div className="stat"><div className="num">0</div><div className="label">Hours spent chasing reviews</div></div>
           <div className="stat"><div className="num">2-4w</div><div className="label">From kickoff to live</div></div>
         </div>
+      </div>
+    </section>
+
+    {/* FAQ */}
+    <section className="section container">
+      <SectionHead
+        eyebrow="FAQ"
+        title="Common questions"
+        lead="Everything you need to know before getting started."
+        center
+      />
+      <div className="faq-list reveal">
+        {FAQ_ITEMS.map((item, i) => <FAQItem key={i} item={item} />)}
       </div>
     </section>
 
@@ -440,7 +466,7 @@ const AboutPage = ({ tw }) => (
     </section>
 
     <section className="section container">
-      <div style={{ display: "grid", gridTemplateColumns: "1.1fr 1fr", gap: 56, alignItems: "start" }} className="reveal">
+      <div className="about-grid reveal">
         <div>
           <span className="eyebrow" style={{ marginBottom: 12, display: "inline-flex" }}>Our story</span>
           <h2 style={{ marginTop: 12, marginBottom: 18 }}>Big company systems, set up for small businesses.</h2>
@@ -498,6 +524,105 @@ const AboutPage = ({ tw }) => (
 
     <section className="section">
       <CTABanner tw={tw} />
+    </section>
+  </>
+);
+
+// ---------- CAREERS ----------
+const CareersPage = () => (
+  <>
+    <section className="page-header">
+      <div className="container">
+        <span className="eyebrow">Careers</span>
+        <h1>Help local businesses grow. <span className="accent">Get paid well doing it.</span></h1>
+        <p className="lead">We're building a team of driven, self-starting people who want to earn real money while helping real businesses. Fully remote. Commission-based. No ceiling on what you can earn.</p>
+      </div>
+    </section>
+
+    <section className="section container">
+      <div className="careers-why reveal">
+        <SectionHead eyebrow="Why FisherDigital" title="What you're joining" />
+        <div className="careers-perks">
+          <div className="perk-card">
+            <div className="perk-icon"><Icon name="pound" size={20} /></div>
+            <h3>Uncapped earnings</h3>
+            <p>Commission-based with no ceiling. The more you close or book, the more you earn. Simple.</p>
+          </div>
+          <div className="perk-card">
+            <div className="perk-icon"><Icon name="clock" size={20} /></div>
+            <h3>Flexible hours</h3>
+            <p>Work around your schedule. We care about results, not when you clock in.</p>
+          </div>
+          <div className="perk-card">
+            <div className="perk-icon"><Icon name="target" size={20} /></div>
+            <h3>Real impact</h3>
+            <p>You're helping local businesses capture more revenue. The results are tangible and immediate.</p>
+          </div>
+          <div className="perk-card">
+            <div className="perk-icon"><Icon name="zap" size={20} /></div>
+            <h3>Ground floor</h3>
+            <p>Join early. As we scale, the people who helped build this will be the ones leading it.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section className="section dark-section">
+      <div className="glow glow-1" style={{ opacity: 0.5 }} />
+      <div className="container" style={{ position: "relative", zIndex: 1 }}>
+        <SectionHead eyebrow="Open positions" title="We're hiring" />
+        <div className="roles-list">
+          {CAREER_ROLES.map((role) => (
+            <div key={role.id} className="role-card reveal">
+              <div className="role-header">
+                <div>
+                  <h3>{role.title}</h3>
+                  <div className="role-tags">
+                    <span className="role-tag"><Icon name="pound" size={12} /> {role.type}</span>
+                    <span className="role-tag"><Icon name="pin" size={12} /> {role.location}</span>
+                  </div>
+                </div>
+              </div>
+              <p className="role-desc">{role.description}</p>
+              <div className="role-sections">
+                <div>
+                  <h4>What you'll do</h4>
+                  <ul className="role-list">
+                    {role.responsibilities.map((r, i) => <li key={i}><Icon name="check" size={13} /> {r}</li>)}
+                  </ul>
+                </div>
+                <div>
+                  <h4>What we're looking for</h4>
+                  <ul className="role-list">
+                    {role.requirements.map((r, i) => <li key={i}><Icon name="check" size={13} /> {r}</li>)}
+                  </ul>
+                </div>
+                <div>
+                  <h4>What you'll get</h4>
+                  <ul className="role-list">
+                    {role.offer.map((r, i) => <li key={i}><Icon name="check" size={13} /> {r}</li>)}
+                  </ul>
+                </div>
+              </div>
+              <a className="btn btn-white btn-lg" href={`mailto:hello@fisherdigital.co.uk?subject=Application: ${role.title}&body=Hi FisherDigital,%0D%0A%0D%0AI'm interested in the ${role.title} role.%0D%0A%0D%0A[Tell us a bit about yourself and why you'd be a good fit]`}>
+                Apply for this role <Icon name="arrow-right" size={14} />
+              </a>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section className="section container">
+      <div className="inline-form-section reveal" style={{ textAlign: "center" }}>
+        <h2 style={{ marginBottom: 14 }}>Don't see the right role?</h2>
+        <p className="lead" style={{ margin: "0 auto", textAlign: "center" }}>We're always interested in hearing from driven people. Drop us a line and tell us what you're good at.</p>
+        <div style={{ marginTop: 28 }}>
+          <a className="btn btn-primary btn-lg" href="mailto:hello@fisherdigital.co.uk?subject=General Application&body=Hi FisherDigital,%0D%0A%0D%0AI'm interested in working with you.%0D%0A%0D%0A[Tell us about yourself]">
+            Get in touch <Icon name="arrow-right" size={14} />
+          </a>
+        </div>
+      </div>
     </section>
   </>
 );
@@ -622,7 +747,165 @@ const ContactPage = ({ tw }) => {
   );
 };
 
+// ---------- PRIVACY POLICY ----------
+const PrivacyPage = () => (
+  <>
+    <section className="page-header">
+      <div className="container">
+        <span className="eyebrow">Legal</span>
+        <h1>Privacy Policy</h1>
+        <p className="lead">Last updated: 30 April 2026</p>
+      </div>
+    </section>
+    <section className="section container">
+      <div className="legal-content reveal">
+        <h2>Who we are</h2>
+        <p>FisherDigital is an AI automation agency based in the United Kingdom, operated by Joshua Fisher. We help local service businesses capture more leads, automate admin, and grow using AI-powered tools.</p>
+        <p>Contact: <a href="mailto:hello@fisherdigital.co.uk">hello@fisherdigital.co.uk</a></p>
+        <p>Website: <a href="https://fisherdigital.co.uk">fisherdigital.co.uk</a></p>
+
+        <h2>What data we collect</h2>
+        <h3>Information you provide</h3>
+        <ul>
+          <li><strong>Contact form submissions:</strong> name, email address, business name, and your message.</li>
+          <li><strong>Job applications:</strong> name, email, and any information you include in your application email.</li>
+          <li><strong>Email correspondence:</strong> any information you send us via email.</li>
+        </ul>
+
+        <h3>Information collected automatically</h3>
+        <ul>
+          <li><strong>Analytics:</strong> We use Google Analytics with IP anonymisation enabled to understand how visitors use our site. This includes pages visited, time spent, and referral sources.</li>
+          <li><strong>Cookies:</strong> We use essential and analytics cookies. See our <a href="#/cookies">Cookie Policy</a> for full details.</li>
+        </ul>
+
+        <h3>Information we do not collect</h3>
+        <ul>
+          <li>We do not collect payment card details. All payments are processed securely by Stripe.</li>
+          <li>We do not use advertising or tracking cookies.</li>
+          <li>We do not sell, rent, or share your personal data with third parties for marketing purposes.</li>
+        </ul>
+
+        <h2>How we use your data</h2>
+        <ul>
+          <li>To respond to your enquiries and provide our services.</li>
+          <li>To process job applications.</li>
+          <li>To improve our website and understand how visitors use it.</li>
+          <li>To comply with legal obligations.</li>
+        </ul>
+        <p>We will not send you marketing communications unless you explicitly opt in.</p>
+
+        <h2>Third parties</h2>
+        <p>We use the following third-party services that may process your data:</p>
+        <ul>
+          <li><strong>Formspree</strong> - form submission processing (<a href="https://formspree.io/legal/privacy-policy" target="_blank" rel="noopener">privacy policy</a>)</li>
+          <li><strong>Google Analytics</strong> - website analytics with IP anonymisation (<a href="https://policies.google.com/privacy" target="_blank" rel="noopener">privacy policy</a>)</li>
+          <li><strong>Stripe</strong> - payment processing (<a href="https://stripe.com/gb/privacy" target="_blank" rel="noopener">privacy policy</a>)</li>
+          <li><strong>GoHighLevel</strong> - CRM and client management (<a href="https://www.gohighlevel.com/privacy-policy" target="_blank" rel="noopener">privacy policy</a>)</li>
+        </ul>
+
+        <h2>Your rights under UK GDPR</h2>
+        <p>You have the right to:</p>
+        <ul>
+          <li><strong>Access</strong> the personal data we hold about you.</li>
+          <li><strong>Correct</strong> any inaccurate data.</li>
+          <li><strong>Delete</strong> your data (the "right to be forgotten").</li>
+          <li><strong>Object</strong> to processing of your data.</li>
+          <li><strong>Data portability</strong> - receive your data in a structured, machine-readable format.</li>
+        </ul>
+        <p>To exercise any of these rights, email us at <a href="mailto:hello@fisherdigital.co.uk">hello@fisherdigital.co.uk</a>. We will respond within 30 days.</p>
+
+        <h2>Data retention</h2>
+        <ul>
+          <li><strong>Contact form submissions:</strong> retained for as long as needed to respond to your enquiry, then deleted.</li>
+          <li><strong>Client data:</strong> retained for the duration of our engagement plus 6 years for legal and accounting purposes.</li>
+          <li><strong>Analytics data:</strong> anonymised and retained for 14 months by Google Analytics.</li>
+        </ul>
+
+        <h2>Data security</h2>
+        <p>We take reasonable measures to protect your data, including encrypted connections (HTTPS), secure access controls, and regular review of our data practices.</p>
+
+        <h2>Changes to this policy</h2>
+        <p>We may update this policy from time to time. Changes will be posted on this page with an updated date.</p>
+
+        <h2>Contact</h2>
+        <p>For any questions about this policy or your data, contact us at <a href="mailto:hello@fisherdigital.co.uk">hello@fisherdigital.co.uk</a>.</p>
+      </div>
+    </section>
+  </>
+);
+
+// ---------- COOKIE POLICY ----------
+const CookiePage = () => (
+  <>
+    <section className="page-header">
+      <div className="container">
+        <span className="eyebrow">Legal</span>
+        <h1>Cookie Policy</h1>
+        <p className="lead">Last updated: 30 April 2026</p>
+      </div>
+    </section>
+    <section className="section container">
+      <div className="legal-content reveal">
+        <h2>What are cookies?</h2>
+        <p>Cookies are small text files stored on your device when you visit a website. They help the site work properly, remember your preferences, and understand how you use the site.</p>
+
+        <h2>Cookies we use</h2>
+
+        <h3>Essential cookies</h3>
+        <p>These are necessary for the website to function and cannot be switched off.</p>
+        <div className="cookie-table">
+          <table>
+            <thead><tr><th>Cookie</th><th>Purpose</th><th>Duration</th></tr></thead>
+            <tbody>
+              <tr><td><code>cookie_consent</code></td><td>Remembers your cookie preferences</td><td>1 year</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Analytics cookies</h3>
+        <p>These help us understand how visitors use our site. All data is anonymised. These are only set if you accept analytics cookies.</p>
+        <div className="cookie-table">
+          <table>
+            <thead><tr><th>Cookie</th><th>Purpose</th><th>Duration</th></tr></thead>
+            <tbody>
+              <tr><td><code>_ga</code></td><td>Distinguishes unique visitors (Google Analytics)</td><td>2 years</td></tr>
+              <tr><td><code>_ga_*</code></td><td>Maintains session state (Google Analytics)</td><td>2 years</td></tr>
+              <tr><td><code>_gid</code></td><td>24-hour unique visitor identification</td><td>24 hours</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Cookies we do not use</h3>
+        <ul>
+          <li>No advertising or remarketing cookies.</li>
+          <li>No social media tracking cookies.</li>
+          <li>No cross-site tracking.</li>
+        </ul>
+
+        <h2>Managing cookies</h2>
+        <p>You can manage your cookie preferences using the cookie banner that appears when you first visit our site. You can also manage cookies through your browser settings:</p>
+        <ul>
+          <li><a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener">Chrome</a></li>
+          <li><a href="https://support.mozilla.org/en-US/kb/cookies-information-websites-store-on-your-computer" target="_blank" rel="noopener">Firefox</a></li>
+          <li><a href="https://support.apple.com/en-gb/guide/safari/sfri11471/mac" target="_blank" rel="noopener">Safari</a></li>
+          <li><a href="https://support.microsoft.com/en-us/microsoft-edge/delete-cookies-in-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09" target="_blank" rel="noopener">Edge</a></li>
+        </ul>
+        <p>You can also opt out of Google Analytics across all websites by installing the <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">Google Analytics opt-out browser add-on</a>.</p>
+
+        <h2>Changes to this policy</h2>
+        <p>We may update this policy from time to time. Changes will be posted on this page with an updated date.</p>
+
+        <h2>Contact</h2>
+        <p>For any questions about cookies, contact us at <a href="mailto:hello@fisherdigital.co.uk">hello@fisherdigital.co.uk</a>.</p>
+      </div>
+    </section>
+  </>
+);
+
 window.Home = Home;
 window.ServicesPage = ServicesPage;
 window.AboutPage = AboutPage;
+window.CareersPage = CareersPage;
 window.ContactPage = ContactPage;
+window.PrivacyPage = PrivacyPage;
+window.CookiePage = CookiePage;

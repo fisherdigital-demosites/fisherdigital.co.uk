@@ -53,8 +53,80 @@ const NAV_ITEMS = [
   { href: "#/", label: "Home" },
   { href: "#/services", label: "Services" },
   { href: "#/about", label: "About" },
+  { href: "#/careers", label: "Careers" },
   { href: "#/contact", label: "Contact" },
 ];
+
+const FAQ_ITEMS = [
+  { q: "How much does it cost?", a: "Every business is different, so we price based on what you actually need. Most clients pay a monthly fee that covers setup, management, and ongoing support. We'll give you a clear breakdown on your discovery call, no hidden costs." },
+  { q: "How long does setup take?", a: "Most systems are live within 2 to 4 weeks. We handle everything: configuration, training the AI on your business, testing, and handover. You don't need to learn any new software." },
+  { q: "Do I need to sign a long contract?", a: "No. We work on rolling monthly agreements. If it's not working for you, you can cancel anytime. We'd rather earn your business every month than lock you in." },
+  { q: "Will my customers know they're talking to AI?", a: "The AI is trained to sound natural and helpful, not robotic. Most callers don't realise. But we're always transparent: if a customer asks directly, the system will let them know and offer to connect them with a real person." },
+  { q: "What happens if the AI can't handle a question?", a: "It escalates to you or your team immediately via text, email, or call transfer. The AI knows its limits and will always hand over rather than give a wrong answer." },
+  { q: "Do I need any technical knowledge?", a: "None at all. We set everything up, manage it, and send you monthly reports. If something needs changing, you just message us." },
+  { q: "Can I start with just one service?", a: "Absolutely. Most clients start with phone answering or missed call text-back and add more as they see results. We'll recommend what to start with based on your discovery call." },
+  { q: "What industries do you work with?", a: "Any local service business: plumbers, electricians, dentists, salons, restaurants, law firms, estate agents, gyms, vets, and more. If you serve customers locally, we can help." },
+];
+
+const CAREER_ROLES = [
+  {
+    id: "appointment-setter",
+    title: "Appointment Setter",
+    type: "Commission-Based",
+    location: "Remote (UK)",
+    description: "You'll be the first point of contact for potential clients. Your job is to reach out to local service businesses, start conversations, and book discovery calls for our sales team. No hard selling. Just genuine conversations about how we can help.",
+    responsibilities: [
+      "Reach out to qualified local businesses via phone and email",
+      "Start conversations and identify businesses that need our help",
+      "Book discovery calls with interested prospects",
+      "Keep our CRM updated with accurate notes",
+      "Hit weekly booking targets",
+    ],
+    requirements: [
+      "Confident and clear communicator",
+      "Self-motivated and comfortable working independently",
+      "Experience in outbound calling or sales development is a plus, but not essential",
+      "Based in the UK with a reliable internet connection",
+      "Available for at least 20 hours per week",
+    ],
+    offer: [
+      "Uncapped commission on every booked call that converts",
+      "Full training on our services, scripts, and tools",
+      "Flexible hours that fit around your schedule",
+      "Real growth opportunity as we scale",
+    ],
+  },
+  {
+    id: "closer",
+    title: "Sales Closer",
+    type: "Commission-Based",
+    location: "Remote (UK)",
+    description: "You'll run discovery calls with local business owners, understand their pain points, and close deals. You're not selling software. You're solving real problems for real people, and getting paid well for it.",
+    responsibilities: [
+      "Run 20-minute discovery calls with pre-qualified prospects",
+      "Diagnose where the business is losing leads or wasting time",
+      "Present tailored solutions from our service catalogue",
+      "Close deals and hand off to our delivery team",
+      "Follow up with warm prospects who need more time",
+    ],
+    requirements: [
+      "Proven experience closing B2B or B2C service sales",
+      "Comfortable running video or phone calls",
+      "Consultative selling style, not pushy or scripted",
+      "Based in the UK",
+      "Available for calls during UK business hours",
+    ],
+    offer: [
+      "High-value commissions on recurring monthly contracts",
+      "Pre-qualified leads booked into your calendar",
+      "Full training on AI services and objection handling",
+      "Be part of a growing agency from the ground floor",
+    ],
+  },
+];
+
+window.FAQ_ITEMS = FAQ_ITEMS;
+window.CAREER_ROLES = CAREER_ROLES;
 
 window.DEFAULT_CONTENT = DEFAULT_CONTENT;
 window.SERVICES = SERVICES;

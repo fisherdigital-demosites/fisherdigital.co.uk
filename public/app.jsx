@@ -1,6 +1,6 @@
-/* global React, ReactDOM, useHashRoute, useReveal, Nav, Footer, Home, ServicesPage, AboutPage, ContactPage, DEFAULT_CONTENT, useTweaks, TweaksPanel, TweakSection, TweakText */
+/* global React, ReactDOM, useHashRoute, useReveal, Nav, Footer, CookieBanner, Home, ServicesPage, AboutPage, CareersPage, ContactPage, PrivacyPage, CookiePage, DEFAULT_CONTENT, useTweaks, TweaksPanel, TweakSection, TweakText */
 
-// Multi-line text input for the Tweaks panel — there's no built-in TweakLongText.
+// Multi-line text input for the Tweaks panel
 const TweakLongText = ({ label, value, onChange }) => (
   <div className="twk-row" style={{ display: "flex", flexDirection: "column", gap: 4 }}>
     <label style={{ fontSize: 11, color: "#9aa0a6" }}>{label}</label>
@@ -22,15 +22,12 @@ const { useEffect } = React;
 
 const App = () => {
   const route = useHashRoute();
-  // Strip anchor for matching: "#/services#ai-receptionist" -> "#/services"
   const baseRoute = route.split("#").slice(0, 2).join("#") || "#/";
 
   const [tw, setTweak] = useTweaks(DEFAULT_CONTENT);
 
-  // re-run reveal observer on route change
   useReveal();
   useEffect(() => {
-    // also force a reveal pass after page swap (some elements may already be visible)
     const els = document.querySelectorAll(".reveal:not(.in)");
     els.forEach((el) => {
       const r = el.getBoundingClientRect();
@@ -42,7 +39,10 @@ const App = () => {
   switch (baseRoute) {
     case "#/services": Page = ServicesPage; break;
     case "#/about": Page = AboutPage; break;
+    case "#/careers": Page = CareersPage; break;
     case "#/contact": Page = ContactPage; break;
+    case "#/privacy": Page = PrivacyPage; break;
+    case "#/cookies": Page = CookiePage; break;
     default: Page = Home;
   }
 
@@ -51,6 +51,7 @@ const App = () => {
       <Nav currentRoute={baseRoute} />
       <main key={baseRoute}><Page tw={tw} /></main>
       <Footer tw={tw} />
+      <CookieBanner />
 
       <TweaksPanel title="Tweaks · Content">
         <TweakSection label="CTA & contact">

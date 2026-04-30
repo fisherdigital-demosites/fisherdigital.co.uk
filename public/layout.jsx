@@ -115,7 +115,7 @@ const Footer = ({ tw }) => (
         <div className="footer-col" style={{ maxWidth: 320 }}>
           <Logo />
           <p style={{ marginTop: 10, fontSize: 14, color: "var(--dark-muted)" }}>
-            We help local service businesses capture more leads, save time, and grow — without learning new software.
+            We help local service businesses capture more leads, save time, and grow using AI-powered automation.
           </p>
         </div>
         <div className="footer-col">
@@ -124,6 +124,7 @@ const Footer = ({ tw }) => (
             <li><a href="#/">Home</a></li>
             <li><a href="#/services">Services</a></li>
             <li><a href="#/about">About</a></li>
+            <li><a href="#/careers">Careers</a></li>
             <li><a href="#/contact">Contact</a></li>
           </ul>
         </div>
@@ -145,17 +146,54 @@ const Footer = ({ tw }) => (
         </div>
       </div>
       <div className="footer-bottom">
-        <span>&copy; 2026 FisherDigital Ltd. Based in the UK.</span>
+        <span>&copy; 2026 FisherDigital. Based in the UK.</span>
         <span style={{ display: "inline-flex", gap: 16 }}>
-          <a href="#">Privacy</a>
-          <a href="#">Terms</a>
+          <a href="#/privacy">Privacy</a>
+          <a href="#/cookies">Cookies</a>
         </span>
       </div>
     </div>
   </footer>
 );
 
+const CookieBanner = () => {
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const consent = localStorage.getItem("cookie_consent");
+    if (!consent) setVisible(true);
+  }, []);
+
+  const accept = () => {
+    localStorage.setItem("cookie_consent", "accepted");
+    setVisible(false);
+  };
+
+  const decline = () => {
+    localStorage.setItem("cookie_consent", "declined");
+    setVisible(false);
+  };
+
+  if (!visible) return null;
+
+  return (
+    <div className="cookie-banner">
+      <div className="cookie-banner-inner">
+        <div className="cookie-banner-text">
+          <Icon name="cookie" size={18} />
+          <p>We use cookies to improve your experience. Analytics cookies help us understand how you use the site. <a href="#/cookies">Cookie Policy</a></p>
+        </div>
+        <div className="cookie-banner-actions">
+          <button className="btn btn-sm" onClick={decline} style={{ color: "var(--dark-muted)", border: "1px solid var(--dark-line)" }}>Decline</button>
+          <button className="btn btn-primary btn-sm" onClick={accept}>Accept</button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 window.useHashRoute = useHashRoute;
 window.useReveal = useReveal;
 window.Nav = Nav;
 window.Footer = Footer;
+window.CookieBanner = CookieBanner;

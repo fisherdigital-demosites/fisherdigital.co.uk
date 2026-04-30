@@ -151,6 +151,59 @@ const Icon = ({ name, size = 22, stroke = 1.5 }) => {
           <path d="M14 4h7v7" />
         </svg>
       );
+    case "briefcase":
+      return (
+        <svg {...props}>
+          <rect x="2" y="7" width="20" height="13" rx="2" />
+          <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" />
+          <path d="M2 12h20" opacity=".5" />
+        </svg>
+      );
+    case "users":
+      return (
+        <svg {...props}>
+          <circle cx="9" cy="7" r="3" />
+          <path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2" />
+          <circle cx="17" cy="7" r="2.5" opacity=".6" />
+          <path d="M21 21v-2a3 3 0 0 0-2-2.8" opacity=".6" />
+        </svg>
+      );
+    case "chevron-down":
+      return (
+        <svg {...props}>
+          <path d="m6 9 6 6 6-6" />
+        </svg>
+      );
+    case "pound":
+      return (
+        <svg {...props}>
+          <path d="M7 20h10M8 14h6M9 8a3 3 0 0 1 6 0c0 3-2 6-4 12" />
+        </svg>
+      );
+    case "target":
+      return (
+        <svg {...props}>
+          <circle cx="12" cy="12" r="9" />
+          <circle cx="12" cy="12" r="5" opacity=".6" />
+          <circle cx="12" cy="12" r="1" fill="currentColor" />
+        </svg>
+      );
+    case "zap":
+      return (
+        <svg {...props}>
+          <path d="M13 2 3 14h9l-1 8 10-12h-9l1-8Z" />
+        </svg>
+      );
+    case "cookie":
+      return (
+        <svg {...props}>
+          <circle cx="12" cy="12" r="9" />
+          <circle cx="8" cy="9" r="1" fill="currentColor" />
+          <circle cx="14" cy="8" r="1" fill="currentColor" />
+          <circle cx="10" cy="14" r="1" fill="currentColor" />
+          <circle cx="15" cy="13" r="1" fill="currentColor" />
+        </svg>
+      );
     default:
       return null;
   }
