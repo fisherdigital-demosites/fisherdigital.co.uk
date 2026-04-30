@@ -1505,8 +1505,9 @@ h3 { font-size: clamp(20px, 2vw, 26px); }
 
 /* ═══ Tablet ═══ */
 @media (max-width: 768px) {
-  .section { padding: 56px 0; }
+  .section { padding: 48px 0; }
   .container { padding: 0 20px; }
+  .section-head { margin-bottom: 32px; }
   .hero { padding: 48px 0 56px; }
   .hero h1 { font-size: clamp(28px, 7vw, 40px); }
   .hero .lead { font-size: 16px; }
@@ -1525,11 +1526,12 @@ h3 { font-size: clamp(20px, 2vw, 26px); }
 
 /* ═══ Mobile ═══ */
 @media (max-width: 480px) {
-  .section { padding: 44px 0; }
+  .section { padding: 36px 0; }
   .container { padding: 0 16px; }
+  body { padding-bottom: 80px; }
 
   /* Hero */
-  .hero { padding: 40px 0 48px; }
+  .hero { padding: 36px 0 40px; }
   .hero h1 { font-size: 26px; line-height: 1.12; }
   .hero .lead { font-size: 15px; margin-top: 16px; line-height: 1.6; }
   .hero-cta-row { margin-top: 24px; }
@@ -1548,7 +1550,7 @@ h3 { font-size: clamp(20px, 2vw, 26px); }
   .btn { font-size: 13px; padding: 10px 16px; }
 
   /* Section heads */
-  .section-head { margin-bottom: 0; }
+  .section-head { margin-bottom: 20px; gap: 10px; }
 
   /* Page headers */
   .page-header { padding: 44px 0 36px; }
@@ -1666,6 +1668,11 @@ h3 { font-size: clamp(20px, 2vw, 26px); }
   .footer-bottom { padding-top: 16px; font-size: 12px; }
 
   /* Cookie banner */
-  .cookie-banner-inner { flex-direction: column; gap: 12px; }
-  .cookie-banner-text p { font-size: 12px; }
+  .cookie-banner { padding: 10px 0; }
+  .cookie-banner-inner { flex-direction: column; gap: 8px; padding: 0 16px; }
+  .cookie-banner-text { gap: 6px; }
+  .cookie-banner-text p { font-size: 11px; line-height: 1.4; }
+  .cookie-banner-text svg { display: none; }
+  .cookie-banner-actions { gap: 6px; }
+  .cookie-banner-actions .btn { padding: 6px 14px; font-size: 12px; }
 }
