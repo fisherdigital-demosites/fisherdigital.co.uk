@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://fisherdigital.co.uk/sitemap-index.xml
+Sitemap: https://fisherdigital.co.uk/sitemap.xml

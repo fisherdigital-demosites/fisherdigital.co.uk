@@ -878,17 +878,18 @@ const CareersPage = () => {
             </div>
           </div>
         </div>
-      </section>
 
-      <section className="container" style={{ marginBottom: 80 }}>
-        <div className="cta-banner reveal">
-          <div>
-            <h2>Don't see the right role?</h2>
-            <p>We're always interested in hearing from driven people. Drop us a line and tell us what you're good at.</p>
+          <div className="container" style={{ marginTop: 56 }}>
+            <div className="cta-banner reveal" style={{ background: "var(--dark-surface)", border: "1px solid var(--dark-line)" }}>
+              <div>
+                <h2>Don't see the right role?</h2>
+                <p>We're always interested in hearing from driven people. Drop us a line and tell us what you're good at.</p>
+              </div>
+              <a className="btn btn-white btn-lg" href="mailto:hello@fisherdigital.co.uk?subject=General Application">
+                Get in touch <Icon name="arrow-right" size={14} />
+              </a>
+            </div>
           </div>
-          <a className="btn btn-primary btn-lg" href="mailto:hello@fisherdigital.co.uk?subject=General Application" style={{ position: "relative", zIndex: 1 }}>
-            Get in touch <Icon name="arrow-right" size={14} />
-          </a>
         </div>
       </section>
     </>
