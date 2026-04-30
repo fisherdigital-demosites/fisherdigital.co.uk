@@ -132,23 +132,23 @@ const Home = ({ tw }) => (
       <SectionHead
         eyebrow="Who we help"
         title="Built for the businesses that keep your high street running."
-        center
+        lead="Whether you're a solo tradesperson or a growing practice, we set up the same systems used by businesses ten times your size."
       />
-      <div className="industry-grid reveal">
+      <div className="industry-showcase reveal">
         {[
-          { icon: "wrench", name: "Tradespeople", sub: "Plumbers, electricians, builders" },
-          { icon: "smile", name: "Dental & Medical", sub: "Dentists, physios, clinics" },
-          { icon: "scissors", name: "Hair & Beauty", sub: "Salons, barbers, spas" },
-          { icon: "utensils", name: "Hospitality", sub: "Restaurants, cafes, hotels" },
-          { icon: "briefcase", name: "Professional Services", sub: "Law firms, accountants, estate agents" },
-          { icon: "dumbbell", name: "Fitness & Wellness", sub: "Gyms, PTs, yoga studios" },
-          { icon: "car", name: "Automotive", sub: "Garages, detailers, MOT centres" },
-          { icon: "home", name: "Property", sub: "Cleaners, landscapers, maintenance" },
+          { name: "Tradespeople", sub: "Plumbers, electricians, roofers, builders", img: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=600&h=400&fit=crop&q=80" },
+          { name: "Dental & Medical", sub: "Dentists, physios, clinics, opticians", img: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=600&h=400&fit=crop&q=80" },
+          { name: "Hair & Beauty", sub: "Salons, barbers, spas, aesthetics", img: "https://images.unsplash.com/photo-1560066984-138dadb4c035?w=600&h=400&fit=crop&q=80" },
+          { name: "Hospitality", sub: "Restaurants, cafes, hotels, pubs", img: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&h=400&fit=crop&q=80" },
+          { name: "Professional Services", sub: "Law firms, accountants, estate agents", img: "https://images.unsplash.com/photo-1556761175-4b46a572b786?w=600&h=400&fit=crop&q=80" },
+          { name: "Fitness & Wellness", sub: "Gyms, personal trainers, yoga studios", img: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&h=400&fit=crop&q=80" },
         ].map((ind, i) => (
-          <div key={i} className="industry-card">
-            <div className="industry-icon"><Icon name={ind.icon} size={20} /></div>
-            <h4 className="industry-name">{ind.name}</h4>
-            <p className="industry-sub">{ind.sub}</p>
+          <div key={i} className="industry-tile">
+            <img src={ind.img} alt={ind.name} loading="lazy" />
+            <div className="industry-tile-overlay">
+              <h4>{ind.name}</h4>
+              <p>{ind.sub}</p>
+            </div>
           </div>
         ))}
       </div>
@@ -161,8 +161,17 @@ const Home = ({ tw }) => (
         title="We handle the leads, the follow-ups, and the admin you don't have time for."
         lead="Every business is different. We start with a free audit of where you're losing leads and time, then set up only what will actually make a difference."
       />
-      <div className="svc-grid reveal">
-        {SERVICES.map((s) => <ServiceCard key={s.id} s={s} />)}
+      <div className="svc-list reveal">
+        {SERVICES.map((s, i) => (
+          <a key={s.id} href={`#/services#${s.id}`} className="svc-list-item">
+            <span className="svc-list-icon"><Icon name={s.icon} size={18} /></span>
+            <div className="svc-list-text">
+              <strong>{s.name}</strong>
+              <span>{s.oneLine}</span>
+            </div>
+            <span className="svc-list-arrow"><Icon name="arrow-right" size={14} /></span>
+          </a>
+        ))}
       </div>
       <div className="section-cta reveal" style={{ textAlign: "center", marginTop: 40 }}>
         <a className="btn btn-primary btn-lg" href="#/services">
@@ -214,25 +223,27 @@ const Home = ({ tw }) => (
     </section>
 
     {/* Why FisherDigital */}
-    <section className="section container">
-      <SectionHead
-        eyebrow="Why us"
-        title="What makes FisherDigital different"
-        center
-      />
-      <div className="why-grid reveal">
-        {[
-          { icon: "shield", title: "No contracts", desc: "Rolling monthly. Cancel anytime. We earn your business every month." },
-          { icon: "clock", title: "Live in 2-4 weeks", desc: "From first call to fully running. We handle all the setup." },
-          { icon: "check", title: "We manage everything", desc: "You never log into a dashboard. We handle it all and send monthly reports." },
-          { icon: "pin", title: "UK-based team", desc: "Real people in the same timezone. Message us anytime." },
-        ].map((w, i) => (
-          <div key={i} className="why-card">
-            <div className="why-icon"><Icon name={w.icon} size={20} /></div>
-            <h3>{w.title}</h3>
-            <p>{w.desc}</p>
-          </div>
-        ))}
+    <section className="section dark-section">
+      <div className="glow glow-2" style={{ opacity: 0.5 }} />
+      <div className="container" style={{ position: "relative", zIndex: 1 }}>
+        <SectionHead
+          eyebrow="Why us"
+          title="What makes FisherDigital different"
+        />
+        <div className="why-strip reveal">
+          {[
+            { num: "01", title: "No contracts", desc: "Rolling monthly. Cancel anytime. We earn your business every month." },
+            { num: "02", title: "Live in 2-4 weeks", desc: "From first call to fully running. We handle all the setup." },
+            { num: "03", title: "We manage everything", desc: "You never log into a dashboard. We handle it all and send monthly reports." },
+            { num: "04", title: "UK-based team", desc: "Real people in the same timezone. Message us anytime." },
+          ].map((w, i) => (
+            <div key={i} className="why-strip-item">
+              <span className="why-num">{w.num}</span>
+              <h3>{w.title}</h3>
+              <p>{w.desc}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
 
@@ -250,17 +261,7 @@ const Home = ({ tw }) => (
     </section>
 
     {/* Bottom CTA */}
-    <section className="section container">
-      <div className="inline-form-section reveal" style={{ textAlign: "center" }}>
-        <h2 style={{ marginBottom: 14 }}>{tw.ctaHeading}</h2>
-        <p className="lead" style={{ margin: "0 auto", textAlign: "center" }}>{tw.ctaSub}</p>
-        <div style={{ marginTop: 28 }}>
-          <a className="btn btn-primary btn-lg" href="#/contact">
-            Book a Discovery Call <Icon name="arrow-right" size={14} />
-          </a>
-        </div>
-      </div>
-    </section>
+    <CTABanner tw={tw} />
   </>
 );
 
@@ -671,18 +672,12 @@ const AboutPage = ({ tw }) => (
           <h3 className="founder-name">Josh Fisher</h3>
           <div className="founder-role">Founder</div>
           <p className="founder-bio">{tw.joshBio}</p>
-          <a href="https://www.linkedin.com/in/joshfisher-fd/" target="_blank" rel="noopener noreferrer" className="founder-linkedin">
-            <Icon name="linkedin" size={16} /> LinkedIn
-          </a>
         </div>
         <div className="founder-card">
           <img className="founder-photo" src="/billy.jpg" alt="Billy Loughman" />
           <h3 className="founder-name">Billy Loughman</h3>
           <div className="founder-role">Co-founder</div>
           <p className="founder-bio">{tw.billyBio}</p>
-          <a href="https://www.linkedin.com/in/billy-loughman/" target="_blank" rel="noopener noreferrer" className="founder-linkedin">
-            <Icon name="linkedin" size={16} /> LinkedIn
-          </a>
         </div>
       </div>
     </section>
@@ -708,9 +703,7 @@ const AboutPage = ({ tw }) => (
       </div>
     </section>
 
-    <section className="section">
-      <CTABanner tw={tw} />
-    </section>
+    <CTABanner tw={tw} />
   </>
 );
 
@@ -819,7 +812,7 @@ const CareersPage = () => {
           {/* Application form */}
           <div style={{ marginTop: 48 }}>
             <SectionHead eyebrow="Apply" title="Interested? Get in touch." />
-            <div className="apply-form" style={{ maxWidth: 560 }}>
+            <div className="apply-form" style={{ maxWidth: 640, margin: "0 auto" }}>
               {sent ? (
                 <div style={{ padding: 28, textAlign: "center", display: "flex", flexDirection: "column", gap: 10, alignItems: "center" }}>
                   <div style={{ width: 44, height: 44, borderRadius: "50%", background: "rgba(8,102,255,0.12)", color: "var(--brand)", display: "flex", alignItems: "center", justifyContent: "center" }}>
@@ -869,15 +862,15 @@ const CareersPage = () => {
         </div>
       </section>
 
-      <section className="section container">
-        <div className="inline-form-section reveal" style={{ textAlign: "center" }}>
-          <h2 style={{ marginBottom: 14 }}>Don't see the right role?</h2>
-          <p className="lead" style={{ margin: "0 auto", textAlign: "center" }}>We're always interested in hearing from driven people. Drop us a line and tell us what you're good at.</p>
-          <div style={{ marginTop: 28 }}>
-            <a className="btn btn-primary btn-lg" href="mailto:hello@fisherdigital.co.uk?subject=General Application">
-              Get in touch <Icon name="arrow-right" size={14} />
-            </a>
+      <section className="container" style={{ marginBottom: 80 }}>
+        <div className="cta-banner reveal">
+          <div>
+            <h2>Don't see the right role?</h2>
+            <p>We're always interested in hearing from driven people. Drop us a line and tell us what you're good at.</p>
           </div>
+          <a className="btn btn-primary btn-lg" href="mailto:hello@fisherdigital.co.uk?subject=General Application" style={{ position: "relative", zIndex: 1 }}>
+            Get in touch <Icon name="arrow-right" size={14} />
+          </a>
         </div>
       </section>
     </>
