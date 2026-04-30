@@ -81,6 +81,35 @@ const IntegrationsBand = () => (
   </section>
 );
 
+// ---------- Expandable service list (home page) ----------
+const ServiceList = () => {
+  const [openId, setOpenId] = usePState(null);
+  return (
+    <div className="svc-list reveal">
+      {SERVICES.map((s) => {
+        const isOpen = openId === s.id;
+        return (
+          <div key={s.id} className={`svc-list-item${isOpen ? " open" : ""}`} onClick={() => setOpenId(isOpen ? null : s.id)}>
+            <span className="svc-list-icon"><Icon name={s.icon} size={18} /></span>
+            <div className="svc-list-text">
+              <strong>{s.name}</strong>
+              <span>{s.oneLine}</span>
+            </div>
+            <span className="svc-list-toggle"><Icon name={isOpen ? "close" : "plus"} size={14} /></span>
+            {isOpen && (
+              <div className="svc-list-expand">
+                {s.benefits.map((b, j) => (
+                  <div key={j} className="svc-list-benefit"><Icon name="check" size={13} /> {b}</div>
+                ))}
+              </div>
+            )}
+          </div>
+        );
+      })}
+    </div>
+  );
+};
+
 // ---------- HOME ----------
 const Home = ({ tw }) => (
   <>
@@ -161,18 +190,7 @@ const Home = ({ tw }) => (
         title="We handle the leads, the follow-ups, and the admin you don't have time for."
         lead="Every business is different. We start with a free audit of where you're losing leads and time, then set up only what will actually make a difference."
       />
-      <div className="svc-list reveal">
-        {SERVICES.map((s, i) => (
-          <a key={s.id} href={`#/services#${s.id}`} className="svc-list-item">
-            <span className="svc-list-icon"><Icon name={s.icon} size={18} /></span>
-            <div className="svc-list-text">
-              <strong>{s.name}</strong>
-              <span>{s.oneLine}</span>
-            </div>
-            <span className="svc-list-arrow"><Icon name="arrow-right" size={14} /></span>
-          </a>
-        ))}
-      </div>
+      <ServiceList />
       <div className="section-cta reveal" style={{ textAlign: "center", marginTop: 40 }}>
         <a className="btn btn-primary btn-lg" href="#/services">
           See all services in detail <Icon name="arrow-right" size={14} />
@@ -664,24 +682,6 @@ const AboutPage = ({ tw }) => (
       </div>
     </section>
 
-    <section className="section container">
-      <SectionHead eyebrow="The team" title="Two founders. One goal." center />
-      <div className="founder-grid reveal">
-        <div className="founder-card">
-          <img className="founder-photo" src="/josh.jpg" alt="Josh Fisher" />
-          <h3 className="founder-name">Josh Fisher</h3>
-          <div className="founder-role">Founder</div>
-          <p className="founder-bio">{tw.joshBio}</p>
-        </div>
-        <div className="founder-card">
-          <img className="founder-photo" src="/billy.jpg" alt="Billy Loughman" />
-          <h3 className="founder-name">Billy Loughman</h3>
-          <div className="founder-role">Co-founder</div>
-          <p className="founder-bio">{tw.billyBio}</p>
-        </div>
-      </div>
-    </section>
-
     <section className="section dark-section">
       <div className="glow glow-1" style={{ opacity: 0.5 }} />
       <div className="container" style={{ position: "relative", zIndex: 1 }}>
@@ -699,6 +699,24 @@ const AboutPage = ({ tw }) => (
               <p>{v.b}</p>
             </div>
           ))}
+        </div>
+      </div>
+    </section>
+
+    <section className="section container">
+      <SectionHead eyebrow="The team" title="Two founders. One goal." center />
+      <div className="founder-grid reveal">
+        <div className="founder-card">
+          <img className="founder-photo" src="/josh.jpg" alt="Josh Fisher" />
+          <h3 className="founder-name">Josh Fisher</h3>
+          <div className="founder-role">Founder</div>
+          <p className="founder-bio">{tw.joshBio}</p>
+        </div>
+        <div className="founder-card">
+          <img className="founder-photo" src="/billy.jpg" alt="Billy Loughman" />
+          <h3 className="founder-name">Billy Loughman</h3>
+          <div className="founder-role">Co-founder</div>
+          <p className="founder-bio">{tw.billyBio}</p>
         </div>
       </div>
     </section>

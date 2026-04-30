@@ -1377,8 +1377,9 @@ h3 { font-size: clamp(20px, 2vw, 26px); }
   gap: 16px;
   padding: 20px 24px;
   background: var(--surface);
-  text-decoration: none;
+  cursor: pointer;
   transition: background 200ms;
+  flex-wrap: wrap;
 }
 .svc-list-item:hover {
   background: var(--bg);
@@ -1399,6 +1400,7 @@ h3 { font-size: clamp(20px, 2vw, 26px); }
   display: flex;
   flex-direction: column;
   gap: 2px;
+  min-width: 0;
 }
 .svc-list-text strong {
   font-family: var(--font-heading);
@@ -1410,14 +1412,43 @@ h3 { font-size: clamp(20px, 2vw, 26px); }
   font-size: 14px;
   color: var(--muted);
 }
-.svc-list-arrow {
+.svc-list-toggle {
   color: var(--muted-2);
   flex-shrink: 0;
-  transition: transform 200ms, color 200ms;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 200ms, background 200ms;
 }
-.svc-list-item:hover .svc-list-arrow {
-  transform: translateX(4px);
+.svc-list-item:hover .svc-list-toggle {
   color: var(--brand);
+  background: rgba(8, 102, 255, 0.06);
+}
+.svc-list-item.open .svc-list-toggle {
+  color: var(--brand);
+}
+.svc-list-expand {
+  width: 100%;
+  padding: 12px 0 4px 56px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.svc-list-benefit {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+.svc-list-benefit svg {
+  color: var(--brand);
+  flex-shrink: 0;
+  margin-top: 2px;
 }
 
 /* ─── Why us strip ─── */
