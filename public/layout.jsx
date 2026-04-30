@@ -112,9 +112,9 @@ const Footer = ({ tw }) => (
   <footer className="footer">
     <div className="container">
       <div className="footer-grid">
-        <div className="footer-col" style={{ maxWidth: 320 }}>
+        <div className="footer-col" style={{ maxWidth: 340 }}>
           <Logo />
-          <p style={{ marginTop: 10, fontSize: 14, color: "var(--dark-muted)" }}>
+          <p style={{ marginTop: 14, fontSize: 15, color: "var(--dark-muted)", lineHeight: 1.65 }}>
             We help local service businesses capture more leads, save time, and grow using AI-powered automation.
           </p>
         </div>
@@ -133,15 +133,17 @@ const Footer = ({ tw }) => (
           <ul>
             <li><a href="#/services#phone-answering">Phone Answering</a></li>
             <li><a href="#/services#missed-call-textback">Missed Call Text-Back</a></li>
+            <li><a href="#/services#chat-agent">Chat Agent</a></li>
             <li><a href="#/services#review-management">Reviews</a></li>
             <li><a href="#/services#lead-nurture">Lead Follow-Up</a></li>
+            <li><a href="#/services#workflow-automation">Workflow Automation</a></li>
           </ul>
         </div>
         <div className="footer-col">
           <h5>Contact</h5>
           <ul>
             <li><a href={`mailto:${tw.email}`}>{tw.email}</a></li>
-            <li><span>fisherdigital.co.uk</span></li>
+            <li><a href="https://fisherdigital.co.uk" style={{ color: "var(--dark-muted)" }}>fisherdigital.co.uk</a></li>
           </ul>
         </div>
       </div>

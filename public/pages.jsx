@@ -48,6 +48,31 @@ const FAQItem = ({ item }) => {
   );
 };
 
+// ---------- Integrations Band ----------
+const INTEGRATIONS = [
+  "GoHighLevel", "Synthflow", "Make.com", "Google Calendar",
+  "Xero", "Stripe", "WhatsApp", "Facebook", "Twilio",
+  "Zapier", "Google Sheets", "Slack", "HubSpot", "Calendly",
+];
+const IntegrationsBand = () => (
+  <section className="integrations-band">
+    <div className="integrations-label">Integrates with tools you already use</div>
+    <div className="integrations-track">
+      {[...INTEGRATIONS, ...INTEGRATIONS].map((name, i) => (
+        <span key={i} className="integration-logo">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+            <rect x="3" y="3" width="7" height="7" rx="1" />
+            <rect x="14" y="3" width="7" height="7" rx="1" />
+            <rect x="3" y="14" width="7" height="7" rx="1" />
+            <rect x="14" y="14" width="7" height="7" rx="1" />
+          </svg>
+          {name}
+        </span>
+      ))}
+    </div>
+  </section>
+);
+
 // ---------- HOME ----------
 const Home = ({ tw }) => (
   <>
@@ -97,6 +122,9 @@ const Home = ({ tw }) => (
         </div>
       </div>
     </section>
+
+    {/* Integrations ticker */}
+    <IntegrationsBand />
 
     {/* What we help with */}
     <section className="section container">
@@ -250,50 +278,59 @@ const ServicesPage = ({ tw }) => {
   );
 };
 
-// Per-service mock visualisations — varied formats
+// Per-service mock visualisations — each visually distinct
 const ServiceMock = ({ service, index }) => {
   switch (service.icon) {
+    // ── Phone Answering: dark live-call UI ──
     case "phone":
       return (
-        <div className="mock-visual">
+        <div className="mock-visual mock-dark-variant">
           <div className="mock-titlebar">
             <span className="dot" /><span className="dot" /><span className="dot" />
             <span className="label">live call</span>
           </div>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
-            <span style={{ fontSize: 11, color: "var(--muted)" }}>+44 7700 *** ***</span>
-            <span style={{ fontSize: 11, color: "#22c55e", display: "inline-flex", alignItems: "center", gap: 5 }}>
-              <span style={{ width: 5, height: 5, borderRadius: "50%", background: "#22c55e", animation: "pulse 2s infinite" }} /> Connected 0:47
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
+            <span style={{ fontSize: 13, color: "var(--dark-muted)" }}>+44 7700 *** ***</span>
+            <span style={{ fontSize: 13, color: "#22c55e", display: "inline-flex", alignItems: "center", gap: 6 }}>
+              <span className="pulse-dot" style={{ background: "#22c55e" }} /> Connected 0:47
             </span>
           </div>
-          {/* Visual: call flow diagram */}
           <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
-            <div className="flow-node"><span className="flow-dot" style={{ background: "#22c55e" }} /><span style={{ flex: 1 }}>Caller greeted</span><span style={{ fontSize: 10, color: "var(--muted-2)" }}>0:00</span></div>
-            <div className="flow-connector" />
-            <div className="flow-node"><span className="flow-dot" style={{ background: "#22c55e" }} /><span style={{ flex: 1 }}>Issue identified: boiler leak</span><span style={{ fontSize: 10, color: "var(--muted-2)" }}>0:12</span></div>
-            <div className="flow-connector" />
-            <div className="flow-node"><span className="flow-dot" style={{ background: "#22c55e" }} /><span style={{ flex: 1 }}>Postcode collected: SW6 4LP</span><span style={{ fontSize: 10, color: "var(--muted-2)" }}>0:28</span></div>
-            <div className="flow-connector" />
-            <div className="flow-node" style={{ borderColor: "var(--brand)", background: "rgba(8,102,255,0.04)" }}><span className="flow-dot" style={{ background: "var(--brand)" }} /><span style={{ flex: 1, color: "var(--brand)", fontWeight: 500 }}>Appointment booked: 7am</span><span style={{ fontSize: 10, color: "var(--brand)" }}>0:41</span></div>
+            {[
+              { label: "Caller greeted", time: "0:00" },
+              { label: "Issue identified: boiler leak", time: "0:12" },
+              { label: "Postcode collected: SW6 4LP", time: "0:28" },
+            ].map((step, i) => (
+              <React.Fragment key={i}>
+                <div className="flow-node"><span className="flow-dot" style={{ background: "#22c55e" }} /><span style={{ flex: 1 }}>{step.label}</span><span style={{ fontSize: 11, color: "var(--dark-muted)" }}>{step.time}</span></div>
+                <div className="flow-connector" />
+              </React.Fragment>
+            ))}
+            <div className="flow-node" style={{ borderColor: "var(--brand)", background: "rgba(8,102,255,0.08)" }}>
+              <span className="flow-dot" style={{ background: "var(--brand)" }} />
+              <span style={{ flex: 1, color: "var(--brand)", fontWeight: 600 }}>Appointment booked: 7am</span>
+              <span style={{ fontSize: 11, color: "var(--brand)" }}>0:41</span>
+            </div>
           </div>
-          <div style={{ display: "flex", gap: 8, marginTop: 8 }}>
-            <span style={{ fontSize: 11, padding: "3px 8px", borderRadius: 4, background: "rgba(34,197,94,0.08)", color: "#22c55e" }}>SMS sent</span>
-            <span style={{ fontSize: 11, padding: "3px 8px", borderRadius: 4, background: "rgba(8,102,255,0.06)", color: "var(--brand)" }}>Calendar updated</span>
+          <div style={{ display: "flex", gap: 10, marginTop: 10 }}>
+            <span style={{ fontSize: 13, padding: "5px 12px", borderRadius: 6, background: "rgba(34,197,94,0.1)", color: "#22c55e", fontWeight: 500 }}>SMS sent</span>
+            <span style={{ fontSize: 13, padding: "5px 12px", borderRadius: 6, background: "rgba(8,102,255,0.08)", color: "var(--brand)", fontWeight: 500 }}>Calendar updated</span>
           </div>
         </div>
       );
+
+    // ── Missed Call Text-Back: split before/after ──
     case "chat":
       return (
         <div className="mock-visual">
           <div className="mock-titlebar">
             <span className="dot" /><span className="dot" /><span className="dot" />
-            <span className="label">recovery dashboard</span>
+            <span className="label">missed call recovery</span>
           </div>
-          {/* Visual: missed call timeline */}
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginBottom: 14 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginBottom: 16 }}>
             <div className="metric-card">
               <span className="metric-label">Missed today</span>
-              <span className="metric-value">3</span>
+              <span className="metric-value" style={{ color: "#ef4444" }}>3</span>
             </div>
             <div className="metric-card">
               <span className="metric-label">Recovered</span>
@@ -301,143 +338,170 @@ const ServiceMock = ({ service, index }) => {
             </div>
           </div>
           {[
-            { time: "14:32", name: "Unknown caller", status: "Booked", statusColor: "#22c55e" },
-            { time: "15:17", name: "Sarah M.", status: "Replied", statusColor: "#22c55e" },
-            { time: "16:45", name: "Unknown caller", status: "Pending", statusColor: "var(--muted-2)" },
+            { time: "14:32", name: "Unknown caller", msg: "Sorry we missed you! How can we help?", status: "Booked", statusColor: "#22c55e" },
+            { time: "15:17", name: "Sarah M.", msg: "Hi Sarah, we just missed your call...", status: "Replied", statusColor: "#22c55e" },
+            { time: "16:45", name: "Unknown caller", msg: "Sent just now", status: "Pending", statusColor: "var(--muted-2)" },
           ].map((c, i) => (
-            <div key={i} style={{ display: "flex", alignItems: "center", gap: 10, padding: "10px 0", borderBottom: i < 2 ? "1px solid var(--line)" : "none" }}>
-              <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#ef4444", flexShrink: 0 }} />
-              <div style={{ flex: 1 }}>
-                <div style={{ fontSize: 13, color: "var(--ink)" }}>{c.name}</div>
-                <div style={{ fontSize: 11, color: "var(--muted-2)" }}>Missed at {c.time}</div>
+            <div key={i} style={{ padding: "14px 0", borderBottom: i < 2 ? "1px solid var(--line)" : "none" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 6 }}>
+                <span style={{ width: 10, height: 10, borderRadius: "50%", background: i < 2 ? "#22c55e" : "#ef4444", flexShrink: 0 }} />
+                <span style={{ fontSize: 15, color: "var(--ink)", fontWeight: 500, flex: 1 }}>{c.name}</span>
+                <span style={{ fontSize: 12, color: "var(--muted-2)" }}>{c.time}</span>
               </div>
-              <span style={{ fontSize: 11, fontWeight: 500, color: c.statusColor }}>{c.status}</span>
+              <div style={{ marginLeft: 20, fontSize: 13, color: "var(--muted)", fontStyle: "italic" }}>{c.msg}</div>
+              <div style={{ marginLeft: 20, marginTop: 6 }}>
+                <span style={{ fontSize: 12, fontWeight: 600, color: c.statusColor, padding: "3px 10px", borderRadius: 4, background: c.statusColor === "#22c55e" ? "rgba(34,197,94,0.08)" : "var(--surface-2)" }}>{c.status}</span>
+              </div>
             </div>
           ))}
         </div>
       );
+
+    // ── Chat Agent: multi-channel with tabs ──
     case "headset":
       return (
         <div className="mock-visual">
           <div className="mock-titlebar">
             <span className="dot" /><span className="dot" /><span className="dot" />
-            <span className="label">chat widget</span>
+            <span className="label">chat agent</span>
           </div>
-          {/* Visual: multi-channel view */}
-          <div style={{ display: "flex", gap: 6, marginBottom: 12 }}>
-            {["Website", "WhatsApp", "Facebook"].map((ch, i) => (
-              <span key={i} style={{ fontSize: 11, padding: "4px 10px", borderRadius: 20, background: i === 0 ? "var(--brand)" : "var(--surface-2)", color: i === 0 ? "#fff" : "var(--muted)", border: i === 0 ? "none" : "1px solid var(--line)", fontWeight: 500 }}>{ch}</span>
+          <div style={{ display: "flex", gap: 8, marginBottom: 14 }}>
+            {[
+              { ch: "Website", active: true, count: 12 },
+              { ch: "WhatsApp", active: false, count: 8 },
+              { ch: "Facebook", active: false, count: 3 },
+            ].map((tab, i) => (
+              <span key={i} style={{ fontSize: 13, padding: "6px 14px", borderRadius: 20, background: tab.active ? "var(--brand)" : "var(--surface-2)", color: tab.active ? "#fff" : "var(--muted)", border: tab.active ? "none" : "1px solid var(--line)", fontWeight: 500, display: "inline-flex", alignItems: "center", gap: 6 }}>
+                {tab.ch}
+                <span style={{ fontSize: 10, background: tab.active ? "rgba(255,255,255,0.25)" : "var(--line)", borderRadius: 8, padding: "1px 6px", fontWeight: 700 }}>{tab.count}</span>
+              </span>
             ))}
           </div>
-          <div className="chat-line ai"><div className="av ai">FD</div><div className="bubble">Hi! I can help you book or get a quote. What are you looking for?</div></div>
-          <div className="chat-line"><div className="av user">V</div><div className="bubble">How much for a balayage?</div></div>
-          <div className="chat-line ai"><div className="av ai">FD</div><div className="bubble">Balayage starts at £140. I can book you in for Saturday at 11am. Want the slot?</div></div>
-          <div style={{ display: "flex", gap: 6, paddingLeft: 30 }}>
-            <span style={{ fontSize: 12, padding: "5px 10px", background: "rgba(8,102,255,0.06)", border: "1px solid var(--line)", borderRadius: 6, color: "var(--brand)", fontWeight: 500 }}>Yes please</span>
-            <span style={{ fontSize: 12, padding: "5px 10px", background: "var(--surface-2)", border: "1px solid var(--line)", borderRadius: 6, color: "var(--muted)" }}>Different time</span>
+          <div style={{ background: "var(--surface-2)", borderRadius: 12, padding: 16, display: "flex", flexDirection: "column", gap: 10 }}>
+            <div className="chat-line ai"><div className="av ai">FD</div><div className="bubble">Hi! I can help you book or get a quote. What are you looking for?</div></div>
+            <div className="chat-line"><div className="av user">V</div><div className="bubble">How much for a balayage?</div></div>
+            <div className="chat-line ai"><div className="av ai">FD</div><div className="bubble">Balayage starts at £140. I can book you in for Saturday at 11am?</div></div>
+          </div>
+          <div style={{ display: "flex", gap: 8, marginTop: 4, justifyContent: "center" }}>
+            <span style={{ fontSize: 13, padding: "8px 16px", background: "var(--brand)", borderRadius: 8, color: "#fff", fontWeight: 600 }}>Yes, book it</span>
+            <span style={{ fontSize: 13, padding: "8px 16px", background: "var(--surface-2)", border: "1px solid var(--line)", borderRadius: 8, color: "var(--muted)" }}>Different time</span>
           </div>
         </div>
       );
+
+    // ── Review Autopilot: gradient dark card with star visuals ──
     case "star":
       return (
-        <div className="mock-visual">
+        <div className="mock-visual mock-gradient">
           <div className="mock-titlebar">
             <span className="dot" /><span className="dot" /><span className="dot" />
-            <span className="label">review dashboard</span>
+            <span className="label">review autopilot</span>
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 8, marginBottom: 12 }}>
-            <div className="metric-card">
-              <span className="metric-label">Rating</span>
-              <div style={{ display: "flex", alignItems: "baseline", gap: 4 }}>
-                <span className="metric-value">4.9</span>
-              </div>
-              <div className="star-row" style={{ marginTop: 2 }}>
-                {Array.from({ length: 5 }).map((_, i) => <Icon key={i} name="star" size={11} />)}
-              </div>
+          <div style={{ textAlign: "center", padding: "8px 0 16px" }}>
+            <div style={{ fontSize: 52, fontWeight: 700, color: "#fff", fontFamily: "var(--font-heading)", lineHeight: 1 }}>4.9</div>
+            <div className="star-row" style={{ justifyContent: "center", marginTop: 8, gap: 4 }}>
+              {Array.from({ length: 5 }).map((_, i) => <Icon key={i} name="star" size={18} />)}
             </div>
-            <div className="metric-card">
+            <div style={{ fontSize: 13, color: "var(--dark-muted)", marginTop: 6 }}>from 247 Google reviews</div>
+          </div>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 8 }}>
+            <div className="metric-card" style={{ textAlign: "center" }}>
               <span className="metric-label">This month</span>
               <span className="metric-value" style={{ color: "#22c55e" }}>+47</span>
             </div>
-            <div className="metric-card">
-              <span className="metric-label">Response</span>
-              <span className="metric-value">100%</span>
+            <div className="metric-card" style={{ textAlign: "center" }}>
+              <span className="metric-label">Response rate</span>
+              <span className="metric-value" style={{ color: "#fff" }}>100%</span>
+            </div>
+            <div className="metric-card" style={{ textAlign: "center" }}>
+              <span className="metric-label">Avg. reply</span>
+              <span className="metric-value" style={{ color: "#f59e0b" }}>4m</span>
             </div>
           </div>
-          <div style={{ padding: 12, border: "1px solid var(--line)", borderRadius: 8, fontSize: 12 }}>
-            <div className="star-row" style={{ marginBottom: 4 }}>
-              {Array.from({ length: 5 }).map((_, i) => <Icon key={i} name="star" size={10} />)}
+          <div style={{ padding: 14, background: "rgba(255,255,255,0.06)", borderRadius: 10, border: "1px solid rgba(255,255,255,0.08)" }}>
+            <div className="star-row" style={{ marginBottom: 6, gap: 3 }}>
+              {Array.from({ length: 5 }).map((_, i) => <Icon key={i} name="star" size={12} />)}
             </div>
-            <div style={{ color: "var(--ink)" }}>"Sarah was brilliant, really took the time to explain everything."</div>
-            <div style={{ marginTop: 6, paddingTop: 6, borderTop: "1px solid var(--line)", color: "var(--muted)", fontSize: 11 }}>
-              <strong style={{ color: "var(--brand)" }}>Auto-reply sent</strong> in 4 minutes
+            <div style={{ color: "#fff", fontSize: 14, lineHeight: 1.5 }}>"Sarah was brilliant, really took the time to explain everything."</div>
+            <div style={{ marginTop: 8, paddingTop: 8, borderTop: "1px solid rgba(255,255,255,0.08)", color: "var(--dark-muted)", fontSize: 12 }}>
+              <strong style={{ color: "#22c55e" }}>Auto-reply sent</strong> in 4 minutes
             </div>
           </div>
         </div>
       );
+
+    // ── Lead Follow-Up: funnel with speed emphasis ──
     case "leaf":
       return (
-        <div className="mock-visual">
+        <div className="mock-visual mock-dark-variant">
           <div className="mock-titlebar">
             <span className="dot" /><span className="dot" /><span className="dot" />
             <span className="label">lead pipeline</span>
           </div>
-          {/* Visual: pipeline/funnel view */}
-          <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+          <div style={{ textAlign: "center", padding: "4px 0 16px" }}>
+            <div style={{ fontSize: 14, color: "var(--dark-muted)", marginBottom: 4 }}>Average response time</div>
+            <div style={{ fontSize: 44, fontWeight: 700, color: "#22c55e", fontFamily: "var(--font-heading)", lineHeight: 1 }}>4.2s</div>
+          </div>
+          <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
             {[
-              { stage: "New lead", count: 24, width: "100%", color: "var(--brand)" },
-              { stage: "Contacted", count: 22, width: "92%", color: "var(--brand)" },
-              { stage: "Replied", count: 15, width: "62%", color: "#22c55e" },
-              { stage: "Booked", count: 11, width: "46%", color: "#22c55e" },
+              { stage: "New lead", count: 24, pct: 100, color: "var(--brand)" },
+              { stage: "Contacted (<5s)", count: 22, pct: 92, color: "var(--brand)" },
+              { stage: "Replied", count: 15, pct: 62, color: "#22c55e" },
+              { stage: "Booked", count: 11, pct: 46, color: "#22c55e" },
             ].map((s, i) => (
               <div key={i}>
-                <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 3 }}>
-                  <span style={{ fontSize: 12, color: "var(--text)" }}>{s.stage}</span>
-                  <span style={{ fontSize: 12, fontWeight: 600, color: "var(--ink)" }}>{s.count}</span>
+                <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 5 }}>
+                  <span style={{ fontSize: 14, color: "var(--dark-text)" }}>{s.stage}</span>
+                  <span style={{ fontSize: 14, fontWeight: 700, color: "#fff" }}>{s.count}</span>
                 </div>
-                <div style={{ height: 6, background: "var(--line)", borderRadius: 3, overflow: "hidden" }}>
-                  <div style={{ width: s.width, height: "100%", background: s.color, borderRadius: 3, transition: "width 600ms ease" }} />
+                <div className="svc-progress">
+                  <div className="svc-progress-fill" style={{ width: `${s.pct}%`, background: s.color }} />
                 </div>
               </div>
             ))}
           </div>
-          <div style={{ marginTop: 8, padding: 10, background: "var(--surface-2)", borderRadius: 8, fontSize: 12, display: "flex", justifyContent: "space-between" }}>
-            <span style={{ color: "var(--muted)" }}>Avg. response time</span>
-            <span style={{ fontWeight: 600, color: "var(--brand)" }}>4.2 seconds</span>
+          <div style={{ marginTop: 8, padding: 12, background: "rgba(34,197,94,0.08)", borderRadius: 8, fontSize: 14, display: "flex", justifyContent: "space-between", border: "1px solid rgba(34,197,94,0.15)" }}>
+            <span style={{ color: "var(--dark-muted)" }}>Conversion rate</span>
+            <span style={{ fontWeight: 700, color: "#22c55e" }}>46%</span>
           </div>
         </div>
       );
+
+    // ── Workflow Automation: vertical flow with tool logos ──
     case "flow":
       return (
-        <div className="mock-visual">
+        <div className="mock-visual mock-dark-variant">
           <div className="mock-titlebar">
             <span className="dot" /><span className="dot" /><span className="dot" />
             <span className="label">automation flow</span>
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
             {[
-              { icon: "check", label: "Quote signed", sub: "DocuSign", color: "#22c55e" },
-              { icon: "check", label: "Invoice raised", sub: "Xero", color: "#22c55e" },
-              { icon: "check", label: "Job added to calendar", sub: "Google Calendar", color: "#22c55e" },
-              { icon: "check", label: "Customer added to CRM", sub: "GoHighLevel", color: "#22c55e" },
-              { icon: "check", label: "Crew assigned + notified", sub: "SMS", color: "#22c55e" },
-              { icon: "star", label: "Review request sent", sub: "After payment", color: "var(--brand)" },
+              { label: "Quote signed", sub: "DocuSign", color: "#22c55e" },
+              { label: "Invoice raised", sub: "Xero", color: "#22c55e" },
+              { label: "Job in calendar", sub: "Google Calendar", color: "#22c55e" },
+              { label: "Added to CRM", sub: "GoHighLevel", color: "#22c55e" },
+              { label: "Crew notified", sub: "SMS via Twilio", color: "#22c55e" },
+              { label: "Review requested", sub: "After payment", color: "var(--brand)" },
             ].map((n, i) => (
               <React.Fragment key={i}>
                 <div className="flow-node">
                   <span className="flow-dot" style={{ background: n.color }} />
                   <div style={{ flex: 1 }}>
-                    <div style={{ fontSize: 13, color: "var(--ink)" }}>{n.label}</div>
-                    <div style={{ fontSize: 10, color: "var(--muted-2)" }}>{n.sub}</div>
+                    <div style={{ fontSize: 14, color: "#fff", fontWeight: 500 }}>{n.label}</div>
+                    <div style={{ fontSize: 11, color: "var(--dark-muted)" }}>{n.sub}</div>
                   </div>
-                  <Icon name={n.icon} size={13} style={{ color: n.color }} />
+                  <Icon name="check" size={14} />
                 </div>
                 {i < 5 && <div className="flow-connector" />}
               </React.Fragment>
             ))}
           </div>
+          <div style={{ marginTop: 8, textAlign: "center", fontSize: 12, color: "var(--dark-muted)" }}>6 steps automated in 0.3 seconds</div>
         </div>
       );
+
+    // ── Content & Social: light card with calendar + post queue ──
     case "edit":
       return (
         <div className="mock-visual">
@@ -445,9 +509,8 @@ const ServiceMock = ({ service, index }) => {
             <span className="dot" /><span className="dot" /><span className="dot" />
             <span className="label">content planner</span>
           </div>
-          {/* Calendar view */}
-          <div className="cal-grid" style={{ marginBottom: 12 }}>
-            {["M","T","W","T","F","S","S"].map((d, i) => <div key={i} style={{ textAlign: "center", fontWeight: 600, fontSize: 9, color: "var(--muted-2)", padding: "4px 0" }}>{d}</div>)}
+          <div className="cal-grid" style={{ marginBottom: 14 }}>
+            {["M","T","W","T","F","S","S"].map((d, i) => <div key={i} style={{ textAlign: "center", fontWeight: 600, fontSize: 10, color: "var(--muted-2)", padding: "4px 0" }}>{d}</div>)}
             {Array.from({ length: 28 }).map((_, i) => {
               const events = [2, 4, 8, 10, 13, 15, 17, 22, 24];
               return (
@@ -457,54 +520,59 @@ const ServiceMock = ({ service, index }) => {
               );
             })}
           </div>
-          <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
             {[
-              { type: "Instagram", title: "Before/after bathroom refit", time: "Tue 9am" },
-              { type: "Blog", title: "5 signs your gutters need clearing", time: "Wed 2pm" },
-              { type: "Email", title: "Monthly newsletter", time: "Fri 10am" },
+              { type: "Instagram", title: "Before/after bathroom refit", time: "Tue 9am", color: "#E1306C" },
+              { type: "Blog", title: "5 signs your gutters need clearing", time: "Wed 2pm", color: "var(--brand)" },
+              { type: "Email", title: "Monthly newsletter", time: "Fri 10am", color: "#22c55e" },
             ].map((p, i) => (
-              <div key={i} style={{ display: "flex", alignItems: "center", gap: 8, padding: "8px 10px", background: "var(--surface)", border: "1px solid var(--line)", borderRadius: 6 }}>
-                <span style={{ fontSize: 9, fontWeight: 600, color: "var(--brand)", textTransform: "uppercase", minWidth: 56 }}>{p.type}</span>
-                <span style={{ fontSize: 12, color: "var(--ink)", flex: 1 }}>{p.title}</span>
-                <span style={{ fontSize: 10, color: "var(--muted-2)" }}>{p.time}</span>
+              <div key={i} style={{ display: "flex", alignItems: "center", gap: 10, padding: "10px 14px", background: "var(--surface-2)", border: "1px solid var(--line)", borderRadius: 8 }}>
+                <span style={{ width: 4, height: 32, borderRadius: 2, background: p.color, flexShrink: 0 }} />
+                <div style={{ flex: 1 }}>
+                  <div style={{ fontSize: 14, color: "var(--ink)", fontWeight: 500 }}>{p.title}</div>
+                  <div style={{ fontSize: 12, color: "var(--muted)" }}>{p.type}</div>
+                </div>
+                <span style={{ fontSize: 12, color: "var(--muted-2)" }}>{p.time}</span>
               </div>
             ))}
           </div>
+          <div style={{ marginTop: 8, textAlign: "center", fontSize: 13, color: "var(--success)", fontWeight: 500 }}>9 posts scheduled this month</div>
         </div>
       );
+
+    // ── Database Reactivation: revenue-focused dark card ──
     case "database":
       return (
-        <div className="mock-visual">
+        <div className="mock-visual mock-gradient" style={{ background: "linear-gradient(135deg, #0F172A 0%, #1a2744 100%)" }}>
           <div className="mock-titlebar">
             <span className="dot" /><span className="dot" /><span className="dot" />
             <span className="label">reactivation campaign</span>
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, marginBottom: 12 }}>
-            <div className="metric-card">
-              <span className="metric-label">Contacts reached</span>
-              <span className="metric-value">340</span>
-            </div>
-            <div className="metric-card">
-              <span className="metric-label">Revenue</span>
-              <span className="metric-value" style={{ color: "#22c55e" }}>£8.2k</span>
-            </div>
+          <div style={{ textAlign: "center", padding: "8px 0 16px" }}>
+            <div style={{ fontSize: 13, color: "var(--dark-muted)" }}>Revenue generated</div>
+            <div style={{ fontSize: 48, fontWeight: 700, color: "#22c55e", fontFamily: "var(--font-heading)", lineHeight: 1, marginTop: 4 }}>£8,240</div>
+            <div style={{ fontSize: 13, color: "var(--dark-muted)", marginTop: 6 }}>from 340 contacts in 14 days</div>
           </div>
-          {[
-            { label: "6-12 months inactive", count: 184, pct: 100, status: "Complete", color: "#22c55e" },
-            { label: "12-24 months inactive", count: 96, pct: 52, status: "Sending", color: "var(--brand)" },
-            { label: "24+ months inactive", count: 60, pct: 33, status: "Queued", color: "var(--muted-2)" },
-          ].map((row, i) => (
-            <div key={i} style={{ display: "flex", alignItems: "center", padding: "10px 0", borderBottom: i < 2 ? "1px solid var(--line)" : "none", gap: 10 }}>
-              <div style={{ flex: 1 }}>
-                <div style={{ fontSize: 12, color: "var(--ink)" }}>{row.label}</div>
-                <div style={{ height: 4, background: "var(--line)", borderRadius: 3, marginTop: 5, overflow: "hidden" }}>
-                  <div style={{ width: `${row.pct}%`, height: "100%", background: row.color, borderRadius: 3 }} />
+          <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+            {[
+              { label: "6-12 months inactive", count: 184, pct: 100, status: "Complete", color: "#22c55e" },
+              { label: "12-24 months inactive", count: 96, pct: 52, status: "Sending", color: "var(--brand)" },
+              { label: "24+ months inactive", count: 60, pct: 33, status: "Queued", color: "var(--dark-muted)" },
+            ].map((row, i) => (
+              <div key={i}>
+                <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 5 }}>
+                  <span style={{ fontSize: 13, color: "var(--dark-text)" }}>{row.label}</span>
+                  <span style={{ fontSize: 13, fontWeight: 600, color: row.color }}>{row.status}</span>
+                </div>
+                <div className="svc-progress">
+                  <div className="svc-progress-fill" style={{ width: `${row.pct}%`, background: row.color }} />
                 </div>
               </div>
-              <div style={{ fontSize: 15, fontWeight: 600, color: "var(--ink)", minWidth: 36, textAlign: "right" }}>{row.count}</div>
-              <div style={{ fontSize: 10, color: row.color, minWidth: 52, textAlign: "right", fontWeight: 500 }}>{row.status}</div>
-            </div>
-          ))}
+            ))}
+          </div>
+          <div style={{ marginTop: 8, padding: 12, background: "rgba(34,197,94,0.08)", borderRadius: 8, fontSize: 14, textAlign: "center", border: "1px solid rgba(34,197,94,0.15)", color: "#22c55e", fontWeight: 600 }}>
+            ROI: 4.1x in week one
+          </div>
         </div>
       );
     default:

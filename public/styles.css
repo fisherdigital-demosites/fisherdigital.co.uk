@@ -5,6 +5,8 @@
 
 :root {
   /* Brand palette */
+  --brand: #0866FF;
+  --brand-soft: rgba(8, 102, 255, 0.08);
   --primary: #0F172A;
   --secondary: #334155;
   --cta: #0369A1;
@@ -196,7 +198,7 @@ h3 { font-size: clamp(20px, 2vw, 26px); }
   letter-spacing: -0.02em;
   color: #fff;
 }
-.logo .digital { color: var(--cta); }
+.logo .digital { color: var(--brand); }
 .nav-links { display: flex; align-items: center; gap: 6px; }
 .nav-link {
   padding: 8px 16px;
@@ -572,51 +574,95 @@ h3 { font-size: clamp(20px, 2vw, 26px); }
 .mock-visual {
   background: var(--surface);
   border: 1px solid var(--line);
-  border-radius: var(--radius-lg);
-  padding: 20px;
-  min-height: 280px;
+  border-radius: var(--radius-xl);
+  padding: 28px;
+  min-height: 340px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  gap: 14px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+  position: relative;
+  overflow: hidden;
 }
 .mock-visual .mock-titlebar { border-bottom-color: var(--line-2); }
+
+/* Gradient accent bar at top of each mock */
+.mock-visual::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--brand), var(--cta));
+}
+
+/* Dark variant for some service mocks */
+.mock-visual.mock-dark-variant {
+  background: var(--dark-bg);
+  border-color: var(--dark-line);
+  color: var(--dark-text);
+}
+.mock-visual.mock-dark-variant::before {
+  background: linear-gradient(90deg, var(--brand), #22c55e);
+}
+.mock-visual.mock-dark-variant .mock-titlebar { border-bottom-color: var(--dark-line); }
+.mock-visual.mock-dark-variant .dot { background: var(--dark-line-2); }
+.mock-visual.mock-dark-variant .label { color: var(--dark-muted); }
+
+/* Gradient variant */
+.mock-visual.mock-gradient {
+  background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+  border-color: var(--dark-line);
+}
+.mock-visual.mock-gradient::before {
+  background: linear-gradient(90deg, #f59e0b, #ef4444);
+}
+.mock-visual.mock-gradient .mock-titlebar { border-bottom-color: var(--dark-line); }
+.mock-visual.mock-gradient .dot { background: var(--dark-line-2); }
+.mock-visual.mock-gradient .label { color: var(--dark-muted); }
 
 .star-row { display: flex; gap: 2px; color: #f59e0b; }
 
 .flow-node {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 10px 12px;
+  gap: 12px;
+  padding: 12px 14px;
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  font-size: 13px;
+  font-size: 14px;
 }
 .flow-node .flow-dot {
-  width: 8px; height: 8px;
+  width: 10px; height: 10px;
   border-radius: 50%;
   flex-shrink: 0;
 }
 .flow-connector {
-  width: 1px; height: 14px;
+  width: 2px; height: 16px;
   background: var(--line);
-  margin-left: 16px;
+  margin-left: 18px;
 }
+
+/* Dark flow nodes */
+.mock-dark-variant .flow-node {
+  background: var(--dark-surface);
+  border-color: var(--dark-line);
+  color: var(--dark-text);
+}
+.mock-dark-variant .flow-connector { background: var(--dark-line); }
 
 .cal-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 3px;
+  gap: 4px;
 }
 .cal-day {
   aspect-ratio: 1;
-  border-radius: 4px;
+  border-radius: 6px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 10px;
+  font-size: 11px;
   color: var(--muted-2);
 }
 .cal-day.has-event {
@@ -631,15 +677,16 @@ h3 { font-size: clamp(20px, 2vw, 26px); }
 }
 
 .metric-card {
-  padding: 14px;
+  padding: 18px;
   border: 1px solid var(--line);
-  border-radius: var(--radius);
+  border-radius: var(--radius-lg);
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
+  background: var(--surface);
 }
 .metric-label {
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.04em;
@@ -647,12 +694,49 @@ h3 { font-size: clamp(20px, 2vw, 26px); }
 }
 .metric-value {
   font-family: var(--font-heading);
-  font-size: 26px;
+  font-size: 30px;
   font-weight: 700;
   color: var(--ink);
   letter-spacing: -0.02em;
   line-height: 1;
 }
+
+/* Dark metric cards */
+.mock-dark-variant .metric-card,
+.mock-gradient .metric-card {
+  background: rgba(255,255,255,0.05);
+  border-color: var(--dark-line);
+}
+.mock-dark-variant .metric-label,
+.mock-gradient .metric-label { color: var(--dark-muted); }
+.mock-dark-variant .metric-value,
+.mock-gradient .metric-value { color: #fff; }
+
+/* Live pulse animation */
+@keyframes pulse-live {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+.pulse-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  animation: pulse-live 2s ease-in-out infinite;
+}
+
+/* Progress bar */
+.svc-progress {
+  height: 8px;
+  background: var(--line);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.svc-progress-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 800ms ease;
+}
+.mock-dark-variant .svc-progress,
+.mock-gradient .svc-progress { background: rgba(255,255,255,0.08); }
 
 /* ─── Forms ─── */
 .form-group { display: flex; flex-direction: column; gap: 6px; }
@@ -1130,6 +1214,65 @@ h3 { font-size: clamp(20px, 2vw, 26px); }
   .cookie-banner-inner { flex-direction: column; align-items: stretch; gap: 12px; }
   .cookie-banner-actions { justify-content: flex-end; }
 }
+
+/* ─── Integration band ─── */
+.integrations-band {
+  padding: 48px 0;
+  border-bottom: 1px solid var(--line);
+  overflow: hidden;
+  position: relative;
+}
+.integrations-band::before,
+.integrations-band::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 120px;
+  z-index: 2;
+  pointer-events: none;
+}
+.integrations-band::before {
+  left: 0;
+  background: linear-gradient(to right, var(--bg), transparent);
+}
+.integrations-band::after {
+  right: 0;
+  background: linear-gradient(to left, var(--bg), transparent);
+}
+.integrations-label {
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted-2);
+  margin-bottom: 24px;
+}
+.integrations-track {
+  display: flex;
+  gap: 56px;
+  animation: scroll-left 30s linear infinite;
+  width: max-content;
+}
+.integrations-track:hover { animation-play-state: paused; }
+@keyframes scroll-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.integration-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--muted);
+  white-space: nowrap;
+  opacity: 0.6;
+  transition: opacity 200ms ease;
+}
+.integration-logo:hover { opacity: 1; }
+.integration-logo svg { flex-shrink: 0; }
 
 /* ─── Misc ─── */
 [id] { scroll-margin-top: 72px; }
