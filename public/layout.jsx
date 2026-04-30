@@ -50,7 +50,10 @@ const Nav = ({ currentRoute }) => {
   return (
     <header className={`nav ${scrolled ? "scrolled" : ""}`}>
       <div className="container nav-inner">
-        <a href="#/" aria-label="FisherDigital home"><Logo /></a>
+        <a href="#/" aria-label="FisherDigital home" className="logo-group">
+          <span className="logo-icon"><img src="/favicon.svg" alt="" /></span>
+          <Logo />
+        </a>
         <nav className="nav-links" aria-label="Primary">
           {NAV_ITEMS.map((item) => (
             <a
@@ -113,7 +116,10 @@ const Footer = ({ tw }) => (
     <div className="container">
       <div className="footer-grid">
         <div className="footer-col" style={{ maxWidth: 320 }}>
-          <Logo />
+          <div className="logo-group">
+            <span className="logo-icon"><img src="/favicon.svg" alt="" /></span>
+            <Logo />
+          </div>
           <p style={{ marginTop: 10, fontSize: 14, color: "var(--dark-muted)" }}>
             We help local service businesses capture more leads, save time, and grow using AI-powered automation.
           </p>

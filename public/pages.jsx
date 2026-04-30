@@ -238,7 +238,7 @@ const ServicesPage = ({ tw }) => {
                 {s.useCase}
               </div>
             </div>
-            <ServiceMock service={s} />
+            <ServiceMock service={s} index={i} />
           </article>
         ))}
       </section>
@@ -250,53 +250,84 @@ const ServicesPage = ({ tw }) => {
   );
 };
 
-// Per-service mock visualisations
-const ServiceMock = ({ service }) => {
+// Per-service mock visualisations — varied formats
+const ServiceMock = ({ service, index }) => {
   switch (service.icon) {
     case "phone":
       return (
-        <div className="mock">
+        <div className="mock-visual">
           <div className="mock-titlebar">
             <span className="dot" /><span className="dot" /><span className="dot" />
-            <span className="label">incoming call</span>
+            <span className="label">live call</span>
           </div>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
             <span style={{ fontSize: 11, color: "var(--muted)" }}>+44 7700 *** ***</span>
             <span style={{ fontSize: 11, color: "#22c55e", display: "inline-flex", alignItems: "center", gap: 5 }}>
-              <span style={{ width: 5, height: 5, borderRadius: "50%", background: "#22c55e" }} /> Connected
+              <span style={{ width: 5, height: 5, borderRadius: "50%", background: "#22c55e", animation: "pulse 2s infinite" }} /> Connected 0:47
             </span>
           </div>
-          <div className="chat-line"><div className="av user">C</div><div className="bubble">Hi, my boiler is leaking water everywhere.</div></div>
-          <div className="chat-line ai"><div className="av ai">FD</div><div className="bubble">That sounds urgent. What's your postcode?</div></div>
-          <div className="chat-line"><div className="av user">C</div><div className="bubble">SW6 4LP</div></div>
-          <div className="chat-line ai"><div className="av ai">FD</div><div className="bubble">Tom can be there at 7am. Confirmation text sent.</div></div>
+          {/* Visual: call flow diagram */}
+          <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
+            <div className="flow-node"><span className="flow-dot" style={{ background: "#22c55e" }} /><span style={{ flex: 1 }}>Caller greeted</span><span style={{ fontSize: 10, color: "var(--muted-2)" }}>0:00</span></div>
+            <div className="flow-connector" />
+            <div className="flow-node"><span className="flow-dot" style={{ background: "#22c55e" }} /><span style={{ flex: 1 }}>Issue identified: boiler leak</span><span style={{ fontSize: 10, color: "var(--muted-2)" }}>0:12</span></div>
+            <div className="flow-connector" />
+            <div className="flow-node"><span className="flow-dot" style={{ background: "#22c55e" }} /><span style={{ flex: 1 }}>Postcode collected: SW6 4LP</span><span style={{ fontSize: 10, color: "var(--muted-2)" }}>0:28</span></div>
+            <div className="flow-connector" />
+            <div className="flow-node" style={{ borderColor: "var(--brand)", background: "rgba(8,102,255,0.04)" }}><span className="flow-dot" style={{ background: "var(--brand)" }} /><span style={{ flex: 1, color: "var(--brand)", fontWeight: 500 }}>Appointment booked: 7am</span><span style={{ fontSize: 10, color: "var(--brand)" }}>0:41</span></div>
+          </div>
+          <div style={{ display: "flex", gap: 8, marginTop: 8 }}>
+            <span style={{ fontSize: 11, padding: "3px 8px", borderRadius: 4, background: "rgba(34,197,94,0.08)", color: "#22c55e" }}>SMS sent</span>
+            <span style={{ fontSize: 11, padding: "3px 8px", borderRadius: 4, background: "rgba(8,102,255,0.06)", color: "var(--brand)" }}>Calendar updated</span>
+          </div>
         </div>
       );
     case "chat":
       return (
-        <div className="mock">
+        <div className="mock-visual">
           <div className="mock-titlebar">
             <span className="dot" /><span className="dot" /><span className="dot" />
-            <span className="label">missed call recovery</span>
+            <span className="label">recovery dashboard</span>
           </div>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
-            <span style={{ fontSize: 11, color: "#ef4444" }}>Missed call / 14:32</span>
-            <span style={{ fontSize: 11, color: "#22c55e", display: "inline-flex", alignItems: "center", gap: 5 }}>
-              <span style={{ width: 5, height: 5, borderRadius: "50%", background: "#22c55e" }} /> Text sent
-            </span>
+          {/* Visual: missed call timeline */}
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginBottom: 14 }}>
+            <div className="metric-card">
+              <span className="metric-label">Missed today</span>
+              <span className="metric-value">3</span>
+            </div>
+            <div className="metric-card">
+              <span className="metric-label">Recovered</span>
+              <span className="metric-value" style={{ color: "#22c55e" }}>2</span>
+            </div>
           </div>
-          <div className="chat-line ai"><div className="av ai">FD</div><div className="bubble">Sorry we missed your call! How can we help? Reply here or we'll call you back shortly.</div></div>
-          <div className="chat-line"><div className="av user">C</div><div className="bubble">Need a quote for a new boiler install please</div></div>
-          <div className="chat-line ai"><div className="av ai">FD</div><div className="bubble">Of course! What's the best time for us to call you back today?</div></div>
-          <div className="chat-line"><div className="av user">C</div><div className="bubble">After 4pm works</div></div>
+          {[
+            { time: "14:32", name: "Unknown caller", status: "Booked", statusColor: "#22c55e" },
+            { time: "15:17", name: "Sarah M.", status: "Replied", statusColor: "#22c55e" },
+            { time: "16:45", name: "Unknown caller", status: "Pending", statusColor: "var(--muted-2)" },
+          ].map((c, i) => (
+            <div key={i} style={{ display: "flex", alignItems: "center", gap: 10, padding: "10px 0", borderBottom: i < 2 ? "1px solid var(--line)" : "none" }}>
+              <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#ef4444", flexShrink: 0 }} />
+              <div style={{ flex: 1 }}>
+                <div style={{ fontSize: 13, color: "var(--ink)" }}>{c.name}</div>
+                <div style={{ fontSize: 11, color: "var(--muted-2)" }}>Missed at {c.time}</div>
+              </div>
+              <span style={{ fontSize: 11, fontWeight: 500, color: c.statusColor }}>{c.status}</span>
+            </div>
+          ))}
         </div>
       );
     case "headset":
       return (
-        <div className="mock">
+        <div className="mock-visual">
           <div className="mock-titlebar">
             <span className="dot" /><span className="dot" /><span className="dot" />
-            <span className="label">website chat</span>
+            <span className="label">chat widget</span>
+          </div>
+          {/* Visual: multi-channel view */}
+          <div style={{ display: "flex", gap: 6, marginBottom: 12 }}>
+            {["Website", "WhatsApp", "Facebook"].map((ch, i) => (
+              <span key={i} style={{ fontSize: 11, padding: "4px 10px", borderRadius: 20, background: i === 0 ? "var(--brand)" : "var(--surface-2)", color: i === 0 ? "#fff" : "var(--muted)", border: i === 0 ? "none" : "1px solid var(--line)", fontWeight: 500 }}>{ch}</span>
+            ))}
           </div>
           <div className="chat-line ai"><div className="av ai">FD</div><div className="bubble">Hi! I can help you book or get a quote. What are you looking for?</div></div>
           <div className="chat-line"><div className="av user">V</div><div className="bubble">How much for a balayage?</div></div>
@@ -309,142 +340,169 @@ const ServiceMock = ({ service }) => {
       );
     case "star":
       return (
-        <div className="mock">
+        <div className="mock-visual">
           <div className="mock-titlebar">
             <span className="dot" /><span className="dot" /><span className="dot" />
-            <span className="label">reviews</span>
+            <span className="label">review dashboard</span>
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }}>
-            <div style={{ padding: 12, border: "1px solid var(--line)", borderRadius: 8 }}>
-              <div style={{ fontSize: 11, color: "var(--muted)", fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.03em" }}>Rating</div>
-              <div style={{ fontSize: 26, fontWeight: 600, color: "var(--ink)", marginTop: 2 }}>4.92</div>
-              <div style={{ display: "flex", gap: 2, color: "var(--brand)", marginTop: 2 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 8, marginBottom: 12 }}>
+            <div className="metric-card">
+              <span className="metric-label">Rating</span>
+              <div style={{ display: "flex", alignItems: "baseline", gap: 4 }}>
+                <span className="metric-value">4.9</span>
+              </div>
+              <div className="star-row" style={{ marginTop: 2 }}>
                 {Array.from({ length: 5 }).map((_, i) => <Icon key={i} name="star" size={11} />)}
               </div>
             </div>
-            <div style={{ padding: 12, border: "1px solid var(--line)", borderRadius: 8 }}>
-              <div style={{ fontSize: 11, color: "var(--muted)", fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.03em" }}>This month</div>
-              <div style={{ fontSize: 26, fontWeight: 600, color: "var(--ink)", marginTop: 2 }}>+47</div>
-              <div style={{ fontSize: 11, color: "#22c55e" }}>New reviews</div>
+            <div className="metric-card">
+              <span className="metric-label">This month</span>
+              <span className="metric-value" style={{ color: "#22c55e" }}>+47</span>
+            </div>
+            <div className="metric-card">
+              <span className="metric-label">Response</span>
+              <span className="metric-value">100%</span>
             </div>
           </div>
-          <div style={{ marginTop: 10, padding: 12, border: "1px solid var(--line)", borderRadius: 8, fontSize: 12 }}>
-            <div style={{ display: "flex", gap: 2, color: "var(--brand)", marginBottom: 4 }}>
+          <div style={{ padding: 12, border: "1px solid var(--line)", borderRadius: 8, fontSize: 12 }}>
+            <div className="star-row" style={{ marginBottom: 4 }}>
               {Array.from({ length: 5 }).map((_, i) => <Icon key={i} name="star" size={10} />)}
             </div>
             <div style={{ color: "var(--ink)" }}>"Sarah was brilliant, really took the time to explain everything."</div>
             <div style={{ marginTop: 6, paddingTop: 6, borderTop: "1px solid var(--line)", color: "var(--muted)", fontSize: 11 }}>
-              <strong style={{ color: "var(--brand)" }}>Auto-reply:</strong> Thanks so much! We'll pass that on to Sarah.
+              <strong style={{ color: "var(--brand)" }}>Auto-reply sent</strong> in 4 minutes
             </div>
           </div>
         </div>
       );
     case "leaf":
       return (
-        <div className="mock">
+        <div className="mock-visual">
           <div className="mock-titlebar">
             <span className="dot" /><span className="dot" /><span className="dot" />
-            <span className="label">follow-up sequence</span>
+            <span className="label">lead pipeline</span>
           </div>
-          {[
-            { day: "Day 0", ch: "Email", title: "Your quote: roof repair", status: "Sent", active: true },
-            { day: "Day 2", ch: "SMS", title: "Quick check on the quote", status: "Sent", active: true },
-            { day: "Day 5", ch: "Email", title: "We've got an opening next week", status: "Scheduled", active: false },
-            { day: "Day 9", ch: "SMS", title: "Final follow-up", status: "Pending", active: false },
-          ].map((s, i) => (
-            <div key={i} style={{ display: "flex", alignItems: "center", gap: 10, padding: "9px 0", borderBottom: i < 3 ? "1px solid var(--line)" : "none" }}>
-              <span style={{ width: 22, height: 22, borderRadius: 6, background: s.active ? "rgba(8,102,255,0.06)" : "var(--surface-2)", color: s.active ? "var(--brand)" : "var(--muted-2)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 9, fontWeight: 600 }}>{s.ch[0]}</span>
-              <div style={{ flex: 1 }}>
-                <div style={{ fontSize: 12, color: "var(--ink)" }}>{s.title}</div>
-                <div style={{ fontSize: 10, color: "var(--muted-2)" }}>{s.day} / {s.ch}</div>
+          {/* Visual: pipeline/funnel view */}
+          <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+            {[
+              { stage: "New lead", count: 24, width: "100%", color: "var(--brand)" },
+              { stage: "Contacted", count: 22, width: "92%", color: "var(--brand)" },
+              { stage: "Replied", count: 15, width: "62%", color: "#22c55e" },
+              { stage: "Booked", count: 11, width: "46%", color: "#22c55e" },
+            ].map((s, i) => (
+              <div key={i}>
+                <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 3 }}>
+                  <span style={{ fontSize: 12, color: "var(--text)" }}>{s.stage}</span>
+                  <span style={{ fontSize: 12, fontWeight: 600, color: "var(--ink)" }}>{s.count}</span>
+                </div>
+                <div style={{ height: 6, background: "var(--line)", borderRadius: 3, overflow: "hidden" }}>
+                  <div style={{ width: s.width, height: "100%", background: s.color, borderRadius: 3, transition: "width 600ms ease" }} />
+                </div>
               </div>
-              <span style={{ fontSize: 10, color: s.active ? "#22c55e" : "var(--muted-2)", fontWeight: 500 }}>{s.status}</span>
-            </div>
-          ))}
+            ))}
+          </div>
+          <div style={{ marginTop: 8, padding: 10, background: "var(--surface-2)", borderRadius: 8, fontSize: 12, display: "flex", justifyContent: "space-between" }}>
+            <span style={{ color: "var(--muted)" }}>Avg. response time</span>
+            <span style={{ fontWeight: 600, color: "var(--brand)" }}>4.2 seconds</span>
+          </div>
         </div>
       );
     case "flow":
       return (
-        <div className="mock" style={{ minHeight: 260 }}>
+        <div className="mock-visual">
           <div className="mock-titlebar">
             <span className="dot" /><span className="dot" /><span className="dot" />
-            <span className="label">workflow</span>
+            <span className="label">automation flow</span>
           </div>
-          <svg viewBox="0 0 320 220" style={{ width: "100%", height: "auto" }}>
-            <defs>
-              <marker id="arr" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto">
-                <path d="M0 0L8 4L0 8z" fill="var(--muted-2)" />
-              </marker>
-            </defs>
+          <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
             {[
-              { x: 12, y: 20, w: 90, h: 36, label: "Quote signed", sub: "DocuSign" },
-              { x: 115, y: 20, w: 90, h: 36, label: "Invoice raised", sub: "Xero" },
-              { x: 218, y: 20, w: 90, h: 36, label: "Job in calendar", sub: "Google" },
-              { x: 12, y: 100, w: 90, h: 36, label: "Customer added", sub: "CRM" },
-              { x: 115, y: 100, w: 90, h: 36, label: "Crew assigned", sub: "ServiceM8" },
-              { x: 218, y: 100, w: 90, h: 36, label: "Reminder SMS", sub: "Twilio" },
-              { x: 60, y: 175, w: 200, h: 36, label: "Payment > review request", sub: "Stripe > Reviews" },
-            ].map((b, i) => (
-              <g key={i}>
-                <rect x={b.x} y={b.y} width={b.w} height={b.h} rx="6" fill="#fff" stroke="var(--line)" />
-                <text x={b.x + 8} y={b.y + 15} fontSize="10" fill="var(--ink)" fontFamily="Inter">{b.label}</text>
-                <text x={b.x + 8} y={b.y + 28} fontSize="8" fill="var(--muted-2)" fontFamily="Inter">{b.sub}</text>
-              </g>
+              { icon: "check", label: "Quote signed", sub: "DocuSign", color: "#22c55e" },
+              { icon: "check", label: "Invoice raised", sub: "Xero", color: "#22c55e" },
+              { icon: "check", label: "Job added to calendar", sub: "Google Calendar", color: "#22c55e" },
+              { icon: "check", label: "Customer added to CRM", sub: "GoHighLevel", color: "#22c55e" },
+              { icon: "check", label: "Crew assigned + notified", sub: "SMS", color: "#22c55e" },
+              { icon: "star", label: "Review request sent", sub: "After payment", color: "var(--brand)" },
+            ].map((n, i) => (
+              <React.Fragment key={i}>
+                <div className="flow-node">
+                  <span className="flow-dot" style={{ background: n.color }} />
+                  <div style={{ flex: 1 }}>
+                    <div style={{ fontSize: 13, color: "var(--ink)" }}>{n.label}</div>
+                    <div style={{ fontSize: 10, color: "var(--muted-2)" }}>{n.sub}</div>
+                  </div>
+                  <Icon name={n.icon} size={13} style={{ color: n.color }} />
+                </div>
+                {i < 5 && <div className="flow-connector" />}
+              </React.Fragment>
             ))}
-            <path d="M102 38 L115 38" stroke="var(--muted-2)" fill="none" markerEnd="url(#arr)" />
-            <path d="M205 38 L218 38" stroke="var(--muted-2)" fill="none" markerEnd="url(#arr)" />
-            <path d="M102 118 L115 118" stroke="var(--muted-2)" fill="none" markerEnd="url(#arr)" />
-            <path d="M205 118 L218 118" stroke="var(--muted-2)" fill="none" markerEnd="url(#arr)" />
-            <path d="M57 56 Q57 78 57 100" stroke="var(--muted-2)" fill="none" markerEnd="url(#arr)" />
-            <path d="M160 136 Q160 156 160 175" stroke="var(--brand)" strokeWidth="1.5" fill="none" markerEnd="url(#arr)" />
-          </svg>
+          </div>
         </div>
       );
     case "edit":
       return (
-        <div className="mock">
+        <div className="mock-visual">
           <div className="mock-titlebar">
             <span className="dot" /><span className="dot" /><span className="dot" />
-            <span className="label">content calendar</span>
+            <span className="label">content planner</span>
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(7, 1fr)", gap: 3, fontSize: 10, color: "var(--muted-2)" }}>
-            {["Mon","Tue","Wed","Thu","Fri","Sat","Sun"].map(d => <div key={d} style={{ textAlign: "center", fontWeight: 500, fontSize: 9 }}>{d}</div>)}
+          {/* Calendar view */}
+          <div className="cal-grid" style={{ marginBottom: 12 }}>
+            {["M","T","W","T","F","S","S"].map((d, i) => <div key={i} style={{ textAlign: "center", fontWeight: 600, fontSize: 9, color: "var(--muted-2)", padding: "4px 0" }}>{d}</div>)}
             {Array.from({ length: 28 }).map((_, i) => {
-              const has = [2, 4, 8, 10, 13, 15, 17, 22, 24].includes(i);
+              const events = [2, 4, 8, 10, 13, 15, 17, 22, 24];
               return (
-                <div key={i} style={{ aspectRatio: "1", border: "1px solid var(--line)", borderRadius: 3, position: "relative", background: has ? "rgba(8,102,255,0.04)" : "transparent" }}>
-                  {has && <span style={{ position: "absolute", top: 2, right: 2, width: 3, height: 3, borderRadius: "50%", background: "var(--brand)" }} />}
+                <div key={i} className={`cal-day${events.includes(i) ? " has-event" : ""}${i === 10 ? " today" : ""}`}>
+                  {i + 1}
                 </div>
               );
             })}
           </div>
-          <div style={{ marginTop: 10, padding: 10, background: "var(--surface-2)", borderRadius: 8, fontSize: 12 }}>
-            <div style={{ fontSize: 10, color: "var(--brand)", marginBottom: 3, fontWeight: 600 }}>NEXT POST / TUE 9AM</div>
-            <div style={{ color: "var(--ink)" }}>"Three signs your bathroom needs re-grouting before winter"</div>
+          <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+            {[
+              { type: "Instagram", title: "Before/after bathroom refit", time: "Tue 9am" },
+              { type: "Blog", title: "5 signs your gutters need clearing", time: "Wed 2pm" },
+              { type: "Email", title: "Monthly newsletter", time: "Fri 10am" },
+            ].map((p, i) => (
+              <div key={i} style={{ display: "flex", alignItems: "center", gap: 8, padding: "8px 10px", background: "var(--surface)", border: "1px solid var(--line)", borderRadius: 6 }}>
+                <span style={{ fontSize: 9, fontWeight: 600, color: "var(--brand)", textTransform: "uppercase", minWidth: 56 }}>{p.type}</span>
+                <span style={{ fontSize: 12, color: "var(--ink)", flex: 1 }}>{p.title}</span>
+                <span style={{ fontSize: 10, color: "var(--muted-2)" }}>{p.time}</span>
+              </div>
+            ))}
           </div>
         </div>
       );
     case "database":
       return (
-        <div className="mock">
+        <div className="mock-visual">
           <div className="mock-titlebar">
             <span className="dot" /><span className="dot" /><span className="dot" />
-            <span className="label">reactivation</span>
+            <span className="label">reactivation campaign</span>
+          </div>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, marginBottom: 12 }}>
+            <div className="metric-card">
+              <span className="metric-label">Contacts reached</span>
+              <span className="metric-value">340</span>
+            </div>
+            <div className="metric-card">
+              <span className="metric-label">Revenue</span>
+              <span className="metric-value" style={{ color: "#22c55e" }}>£8.2k</span>
+            </div>
           </div>
           {[
-            { label: "Last visit 6-12 months", count: 184, status: "Sending", active: true },
-            { label: "Last visit 12-24 months", count: 96, status: "Queued", active: false },
-            { label: "Lapsed > 24 months", count: 60, status: "Drafting", active: false },
+            { label: "6-12 months inactive", count: 184, pct: 100, status: "Complete", color: "#22c55e" },
+            { label: "12-24 months inactive", count: 96, pct: 52, status: "Sending", color: "var(--brand)" },
+            { label: "24+ months inactive", count: 60, pct: 33, status: "Queued", color: "var(--muted-2)" },
           ].map((row, i) => (
             <div key={i} style={{ display: "flex", alignItems: "center", padding: "10px 0", borderBottom: i < 2 ? "1px solid var(--line)" : "none", gap: 10 }}>
               <div style={{ flex: 1 }}>
                 <div style={{ fontSize: 12, color: "var(--ink)" }}>{row.label}</div>
-                <div style={{ height: 3, background: "var(--line)", borderRadius: 3, marginTop: 5, overflow: "hidden" }}>
-                  <div style={{ width: `${(row.count/184)*100}%`, height: "100%", background: row.active ? "var(--brand)" : "var(--muted-2)", borderRadius: 3 }} />
+                <div style={{ height: 4, background: "var(--line)", borderRadius: 3, marginTop: 5, overflow: "hidden" }}>
+                  <div style={{ width: `${row.pct}%`, height: "100%", background: row.color, borderRadius: 3 }} />
                 </div>
               </div>
-              <div style={{ fontSize: 17, fontWeight: 600, color: "var(--ink)", minWidth: 36, textAlign: "right" }}>{row.count}</div>
-              <div style={{ fontSize: 10, color: row.active ? "var(--brand)" : "var(--muted-2)", minWidth: 52, textAlign: "right", fontWeight: 500 }}>{row.status}</div>
+              <div style={{ fontSize: 15, fontWeight: 600, color: "var(--ink)", minWidth: 36, textAlign: "right" }}>{row.count}</div>
+              <div style={{ fontSize: 10, color: row.color, minWidth: 52, textAlign: "right", fontWeight: 500 }}>{row.status}</div>
             </div>
           ))}
         </div>
@@ -460,20 +518,19 @@ const AboutPage = ({ tw }) => (
     <section className="page-header">
       <div className="container">
         <span className="eyebrow">About</span>
-        <h1>A small UK team helping local businesses get more from every lead.</h1>
+        <h1>A small UK team helping local businesses <span className="accent">get more from every lead.</span></h1>
         <p className="lead">{tw.missionLine}</p>
       </div>
     </section>
 
     <section className="section container">
-      <div className="about-grid reveal">
-        <div>
-          <span className="eyebrow" style={{ marginBottom: 12, display: "inline-flex" }}>Our story</span>
-          <h2 style={{ marginTop: 12, marginBottom: 18 }}>Big company systems, set up for small businesses.</h2>
-          <p style={{ fontSize: 16, color: "var(--muted)", marginBottom: 14, lineHeight: 1.65 }}>{tw.founderStory}</p>
-          <p style={{ fontSize: 16, color: "var(--muted)", lineHeight: 1.65 }}>
-            Our customers are tradespeople, clinicians, salon owners, and restaurateurs. They don't have time to learn new platforms, so we handle everything for them.
-          </p>
+      <div className="about-hero reveal">
+        <div className="about-story">
+          <span className="eyebrow">Our story</span>
+          <h2 style={{ marginTop: 8 }}>We started FisherDigital because local businesses deserve better.</h2>
+          <p>The businesses that keep our high streets running, plumbers, dentists, hairdressers, electricians, are losing work to missed calls, slow follow-ups, and no time for marketing. The tools to fix this have always existed, but they were built for big companies with IT departments and six-figure budgets.</p>
+          <p>We set up the same systems for local businesses. AI that answers the phone at 2am. Automated follow-ups that chase quotes while you are on the tools. Review requests that go out after every job without anyone lifting a finger. All managed by us, so the business owner never needs to learn a single new platform.</p>
+          <p>FisherDigital started with Josh, who built the technical foundations, and grew when Billy joined as co-founder to drive growth and client relationships. Between us, we handle everything from configuring the AI to running sales calls and making sure every client gets results.</p>
         </div>
         <div className="mock" style={{ padding: 20 }}>
           <div className="mock-titlebar">
@@ -501,23 +558,38 @@ const AboutPage = ({ tw }) => (
     </section>
 
     <section className="section container">
-      <SectionHead eyebrow="The team" title="Two founders. One goal." />
-      <div className="team-grid reveal">
-        <div className="team-card">
-          <img className="team-photo" src="/josh.jpg" alt="Josh Fisher" />
-          <div>
-            <h3>Josh Fisher</h3>
-            <div className="role">Founder</div>
-          </div>
-          <p>{tw.joshBio}</p>
+      <SectionHead eyebrow="The team" title="Two founders. One goal." center />
+      <div className="founder-grid reveal">
+        <div className="founder-card">
+          <img className="founder-photo" src="/josh.jpg" alt="Josh Fisher" />
+          <h3 className="founder-name">Josh Fisher</h3>
+          <div className="founder-role">Founder</div>
         </div>
-        <div className="team-card">
-          <img className="team-photo" src="/billy.jpg" alt="Billy Loughman" />
-          <div>
-            <h3>Billy Loughman</h3>
-            <div className="role">Co-founder</div>
-          </div>
-          <p>{tw.billyBio}</p>
+        <div className="founder-card">
+          <img className="founder-photo" src="/billy.jpg" alt="Billy Loughman" />
+          <h3 className="founder-name">Billy Loughman</h3>
+          <div className="founder-role">Co-founder</div>
+        </div>
+      </div>
+    </section>
+
+    <section className="section dark-section">
+      <div className="glow glow-1" style={{ opacity: 0.5 }} />
+      <div className="container" style={{ position: "relative", zIndex: 1 }}>
+        <SectionHead eyebrow="What we believe" title="How we work with every client" />
+        <div className="values-grid reveal">
+          {[
+            { t: "Discovery first", b: "We never quote without understanding your business. A 20-minute call tells us where the real problems are." },
+            { t: "Only what works", b: "We don't sell services you don't need. If one tool solves the problem, that's all we set up." },
+            { t: "We manage it", b: "You never need to log into a dashboard or learn new software. We handle everything, you just see results." },
+            { t: "No lock-in", b: "Rolling monthly. If it's not working, you can cancel. We'd rather earn your business every month." },
+          ].map((v, i) => (
+            <div key={i} className="value-card">
+              <span className="value-num">0{i + 1}</span>
+              <h3>{v.t}</h3>
+              <p>{v.b}</p>
+            </div>
+          ))}
         </div>
       </div>
     </section>
@@ -529,103 +601,174 @@ const AboutPage = ({ tw }) => (
 );
 
 // ---------- CAREERS ----------
-const CareersPage = () => (
-  <>
-    <section className="page-header">
-      <div className="container">
-        <span className="eyebrow">Careers</span>
-        <h1>Help local businesses grow. <span className="accent">Get paid well doing it.</span></h1>
-        <p className="lead">We're building a team of driven, self-starting people who want to earn real money while helping real businesses. Fully remote. Commission-based. No ceiling on what you can earn.</p>
-      </div>
-    </section>
+const CareersPage = () => {
+  const [form, setForm] = usePState({ name: "", email: "", role: "", experience: "", note: "" });
+  const [sent, setSent] = usePState(false);
+  const [sending, setSending] = usePState(false);
 
-    <section className="section container">
-      <div className="careers-why reveal">
-        <SectionHead eyebrow="Why FisherDigital" title="What you're joining" />
-        <div className="careers-perks">
-          <div className="perk-card">
-            <div className="perk-icon"><Icon name="pound" size={20} /></div>
-            <h3>Uncapped earnings</h3>
-            <p>Commission-based with no ceiling. The more you close or book, the more you earn. Simple.</p>
-          </div>
-          <div className="perk-card">
-            <div className="perk-icon"><Icon name="clock" size={20} /></div>
-            <h3>Flexible hours</h3>
-            <p>Work around your schedule. We care about results, not when you clock in.</p>
-          </div>
-          <div className="perk-card">
-            <div className="perk-icon"><Icon name="target" size={20} /></div>
-            <h3>Real impact</h3>
-            <p>You're helping local businesses capture more revenue. The results are tangible and immediate.</p>
-          </div>
-          <div className="perk-card">
-            <div className="perk-icon"><Icon name="zap" size={20} /></div>
-            <h3>Ground floor</h3>
-            <p>Join early. As we scale, the people who helped build this will be the ones leading it.</p>
+  const submit = async (e) => {
+    e.preventDefault();
+    setSending(true);
+    try {
+      await fetch("https://formspree.io/f/mojpnokn", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        body: JSON.stringify({ ...form, _subject: `Application: ${form.role || "General"}` }),
+      });
+      setSent(true);
+    } catch (err) {
+      setSent(true);
+    }
+    setSending(false);
+  };
+
+  return (
+    <>
+      <section className="page-header">
+        <div className="container">
+          <span className="eyebrow">Careers</span>
+          <h1>Help local businesses grow. <span className="accent">Get paid well doing it.</span></h1>
+          <p className="lead">We're building a team of driven, self-starting people who want to earn real money while helping real businesses. Fully remote. Commission-based. No ceiling on what you can earn.</p>
+        </div>
+      </section>
+
+      <section className="section container">
+        <div className="careers-why reveal">
+          <SectionHead eyebrow="Why FisherDigital" title="What you're joining" />
+          <div className="careers-perks">
+            <div className="perk-card">
+              <div className="perk-icon"><Icon name="pound" size={20} /></div>
+              <h3>Uncapped earnings</h3>
+              <p>Commission-based with no ceiling. The more you close or book, the more you earn.</p>
+            </div>
+            <div className="perk-card">
+              <div className="perk-icon"><Icon name="clock" size={20} /></div>
+              <h3>Flexible hours</h3>
+              <p>Work around your schedule. We care about results, not when you clock in.</p>
+            </div>
+            <div className="perk-card">
+              <div className="perk-icon"><Icon name="target" size={20} /></div>
+              <h3>Real impact</h3>
+              <p>You're helping local businesses capture more revenue. The results are tangible and immediate.</p>
+            </div>
+            <div className="perk-card">
+              <div className="perk-icon"><Icon name="zap" size={20} /></div>
+              <h3>Ground floor</h3>
+              <p>Join early. As we scale, the people who helped build this will be the ones leading it.</p>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section className="section dark-section">
-      <div className="glow glow-1" style={{ opacity: 0.5 }} />
-      <div className="container" style={{ position: "relative", zIndex: 1 }}>
-        <SectionHead eyebrow="Open positions" title="We're hiring" />
-        <div className="roles-list">
-          {CAREER_ROLES.map((role) => (
-            <div key={role.id} className="role-card reveal">
-              <div className="role-header">
-                <div>
-                  <h3>{role.title}</h3>
-                  <div className="role-tags">
-                    <span className="role-tag"><Icon name="pound" size={12} /> {role.type}</span>
-                    <span className="role-tag"><Icon name="pin" size={12} /> {role.location}</span>
+      <section className="section dark-section">
+        <div className="glow glow-1" style={{ opacity: 0.5 }} />
+        <div className="container" style={{ position: "relative", zIndex: 1 }}>
+          <SectionHead eyebrow="Open positions" title="We're hiring" />
+          <div className="roles-list">
+            {CAREER_ROLES.map((role) => (
+              <div key={role.id} className="role-card reveal">
+                <div className="role-header">
+                  <div>
+                    <h3>{role.title}</h3>
+                    <div className="role-tags">
+                      <span className="role-tag"><Icon name="pound" size={12} /> {role.type}</span>
+                      <span className="role-tag"><Icon name="pin" size={12} /> {role.location}</span>
+                      {role.internal && <span className="role-tag internal"><Icon name="shield" size={12} /> Internal</span>}
+                    </div>
+                  </div>
+                </div>
+                <p className="role-desc">{role.description}</p>
+                <div className="role-sections">
+                  <div>
+                    <h4>What you'll do</h4>
+                    <ul className="role-list">
+                      {role.responsibilities.map((r, i) => <li key={i}><Icon name="check" size={13} /> {r}</li>)}
+                    </ul>
+                  </div>
+                  <div>
+                    <h4>What we're looking for</h4>
+                    <ul className="role-list">
+                      {role.requirements.map((r, i) => <li key={i}><Icon name="check" size={13} /> {r}</li>)}
+                    </ul>
+                  </div>
+                  <div>
+                    <h4>What you'll get</h4>
+                    <ul className="role-list">
+                      {role.offer.map((r, i) => <li key={i}><Icon name="check" size={13} /> {r}</li>)}
+                    </ul>
                   </div>
                 </div>
               </div>
-              <p className="role-desc">{role.description}</p>
-              <div className="role-sections">
-                <div>
-                  <h4>What you'll do</h4>
-                  <ul className="role-list">
-                    {role.responsibilities.map((r, i) => <li key={i}><Icon name="check" size={13} /> {r}</li>)}
-                  </ul>
-                </div>
-                <div>
-                  <h4>What we're looking for</h4>
-                  <ul className="role-list">
-                    {role.requirements.map((r, i) => <li key={i}><Icon name="check" size={13} /> {r}</li>)}
-                  </ul>
-                </div>
-                <div>
-                  <h4>What you'll get</h4>
-                  <ul className="role-list">
-                    {role.offer.map((r, i) => <li key={i}><Icon name="check" size={13} /> {r}</li>)}
-                  </ul>
-                </div>
-              </div>
-              <a className="btn btn-white btn-lg" href={`mailto:hello@fisherdigital.co.uk?subject=Application: ${role.title}&body=Hi FisherDigital,%0D%0A%0D%0AI'm interested in the ${role.title} role.%0D%0A%0D%0A[Tell us a bit about yourself and why you'd be a good fit]`}>
-                Apply for this role <Icon name="arrow-right" size={14} />
-              </a>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
+            ))}
+          </div>
 
-    <section className="section container">
-      <div className="inline-form-section reveal" style={{ textAlign: "center" }}>
-        <h2 style={{ marginBottom: 14 }}>Don't see the right role?</h2>
-        <p className="lead" style={{ margin: "0 auto", textAlign: "center" }}>We're always interested in hearing from driven people. Drop us a line and tell us what you're good at.</p>
-        <div style={{ marginTop: 28 }}>
-          <a className="btn btn-primary btn-lg" href="mailto:hello@fisherdigital.co.uk?subject=General Application&body=Hi FisherDigital,%0D%0A%0D%0AI'm interested in working with you.%0D%0A%0D%0A[Tell us about yourself]">
-            Get in touch <Icon name="arrow-right" size={14} />
-          </a>
+          {/* Application form */}
+          <div style={{ marginTop: 48 }}>
+            <SectionHead eyebrow="Apply" title="Interested? Get in touch." />
+            <div className="apply-form" style={{ maxWidth: 560 }}>
+              {sent ? (
+                <div style={{ padding: 28, textAlign: "center", display: "flex", flexDirection: "column", gap: 10, alignItems: "center" }}>
+                  <div style={{ width: 44, height: 44, borderRadius: "50%", background: "rgba(8,102,255,0.12)", color: "var(--brand)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                    <Icon name="check" size={20} />
+                  </div>
+                  <div style={{ fontSize: 17, color: "#fff", fontWeight: 600 }}>Application received.</div>
+                  <div style={{ fontSize: 13, color: "var(--dark-muted)" }}>We'll be in touch within a few days.</div>
+                </div>
+              ) : (
+                <form onSubmit={submit} style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+                  <div>
+                    <h3 style={{ marginBottom: 4 }}>Apply now</h3>
+                    <p style={{ fontSize: 13 }}>Tell us a bit about yourself. We'll get back to you within a few days.</p>
+                  </div>
+                  <div className="form-group">
+                    <label className="form-label">Your name</label>
+                    <input className="form-input" required value={form.name} onChange={(e) => setForm({...form, name: e.target.value})} placeholder="Full name" />
+                  </div>
+                  <div className="form-group">
+                    <label className="form-label">Email</label>
+                    <input className="form-input" type="email" required value={form.email} onChange={(e) => setForm({...form, email: e.target.value})} placeholder="you@example.com" />
+                  </div>
+                  <div className="form-group">
+                    <label className="form-label">Which role are you applying for?</label>
+                    <select className="form-select" value={form.role} onChange={(e) => setForm({...form, role: e.target.value})}>
+                      <option value="">Select a role</option>
+                      <option value="bdr">Business Development Representative</option>
+                      <option value="account-exec">Account Executive (Internal)</option>
+                      <option value="other">Other / General interest</option>
+                    </select>
+                  </div>
+                  <div className="form-group">
+                    <label className="form-label">Relevant experience</label>
+                    <textarea className="form-textarea" value={form.experience} onChange={(e) => setForm({...form, experience: e.target.value})} placeholder="Tell us about any sales, calling, or customer-facing experience you have." />
+                  </div>
+                  <div className="form-group">
+                    <label className="form-label">Anything else?</label>
+                    <textarea className="form-textarea" style={{ minHeight: 70 }} value={form.note} onChange={(e) => setForm({...form, note: e.target.value})} placeholder="Why do you want to work with FisherDigital?" />
+                  </div>
+                  <button className="btn btn-primary btn-lg" style={{ justifyContent: "center", width: "100%" }} type="submit" disabled={sending}>
+                    {sending ? "Sending..." : "Submit application"} {!sending && <Icon name="arrow-right" size={14} />}
+                  </button>
+                </form>
+              )}
+            </div>
+          </div>
         </div>
-      </div>
-    </section>
-  </>
-);
+      </section>
+
+      <section className="section container">
+        <div className="inline-form-section reveal" style={{ textAlign: "center" }}>
+          <h2 style={{ marginBottom: 14 }}>Don't see the right role?</h2>
+          <p className="lead" style={{ margin: "0 auto", textAlign: "center" }}>We're always interested in hearing from driven people. Drop us a line and tell us what you're good at.</p>
+          <div style={{ marginTop: 28 }}>
+            <a className="btn btn-primary btn-lg" href="mailto:hello@fisherdigital.co.uk?subject=General Application">
+              Get in touch <Icon name="arrow-right" size={14} />
+            </a>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+};
 
 // ---------- CONTACT ----------
 const ContactPage = ({ tw }) => {
@@ -768,7 +911,7 @@ const PrivacyPage = () => (
         <h3>Information you provide</h3>
         <ul>
           <li><strong>Contact form submissions:</strong> name, email address, business name, and your message.</li>
-          <li><strong>Job applications:</strong> name, email, and any information you include in your application email.</li>
+          <li><strong>Job applications:</strong> name, email, and any information you include in your application.</li>
           <li><strong>Email correspondence:</strong> any information you send us via email.</li>
         </ul>
 
