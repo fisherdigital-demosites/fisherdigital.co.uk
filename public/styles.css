@@ -306,28 +306,9 @@ h3 { font-size: clamp(20px, 2vw, 26px); }
 /* Hero illustration */
 .hero-illustration {
   width: 100%;
-  max-width: 440px;
+  max-width: 520px;
   height: auto;
-}
-.hero-node {
-  transition: transform 300ms ease;
-}
-.hero-node:hover {
-  filter: brightness(1.2);
-}
-.hero-line {
-  opacity: 0.6;
-}
-@keyframes hero-orbit {
-  0% { transform: rotate(0deg) translateX(60px) rotate(0deg); }
-  100% { transform: rotate(360deg) translateX(60px) rotate(-360deg); }
-}
-.hero-orbit {
-  transform-origin: 220px 200px;
-  animation: hero-orbit 8s linear infinite;
-}
-.hero-particle {
-  opacity: 0.8;
+  filter: drop-shadow(0 20px 40px rgba(8, 102, 255, 0.15));
 }
 
 @media (max-width: 1060px) {
@@ -1244,7 +1225,7 @@ h3 { font-size: clamp(20px, 2vw, 26px); }
 
 /* ─── Integration band ─── */
 .integrations-band {
-  padding: 48px 0;
+  padding: 56px 0;
   border-bottom: 1px solid var(--line);
   overflow: hidden;
   position: relative;
@@ -1255,7 +1236,7 @@ h3 { font-size: clamp(20px, 2vw, 26px); }
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 120px;
+  width: 160px;
   z-index: 2;
   pointer-events: none;
 }
@@ -1269,18 +1250,18 @@ h3 { font-size: clamp(20px, 2vw, 26px); }
 }
 .integrations-label {
   text-align: center;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--muted-2);
-  margin-bottom: 24px;
+  margin-bottom: 32px;
 }
 .integrations-track {
   display: flex;
   align-items: center;
-  gap: 64px;
-  animation: scroll-left 35s linear infinite;
+  gap: 56px;
+  animation: scroll-left 40s linear infinite;
   width: max-content;
 }
 .integrations-track:hover { animation-play-state: paused; }
@@ -1293,11 +1274,10 @@ h3 { font-size: clamp(20px, 2vw, 26px); }
   align-items: center;
   gap: 10px;
   white-space: nowrap;
-  opacity: 0.45;
-  transition: opacity 300ms ease, filter 300ms ease;
-  filter: grayscale(100%);
+  opacity: 0.4;
+  transition: opacity 400ms ease;
 }
-.integration-logo:hover { opacity: 1; filter: grayscale(0%); }
+.integration-logo:hover { opacity: 0.85; }
 .integration-logo img {
   width: 28px;
   height: 28px;
@@ -1305,10 +1285,11 @@ h3 { font-size: clamp(20px, 2vw, 26px); }
   flex-shrink: 0;
 }
 .integration-logo span {
-  font-family: var(--font-body);
+  font-family: var(--font-heading);
   font-size: 15px;
   font-weight: 600;
-  color: var(--secondary);
+  color: var(--ink);
+  line-height: 1;
 }
 
 /* ─── Misc ─── */

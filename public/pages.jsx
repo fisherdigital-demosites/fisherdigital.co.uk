@@ -50,26 +50,30 @@ const FAQItem = ({ item }) => {
 
 // ---------- Integrations Band ----------
 const INTEGRATIONS = [
-  { name: "Google", src: "https://cdn.simpleicons.org/google" },
-  { name: "Stripe", src: "https://cdn.simpleicons.org/stripe" },
-  { name: "WhatsApp", src: "https://cdn.simpleicons.org/whatsapp" },
-  { name: "Xero", src: "https://cdn.simpleicons.org/xero" },
-  { name: "Zapier", src: "https://cdn.simpleicons.org/zapier" },
-  { name: "Facebook", src: "https://cdn.simpleicons.org/facebook" },
-  { name: "Twilio", src: "https://cdn.simpleicons.org/twilio" },
-  { name: "Slack", src: "https://cdn.simpleicons.org/slack" },
-  { name: "HubSpot", src: "https://cdn.simpleicons.org/hubspot" },
-  { name: "Calendly", src: "https://cdn.simpleicons.org/calendly" },
-  { name: "Google Sheets", src: "https://cdn.simpleicons.org/googlesheets" },
-  { name: "Google Calendar", src: "https://cdn.simpleicons.org/googlecalendar" },
+  { name: "Google",    slug: "google" },
+  { name: "Stripe",    slug: "stripe" },
+  { name: "WhatsApp",  slug: "whatsapp" },
+  { name: "Xero",      slug: "xero" },
+  { name: "Zapier",    slug: "zapier" },
+  { name: "Meta",      slug: "meta" },
+  { name: "Twilio",    slug: "twilio" },
+  { name: "Slack",     slug: "slack" },
+  { name: "HubSpot",   slug: "hubspot" },
+  { name: "Calendly",  slug: "calendly" },
+  { name: "Mailchimp",   slug: "mailchimp" },
+  { name: "Make",      slug: "make" },
 ];
 const IntegrationsBand = () => (
   <section className="integrations-band">
     <div className="integrations-label">Works with the tools you already use</div>
     <div className="integrations-track">
       {[...INTEGRATIONS, ...INTEGRATIONS].map((item, i) => (
-        <div key={i} className="integration-logo">
-          <img src={item.src} alt={item.name} width="28" height="28" loading="lazy" />
+        <div key={i} className="integration-logo" title={item.name}>
+          <img
+            src={`https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/${item.slug}.svg`}
+            alt={item.name}
+            loading="lazy"
+          />
           <span>{item.name}</span>
         </div>
       ))}
@@ -109,100 +113,13 @@ const Home = ({ tw }) => (
         </div>
 
         <div className="hero-demo reveal">
-          {/* Automation hub illustration */}
-          <svg className="hero-illustration" viewBox="0 0 440 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-            {/* Connection lines from outer nodes to centre */}
-            <line x1="220" y1="200" x2="100" y2="80" stroke="#334155" strokeWidth="1.5" strokeDasharray="6 4" className="hero-line" />
-            <line x1="220" y1="200" x2="340" y2="80" stroke="#334155" strokeWidth="1.5" strokeDasharray="6 4" className="hero-line" />
-            <line x1="220" y1="200" x2="70" y2="220" stroke="#334155" strokeWidth="1.5" strokeDasharray="6 4" className="hero-line" />
-            <line x1="220" y1="200" x2="370" y2="220" stroke="#334155" strokeWidth="1.5" strokeDasharray="6 4" className="hero-line" />
-            <line x1="220" y1="200" x2="120" y2="340" stroke="#334155" strokeWidth="1.5" strokeDasharray="6 4" className="hero-line" />
-            <line x1="220" y1="200" x2="320" y2="340" stroke="#334155" strokeWidth="1.5" strokeDasharray="6 4" className="hero-line" />
-
-            {/* Glow behind centre */}
-            <circle cx="220" cy="200" r="80" fill="url(#hero-glow)" />
-
-            {/* Centre hub */}
-            <circle cx="220" cy="200" r="52" fill="#1E293B" stroke="#0866FF" strokeWidth="2" />
-            <text x="220" y="195" textAnchor="middle" fill="#fff" fontFamily="var(--font-heading)" fontSize="11" fontWeight="600">FISHER</text>
-            <text x="220" y="211" textAnchor="middle" fill="#0866FF" fontFamily="var(--font-heading)" fontSize="11" fontWeight="600">DIGITAL</text>
-
-            {/* Orbiting dots */}
-            <circle cx="220" cy="140" r="3" fill="#0866FF" className="hero-orbit" />
-            <circle cx="262" cy="240" r="3" fill="#22c55e" className="hero-orbit" style={{ animationDelay: "-2s" }} />
-            <circle cx="178" cy="248" r="3" fill="#0866FF" className="hero-orbit" style={{ animationDelay: "-4s" }} />
-
-            {/* Node: Phone (top-left) */}
-            <g className="hero-node">
-              <rect x="68" y="48" width="64" height="64" rx="14" fill="#1E293B" stroke="#334155" strokeWidth="1.5" />
-              <path d="M92 72h3l1.5 4-2 1.5a11 11 0 005 5l1.5-2 4 1.5v3a2 2 0 01-2 2 13 13 0 01-13-13 2 2 0 012-2z" stroke="#22c55e" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-              <text x="100" y="102" textAnchor="middle" fill="#94A3B8" fontSize="8" fontWeight="600">CALLS</text>
-            </g>
-
-            {/* Node: Chat (top-right) */}
-            <g className="hero-node">
-              <rect x="308" y="48" width="64" height="64" rx="14" fill="#1E293B" stroke="#334155" strokeWidth="1.5" />
-              <path d="M349 76a8 8 0 01-11.5 7.2l-5.5 1.8 1.8-5.5a8 8 0 1115.2-3.5z" stroke="#0866FF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-              <text x="340" y="102" textAnchor="middle" fill="#94A3B8" fontSize="8" fontWeight="600">CHAT</text>
-            </g>
-
-            {/* Node: Calendar (mid-left) */}
-            <g className="hero-node">
-              <rect x="28" y="188" width="64" height="64" rx="14" fill="#1E293B" stroke="#334155" strokeWidth="1.5" />
-              <rect x="47" y="205" width="26" height="22" rx="3" stroke="#f59e0b" strokeWidth="1.5" fill="none" />
-              <path d="M47 212h26" stroke="#f59e0b" strokeWidth="1.5" />
-              <path d="M53 202v5M67 202v5" stroke="#f59e0b" strokeWidth="1.5" strokeLinecap="round" />
-              <text x="60" y="242" textAnchor="middle" fill="#94A3B8" fontSize="8" fontWeight="600">CALENDAR</text>
-            </g>
-
-            {/* Node: Reviews (mid-right) */}
-            <g className="hero-node">
-              <rect x="348" y="188" width="64" height="64" rx="14" fill="#1E293B" stroke="#334155" strokeWidth="1.5" />
-              <path d="M380 207l2.6 5.4 5.9.8-4.3 4.1 1 5.9-5.2-2.8-5.2 2.8 1-5.9-4.3-4.1 5.9-.8z" stroke="#f59e0b" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-              <text x="380" y="242" textAnchor="middle" fill="#94A3B8" fontSize="8" fontWeight="600">REVIEWS</text>
-            </g>
-
-            {/* Node: Leads (bottom-left) */}
-            <g className="hero-node">
-              <rect x="88" y="308" width="64" height="64" rx="14" fill="#1E293B" stroke="#334155" strokeWidth="1.5" />
-              <path d="M112 328v4m0 11v4m-9-10h4m11 0h4m-15.8-8.4l2.8 2.8m8 8l2.8 2.8m-2.8-13.6l-2.8 2.8m-8 8l-2.8 2.8" stroke="#22c55e" strokeWidth="1.5" strokeLinecap="round" />
-              <text x="120" y="362" textAnchor="middle" fill="#94A3B8" fontSize="8" fontWeight="600">LEADS</text>
-            </g>
-
-            {/* Node: Automation (bottom-right) */}
-            <g className="hero-node">
-              <rect x="288" y="308" width="64" height="64" rx="14" fill="#1E293B" stroke="#334155" strokeWidth="1.5" />
-              <rect x="305" y="325" width="10" height="10" rx="2" stroke="#0866FF" strokeWidth="1.5" fill="none" />
-              <rect x="325" y="325" width="10" height="10" rx="2" stroke="#0866FF" strokeWidth="1.5" fill="none" />
-              <rect x="305" y="345" width="10" height="10" rx="2" stroke="#0866FF" strokeWidth="1.5" fill="none" />
-              <path d="M315 330h10m-5-5v10m-10 10h10" stroke="#0866FF" strokeWidth="1.2" strokeLinecap="round" opacity=".5" />
-              <text x="320" y="362" textAnchor="middle" fill="#94A3B8" fontSize="8" fontWeight="600">WORKFLOWS</text>
-            </g>
-
-            {/* Animated data particles along the lines */}
-            <circle r="2.5" fill="#0866FF" className="hero-particle">
-              <animateMotion dur="3s" repeatCount="indefinite" path="M220,200 L100,80" />
-            </circle>
-            <circle r="2.5" fill="#22c55e" className="hero-particle">
-              <animateMotion dur="3.5s" repeatCount="indefinite" path="M220,200 L370,220" />
-            </circle>
-            <circle r="2.5" fill="#f59e0b" className="hero-particle">
-              <animateMotion dur="4s" repeatCount="indefinite" path="M220,200 L320,340" />
-            </circle>
-            <circle r="2" fill="#0866FF" className="hero-particle" opacity=".6">
-              <animateMotion dur="3.2s" repeatCount="indefinite" path="M100,80 L220,200" />
-            </circle>
-            <circle r="2" fill="#22c55e" className="hero-particle" opacity=".6">
-              <animateMotion dur="2.8s" repeatCount="indefinite" path="M70,220 L220,200" />
-            </circle>
-
-            <defs>
-              <radialGradient id="hero-glow">
-                <stop offset="0%" stopColor="#0866FF" stopOpacity="0.15" />
-                <stop offset="100%" stopColor="#0866FF" stopOpacity="0" />
-              </radialGradient>
-            </defs>
-          </svg>
+          <img
+            className="hero-illustration"
+            src="hero-illustration.svg"
+            alt="Team collaborating with AI-powered communication tools"
+            width="520"
+            height="400"
+          />
         </div>
       </div>
     </section>
