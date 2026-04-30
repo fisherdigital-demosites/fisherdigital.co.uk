@@ -1,4 +1,4 @@
-/* global React, Icon, SERVICES, FAQ_ITEMS, CAREER_ROLES */
+/* global React, Icon, BrandLogo, SERVICES, FAQ_ITEMS, CAREER_ROLES */
 const { useState: usePState } = React;
 
 // ---------- Reusable ----------
@@ -50,9 +50,9 @@ const FAQItem = ({ item }) => {
 
 // ---------- Integrations Band ----------
 const INTEGRATIONS = [
-  "GoHighLevel", "Synthflow", "Make.com", "Google Calendar",
-  "Xero", "Stripe", "WhatsApp", "Facebook", "Twilio",
-  "Zapier", "Google Sheets", "Slack", "HubSpot", "Calendly",
+  "Google", "Stripe", "WhatsApp", "Xero", "Make",
+  "GoHighLevel", "Synthflow", "Facebook", "Twilio",
+  "Zapier", "Slack", "HubSpot", "Calendly",
 ];
 const IntegrationsBand = () => (
   <section className="integrations-band">
@@ -60,13 +60,7 @@ const IntegrationsBand = () => (
     <div className="integrations-track">
       {[...INTEGRATIONS, ...INTEGRATIONS].map((name, i) => (
         <span key={i} className="integration-logo">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-            <rect x="3" y="3" width="7" height="7" rx="1" />
-            <rect x="14" y="3" width="7" height="7" rx="1" />
-            <rect x="3" y="14" width="7" height="7" rx="1" />
-            <rect x="14" y="14" width="7" height="7" rx="1" />
-          </svg>
-          {name}
+          <BrandLogo name={name} height={24} />
         </span>
       ))}
     </div>
@@ -105,18 +99,50 @@ const Home = ({ tw }) => (
         </div>
 
         <div className="hero-demo reveal">
-          <div className="mock-dark">
-            <div className="mock-titlebar">
-              <span className="dot" /><span className="dot" /><span className="dot" />
-              <span className="label">9:42pm</span>
+          {/* Results dashboard — shows what FD delivers */}
+          <div className="hero-dashboard">
+            <div className="hero-dash-header">
+              <span className="pulse-dot" style={{ background: "#22c55e" }} />
+              <span style={{ fontSize: 13, color: "var(--dark-muted)" }}>Live results this month</span>
             </div>
-            <div className="chat-line"><div className="av user">C</div><div className="bubble">My boiler's leaking, can someone come out?</div></div>
-            <div className="chat-line ai"><div className="av ai">FD</div><div className="bubble">Of course. What's your postcode?</div></div>
-            <div className="chat-line"><div className="av user">C</div><div className="bubble">SW6 4LP</div></div>
-            <div className="chat-line ai"><div className="av ai">FD</div><div className="bubble">Tom can be there at 7am. Confirmation text sent.</div></div>
-            <div style={{ borderTop: "1px solid var(--dark-line)", marginTop: 6, paddingTop: 8, display: "flex", gap: 12, fontSize: 11, color: "var(--dark-muted)" }}>
-              <span style={{ display: "inline-flex", alignItems: "center", gap: 4 }}><Icon name="check" size={11} /> <span style={{ color: "#22c55e" }}>Calendar booked</span></span>
-              <span style={{ display: "inline-flex", alignItems: "center", gap: 4 }}><Icon name="check" size={11} /> <span style={{ color: "#22c55e" }}>SMS confirmed</span></span>
+            <div className="hero-dash-grid">
+              <div className="hero-dash-card">
+                <Icon name="phone" size={20} />
+                <div className="hero-dash-num">142</div>
+                <div className="hero-dash-label">Calls answered</div>
+              </div>
+              <div className="hero-dash-card">
+                <Icon name="chat" size={20} />
+                <div className="hero-dash-num">38</div>
+                <div className="hero-dash-label">Leads recovered</div>
+              </div>
+              <div className="hero-dash-card accent">
+                <Icon name="star" size={20} />
+                <div className="hero-dash-num">+47</div>
+                <div className="hero-dash-label">New reviews</div>
+              </div>
+              <div className="hero-dash-card">
+                <Icon name="clock" size={20} />
+                <div className="hero-dash-num">26h</div>
+                <div className="hero-dash-label">Admin saved</div>
+              </div>
+            </div>
+            <div className="hero-dash-feed">
+              <div className="hero-dash-event">
+                <span className="pulse-dot" style={{ background: "#22c55e", width: 6, height: 6 }} />
+                <span style={{ flex: 1 }}>Missed call recovered — Sarah M. booked for Thursday</span>
+                <span style={{ color: "var(--dark-muted)" }}>2m ago</span>
+              </div>
+              <div className="hero-dash-event">
+                <span className="pulse-dot" style={{ background: "var(--brand)", width: 6, height: 6 }} />
+                <span style={{ flex: 1 }}>5-star review auto-replied on Google</span>
+                <span style={{ color: "var(--dark-muted)" }}>8m ago</span>
+              </div>
+              <div className="hero-dash-event">
+                <span className="pulse-dot" style={{ background: "#22c55e", width: 6, height: 6 }} />
+                <span style={{ flex: 1 }}>Inbound call answered — boiler repair, 7am slot</span>
+                <span style={{ color: "var(--dark-muted)" }}>14m ago</span>
+              </div>
             </div>
           </div>
         </div>
@@ -592,36 +618,12 @@ const AboutPage = ({ tw }) => (
     </section>
 
     <section className="section container">
-      <div className="about-hero reveal">
-        <div className="about-story">
-          <span className="eyebrow">Our story</span>
-          <h2 style={{ marginTop: 8 }}>We started FisherDigital because local businesses deserve better.</h2>
-          <p>The businesses that keep our high streets running, plumbers, dentists, hairdressers, electricians, are losing work to missed calls, slow follow-ups, and no time for marketing. The tools to fix this have always existed, but they were built for big companies with IT departments and six-figure budgets.</p>
-          <p>We set up the same systems for local businesses. AI that answers the phone at 2am. Automated follow-ups that chase quotes while you are on the tools. Review requests that go out after every job without anyone lifting a finger. All managed by us, so the business owner never needs to learn a single new platform.</p>
-          <p>FisherDigital started with Josh, who built the technical foundations, and grew when Billy joined as co-founder to drive growth and client relationships. Between us, we handle everything from configuring the AI to running sales calls and making sure every client gets results.</p>
-        </div>
-        <div className="mock" style={{ padding: 20 }}>
-          <div className="mock-titlebar">
-            <span className="dot" /><span className="dot" /><span className="dot" />
-            <span className="label">how we work</span>
-          </div>
-          {[
-            { t: "Discovery first", b: "We won't quote without a call. Every business is different." },
-            { t: "Plain English", b: "If we can't explain it simply, it's the wrong tool." },
-            { t: "Real people", b: "A UK-based team you can actually call." },
-            { t: "Outcome-based pricing", b: "Custom pricing tied to the work, not seats or tiers." },
-          ].map((p, i) => (
-            <div key={i} style={{ padding: "12px 0", borderBottom: i < 3 ? "1px solid var(--line)" : "none" }}>
-              <div style={{ display: "flex", alignItems: "flex-start", gap: 10 }}>
-                <span style={{ fontSize: 12, color: "var(--brand)", fontWeight: 600, minWidth: 20 }}>0{i + 1}</span>
-                <div>
-                  <div style={{ fontWeight: 600, color: "var(--ink)", fontSize: 14 }}>{p.t}</div>
-                  <div style={{ fontSize: 13, color: "var(--muted)", marginTop: 2 }}>{p.b}</div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+      <div className="about-story reveal" style={{ maxWidth: 720 }}>
+        <span className="eyebrow">Our story</span>
+        <h2 style={{ marginTop: 8 }}>We started FisherDigital because local businesses deserve better.</h2>
+        <p>The businesses that keep our high streets running, plumbers, dentists, hairdressers, electricians, are losing work to missed calls, slow follow-ups, and no time for marketing. The tools to fix this have always existed, but they were built for big companies with IT departments and six-figure budgets.</p>
+        <p>We set up the same systems for local businesses. AI that answers the phone at 2am. Automated follow-ups that chase quotes while you are on the tools. Review requests that go out after every job without anyone lifting a finger. All managed by us, so the business owner never needs to learn a single new platform.</p>
+        <p>FisherDigital started with Josh, who built the technical foundations, and grew when Billy joined as co-founder to drive growth and client relationships. Between us, we handle everything from configuring the AI to running sales calls and making sure every client gets results.</p>
       </div>
     </section>
 
