@@ -204,6 +204,80 @@ const Icon = ({ name, size = 22, stroke = 1.5 }) => {
           <circle cx="15" cy="13" r="1" fill="currentColor" />
         </svg>
       );
+    case "wrench":
+      return (
+        <svg {...props}>
+          <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76Z" />
+        </svg>
+      );
+    case "smile":
+      return (
+        <svg {...props}>
+          <circle cx="12" cy="12" r="10" />
+          <path d="M8 14s1.5 2 4 2 4-2 4-2" />
+          <line x1="9" y1="9" x2="9.01" y2="9" strokeWidth="2" />
+          <line x1="15" y1="9" x2="15.01" y2="9" strokeWidth="2" />
+        </svg>
+      );
+    case "scissors":
+      return (
+        <svg {...props}>
+          <circle cx="6" cy="6" r="3" />
+          <circle cx="6" cy="18" r="3" />
+          <line x1="20" y1="4" x2="8.12" y2="15.88" />
+          <line x1="14.47" y1="14.48" x2="20" y2="20" />
+          <line x1="8.12" y1="8.12" x2="12" y2="12" />
+        </svg>
+      );
+    case "utensils":
+      return (
+        <svg {...props}>
+          <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2" />
+          <path d="M7 2v20" />
+          <path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7" />
+        </svg>
+      );
+    case "dumbbell":
+      return (
+        <svg {...props}>
+          <path d="M6.5 6.5h11M6.5 17.5h11" />
+          <rect x="2" y="5" width="4.5" height="14" rx="1" />
+          <rect x="17.5" y="5" width="4.5" height="14" rx="1" />
+          <path d="M12 5v14" />
+        </svg>
+      );
+    case "car":
+      return (
+        <svg {...props}>
+          <path d="M5 17h14v-5l-2-6H7L5 12v5Z" />
+          <circle cx="7.5" cy="17" r="2" />
+          <circle cx="16.5" cy="17" r="2" />
+          <path d="M5 12h14" />
+        </svg>
+      );
+    case "home":
+      return (
+        <svg {...props}>
+          <path d="M3 12l9-8 9 8" />
+          <path d="M5 10v10a1 1 0 0 0 1 1h3v-5h6v5h3a1 1 0 0 0 1-1V10" />
+        </svg>
+      );
+    case "briefcase":
+      return (
+        <svg {...props}>
+          <rect x="2" y="7" width="20" height="14" rx="2" />
+          <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" />
+          <path d="M12 12h.01" strokeWidth="2" />
+        </svg>
+      );
+    case "linkedin":
+      return (
+        <svg {...props}>
+          <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6Z" />
+          <rect x="2" y="9" width="4" height="12" />
+          <circle cx="4" cy="4" r="2" />
+        </svg>
+      );
     default:
       return null;
   }

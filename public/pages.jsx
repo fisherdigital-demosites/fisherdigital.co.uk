@@ -127,6 +127,33 @@ const Home = ({ tw }) => (
     {/* Integrations ticker */}
     <IntegrationsBand />
 
+    {/* Who we help */}
+    <section className="section container">
+      <SectionHead
+        eyebrow="Who we help"
+        title="Built for the businesses that keep your high street running."
+        center
+      />
+      <div className="industry-grid reveal">
+        {[
+          { icon: "wrench", name: "Tradespeople", sub: "Plumbers, electricians, builders" },
+          { icon: "smile", name: "Dental & Medical", sub: "Dentists, physios, clinics" },
+          { icon: "scissors", name: "Hair & Beauty", sub: "Salons, barbers, spas" },
+          { icon: "utensils", name: "Hospitality", sub: "Restaurants, cafes, hotels" },
+          { icon: "briefcase", name: "Professional Services", sub: "Law firms, accountants, estate agents" },
+          { icon: "dumbbell", name: "Fitness & Wellness", sub: "Gyms, PTs, yoga studios" },
+          { icon: "car", name: "Automotive", sub: "Garages, detailers, MOT centres" },
+          { icon: "home", name: "Property", sub: "Cleaners, landscapers, maintenance" },
+        ].map((ind, i) => (
+          <div key={i} className="industry-card">
+            <div className="industry-icon"><Icon name={ind.icon} size={20} /></div>
+            <h4 className="industry-name">{ind.name}</h4>
+            <p className="industry-sub">{ind.sub}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
     {/* What we help with */}
     <section className="section container">
       <SectionHead
@@ -136,6 +163,11 @@ const Home = ({ tw }) => (
       />
       <div className="svc-grid reveal">
         {SERVICES.map((s) => <ServiceCard key={s.id} s={s} />)}
+      </div>
+      <div className="section-cta reveal" style={{ textAlign: "center", marginTop: 40 }}>
+        <a className="btn btn-primary btn-lg" href="#/services">
+          See all services in detail <Icon name="arrow-right" size={14} />
+        </a>
       </div>
     </section>
 
@@ -172,6 +204,35 @@ const Home = ({ tw }) => (
           <div className="stat"><div className="num">0</div><div className="label">Hours spent chasing reviews</div></div>
           <div className="stat"><div className="num">2-4w</div><div className="label">From kickoff to live</div></div>
         </div>
+
+        <div className="section-cta reveal" style={{ textAlign: "center", marginTop: 48 }}>
+          <a className="btn btn-white btn-lg" href="#/contact">
+            Get your free audit <Icon name="arrow-right" size={14} />
+          </a>
+        </div>
+      </div>
+    </section>
+
+    {/* Why FisherDigital */}
+    <section className="section container">
+      <SectionHead
+        eyebrow="Why us"
+        title="What makes FisherDigital different"
+        center
+      />
+      <div className="why-grid reveal">
+        {[
+          { icon: "shield", title: "No contracts", desc: "Rolling monthly. Cancel anytime. We earn your business every month." },
+          { icon: "clock", title: "Live in 2-4 weeks", desc: "From first call to fully running. We handle all the setup." },
+          { icon: "check", title: "We manage everything", desc: "You never log into a dashboard. We handle it all and send monthly reports." },
+          { icon: "pin", title: "UK-based team", desc: "Real people in the same timezone. Message us anytime." },
+        ].map((w, i) => (
+          <div key={i} className="why-card">
+            <div className="why-icon"><Icon name={w.icon} size={20} /></div>
+            <h3>{w.title}</h3>
+            <p>{w.desc}</p>
+          </div>
+        ))}
       </div>
     </section>
 
@@ -609,11 +670,19 @@ const AboutPage = ({ tw }) => (
           <img className="founder-photo" src="/josh.jpg" alt="Josh Fisher" />
           <h3 className="founder-name">Josh Fisher</h3>
           <div className="founder-role">Founder</div>
+          <p className="founder-bio">{tw.joshBio}</p>
+          <a href="https://www.linkedin.com/in/joshfisher-fd/" target="_blank" rel="noopener noreferrer" className="founder-linkedin">
+            <Icon name="linkedin" size={16} /> LinkedIn
+          </a>
         </div>
         <div className="founder-card">
           <img className="founder-photo" src="/billy.jpg" alt="Billy Loughman" />
           <h3 className="founder-name">Billy Loughman</h3>
           <div className="founder-role">Co-founder</div>
+          <p className="founder-bio">{tw.billyBio}</p>
+          <a href="https://www.linkedin.com/in/billy-loughman/" target="_blank" rel="noopener noreferrer" className="founder-linkedin">
+            <Icon name="linkedin" size={16} /> LinkedIn
+          </a>
         </div>
       </div>
     </section>
